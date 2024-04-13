@@ -12,6 +12,7 @@ click==8.1.7
 click-didyoumean==0.3.1
 click-plugins==1.1.1
 click-repl==0.3.0
+Collectfast==2.2.0
 coreapi==2.3.3
 coreschema==0.0.4
 coverage==7.4.4
@@ -72,6 +73,7 @@ setuptools==69.2.0
 simplejson==3.19.2
 six==1.16.0
 sqlparse==0.4.4
+typing_extensions==4.11.0
 tzdata==2024.1
 uritemplate==4.1.1
 urllib3==2.2.1
