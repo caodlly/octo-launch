@@ -36,7 +36,7 @@ Faker==24.4.0
 gevent==24.2.1
 greenlet==3.0.3
 gunicorn==21.2.0
-idna==3.6
+idna==3.7
 inflection==0.5.1
 iniconfig==2.0.0
 itypes==1.2.0
