@@ -3,7 +3,7 @@ import os
 
 INSTALLED_APPS += ['collectfast', 'storages']
 
-TYPE_STORAGE = str(env("TYPE_STORAGE", default="local")).lower
+TYPE_STORAGE = env("TYPE_STORAGE", default="local")
 
 if TYPE_STORAGE == 's3':
 

@@ -14,8 +14,7 @@ SECRET_KEY = env(
 # === DEBUG Tools ================================================
 DEBUG = False
 # === URLs Allowed Hosts ==========================================
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default='*')
-print(ALLOWED_HOSTS)
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=['*'])
 # === Application definition =====================================
 DJANGO_APPS = [
     'django.contrib.admin',
