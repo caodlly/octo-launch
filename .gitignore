@@ -1,0 +1,61 @@
+# Byte-compiled / optimized Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+venv-bak/
+env/
+.env
+
+# Django generated files
+db.sqlite3
+
+# Media files (uploads)
+media/
+# Static files
+static/
+staticfiles/
+
+# Local development settings
+local_settings.py
+
+# Secret key file
+secret_key.txt
+
+# IDE-specific files and directories
+.vscode/
+.idea/
+
+# Ignore logs
+logs/
+*.log
+
+
+# Ignore database dump files
+*.dump
+*.db
+
+# Ignore Python environment
+.Python
+
+# Ignore coverage reports
+htmlcov/
+
+# Ignore compiled translations
+locale/
+*.mo
+
+# SSL KEY
+ssl/
+
+# server 
+*.pid
+
+# database
+*.sql
+
+# Celery
+celerybeat-schedule
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+nohup celery -A config worker --concurrency=10 --loglevel=info > logs/celery_logs.log 2>&1 & echo $! > worker.pid
+nohup celery -A config beat --loglevel=info > logs/celery_logs.log 2>&1 & echo $! > beat.pid
+gunicorn -c gunicorn_config.py
