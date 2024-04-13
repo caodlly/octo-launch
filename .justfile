@@ -23,4 +23,7 @@ migrate:
     python manage.py migrate
 
 test path='':
-    pytest -n auto
+    pytest -n auto {{path}}
+
+cicd-test:
+    pytest -n auto --disable-warnings
