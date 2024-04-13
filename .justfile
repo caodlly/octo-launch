@@ -23,4 +23,4 @@ migrate:
     python manage.py migrate
 
 test path='':
-    pytest
+    pytest -n auto
