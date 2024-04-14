@@ -10,6 +10,14 @@ from .base import *  # noqa: F403
 from .base import env, REST_FRAMEWORK, DATABASES
 from config.utils.storages import *  # noqa: F403
 
+# ===STMP Email=================================================
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
 ADMIN_URL = env('ADMIN_URL', default="admin")
 # === DEBUG Tools ====================================================
 DEBUG = True

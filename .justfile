@@ -8,7 +8,18 @@ stop:
 
 install:
     python -m pip install --upgrade pip
-    pip install -r requirements.txt
+    uv pip install -r requirements/base.txt
+    uv pip install -r requirements/development.txt
+    uv pip install -r requirements/production.txt
+
+dev-start:
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+prod-start:
+    docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+dev-stop:
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
+prod-stop:
+    docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
 
 devstart:
     python manage.py runserver 0.0.0.0:8080

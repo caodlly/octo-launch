@@ -8,9 +8,12 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import os
-
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.production')
+BUILD_ENVIRONMENT = os.environ.get('BUILD_ENVIRONMENT', 'development').lower()
+if  BUILD_ENVIRONMENT=="development":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
+else : 
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 application = get_wsgi_application()
