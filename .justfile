@@ -15,8 +15,8 @@ devstart:
 
 [linux]
 clean-migrations:
-    find . -path "*/migrations/*.py" -not -path "*/env/*" -not -name "__init__.py" -delete
-    find . -path "*/migrations/*.pyc" -not -path "*/env/*" -delete
+    find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
+    find . -path "./apps/*/migrations/*.pyc" -delete
 
 migrate:
     python manage.py makemigrations
