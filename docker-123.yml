@@ -1,0 +1,142 @@
+version: "3.9"
+
+networks:
+  hs:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.14.4.0/24
+services:
+
+  # =====================================
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      PUID: 1000
+      PGID: 1000
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    networks:
+      hs:
+        ipv4_address: 172.14.4.23
+    volumes:
+      - /mnt/srv/docker/cont/postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5432
+    restart: no
+  # =====================================
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks:
+      hs:
+        ipv4_address: 172.14.4.20
+    environment:
+      PUID: 1000
+      PGID: 1000
+      REDIS_PORT: 6379
+      REDIS_DATABASES: 16
+    volumes:
+      - /mnt/srv/docker/cont/redis/dаta:/root/redis
+      - /mnt/srv/docker/cont/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 8863:6379
+    restart: no
+  # =====================================
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    networks:
+      hs:
+    environment:
+      PUID: 1000
+      PGID: 1000
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 7081:80
+    restart: no
+  #  =====================================
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    environment:
+      PUID: 1000
+      PGID: 1000
+    networks:
+      hs:
+    command: --no-analytics
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/srv/docker/cont/portainer:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 7082:9000
+      - 8000
+      - 9443
+    restart: no
+
+  # ====================================
+  proxy:
+    image: nginx:latest
+    container_name: proxy
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Africa/Cairo
+    networks:
+      hs:
+        ipv4_address: 172.14.4.24
+    volumes:
+      - /mnt/srv/docker/cont/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+  # ==========================================
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    networks:
+      hs:
+        ipv4_address: 172.14.4.19
+    depends_on:
+      - postgres
+    environment:
+      USER_UID: 1000
+      USER_GID: 1000
+      GITEA__database__DB_TYPE: postgres
+      GITEA__database__HOST: postgres:5432
+      GITEA__database__NAME: gitea
+      GITEA__database__USER: postgres
+      GITEA__database__PASSWD: postgres
+    volumes:
+      - /mnt/srv/docker/cont/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 7083:3000
+      - 7084:22
+    restart: no
+  # ====================================
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: jenkins
+    networks:
+      hs:
+        ipv4_address: 172.14.4.18
+    depends_on:
+      - postgres
+    privileged: true
+    user: root
+    ports:
+      - 7087:22
+      - 7086:8080
+      - 50000:50000
+    volumes:
+      - /mnt/srv/docker/cont/jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+  # ====================================

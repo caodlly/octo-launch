@@ -5,12 +5,8 @@ from django.conf import settings
 
 
 
-BUILD_ENVIRONMENT = os.environ.get('BUILD_ENVIRONMENT', 'development').lower()
-if  BUILD_ENVIRONMENT=="development":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
-else : 
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
-    
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.base")
+
 app = Celery('app_config')
 app.conf.update(**settings.CELERY_CONFIG)
 app.config_from_object('django.conf:settings', namespace='CELERY')

@@ -7,4 +7,4 @@ services:
       args: 
         - BUILD_ENVIRONMENT=production
     environment:
-      - BUILD_ENVIRONMENT=production
+      - BUILD_ENVIRONMENT=productiona
