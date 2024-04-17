@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
 import os
 
 from django.core.asgi import get_asgi_application
+from config.buildenvironment import chanageSettingsBasedOnEnvironment
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.base")
+chanageSettingsBasedOnEnvironment()
 
 application = get_asgi_application()

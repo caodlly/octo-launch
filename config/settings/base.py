@@ -1,15 +1,6 @@
 from environ import Env
 import os
 from pathlib import Path
-
-# === Change Environment =========================================
-
-BUILD_ENVIRONMENT = os.environ.get("BUILD_ENVIRONMENT", "development").lower()
-if BUILD_ENVIRONMENT == "development":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
-else:
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
-
 # === BASE_DIR ===================================================
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # === Get .env  ===================================================
