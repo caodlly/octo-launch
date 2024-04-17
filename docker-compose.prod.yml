@@ -1,0 +1,10 @@
+version: "3"
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./Docker/Dockerfile
+      args: 
+        - BUILD_ENVIRONMENT=production
+    environment:
+      - BUILD_ENVIRONMENT=productiona

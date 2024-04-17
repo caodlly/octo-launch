@@ -8,9 +8,11 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import os
-
 from django.core.wsgi import get_wsgi_application
+from config.buildenvironment import chanageSettingsBasedOnEnvironment
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.production')
+chanageSettingsBasedOnEnvironment()
+
+# os.environ.setdefault(f"DJANGO_SETTINGS_MODULE", "config.settings.{Build_env}")
 
 application = get_wsgi_application()

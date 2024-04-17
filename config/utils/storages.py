@@ -47,8 +47,8 @@ if TYPE_STORAGE == 's3':
     # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#cloudfront
     AWS_S3_CUSTOM_DOMAIN = env("AWS_S3_CUSTOM_DOMAIN", default=None)
 
-    AWS_S3_HOST = AWS_S3_CUSTOM_DOMAIN or f"{
-        AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_HOST = AWS_S3_CUSTOM_DOMAIN or f"{AWS_STORAGE_BUCKET_NAME} \
+        .s3.amazonaws.com"
 
     MEDIA_URL = f"{AWS_S3_HOST}/media/"
     STATIC_URL = f"{AWS_S3_HOST}/static/"
