@@ -1,8 +1,7 @@
-import os
 from celery import Celery
-from celery.schedules import crontab
+# from celery.schedules import crontab
 from django.conf import settings
-from config.buildenvironment import chanageSettingsBasedOnEnvironment
+from config.utils.buildenvironment import chanageSettingsBasedOnEnvironment
 
 chanageSettingsBasedOnEnvironment()
 

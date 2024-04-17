@@ -11,19 +11,19 @@ install:
     uv pip install -r requirements/base.txt
     uv pip install -r requirements/development.txt
 
-docker-start:
+dev-start:
     @docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+
+dev-stop:
+    @docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
 
 prod-start:
    @docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
-docker-stop:
-    @docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
-
 prod-stop:
     @docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
 
-devstart:
+manage-start:
     python manage.py runserver 0.0.0.0:8080
 
 [linux]
