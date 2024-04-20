@@ -5,6 +5,12 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
+def generate():
+    characters = string.ascii_letters + string.digits + '{0:9}'
+    name = ''.join(random.choice(characters) for _ in range(20))
+    return name
+
+
 def exif_transpose(img):
     exif_orientation_tag = 274
     if hasattr(img, '_getexif'):
@@ -41,9 +47,3 @@ def ReSizeImages(avatar, w, h):
         avatar_new, None, namefile, 'image/png', len(
             avatar_new.getvalue()), None
     )
-
-
-def generate():
-    characters = string.ascii_letters + string.digits + '{0:9}'
-    name = ''.join(random.choice(characters) for _ in range(20))
-    return name

@@ -1,8 +1,11 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import permissions, generics
 from rest_framework.response import Response
-from apps.users.models import User
 from apps.authentications.serializers import UpdateUserSerializer, UserSerializer
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class UpdateProfile(generics.RetrieveUpdateAPIView):
@@ -23,6 +26,6 @@ class UpdateProfile(generics.RetrieveUpdateAPIView):
             User.objects.get(id=request.user.id))
         return Response(serializer.data)
 
-    @extend_schema(operation_id="Update Profile User", responses=UserSerializer)
+    @extend_schema(operation_id=_("Update Profile User"), responses=UserSerializer)
     def put(self, request, *args, **kwargs):
         return super().put(request, *args, **kwargs)

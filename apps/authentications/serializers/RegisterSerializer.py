@@ -1,8 +1,10 @@
-from apps.users.models import User, username_regex
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
+from django.utils.translation import gettext_lazy as _
 import re
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"
 
 
@@ -15,12 +17,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'username', 'email',
-                  'password', 'password2']
+        fields = ['id', 'name', 'email', 'password', 'password2']
         extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True},
-            'username': {'required': True},
             'email': {'required': True},
         }
 
@@ -28,19 +26,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         password = value
         password2 = self.initial_data.get("password2")
         if password != password2:
-            raise serializers.ValidationError("Password fields didn't match")
+            raise serializers.ValidationError(
+                _("Password fields didn't match"))
 
         password_check = re.match(password_pattern, value)
         if password_check is None:
-            raise serializers.ValidationError("Password is too weak")
+            raise serializers.ValidationError(_("Password is too weak"))
         return make_password(value)
-
-    @staticmethod
-    def validate_username(value):
-        username_check = re.match(username_regex, value)
-        if username_check is None:
-            raise serializers.ValidationError("Invalid username format")
-        return value
 
     def validate(self, value):
         password2 = value.get("password2")

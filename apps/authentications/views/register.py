@@ -1,9 +1,11 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import status, generics
 from rest_framework.response import Response
-from apps.users.models import User
 from apps.utils.permissions import RegisterPermission
 from apps.authentications.serializers import RegisterSerializer, UserSerializer
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Register(generics.CreateAPIView):

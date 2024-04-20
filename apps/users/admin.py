@@ -1,12 +1,40 @@
 from django.contrib import admin
-from apps.users.models import User
-# Register your models here.
+from django.contrib.auth import admin as auth_admin
+from django.utils.translation import gettext_lazy as _
+
+from .forms import UserAdminChangeForm
+from .forms import UserAdminCreationForm
+from .models import User
 
 
 @admin.register(User)
-class UserModel(admin.ModelAdmin):
-    list_display = ('username', 'email', 'name',
-                    'last_login', 'is_active', 'is_staff')
-    search_fields = ('username', 'email')
-    list_per_page = 25
-    date_hierarchy = 'last_login'
+class UserAdmin(auth_admin.UserAdmin):
+    form = UserAdminChangeForm
+    add_form = UserAdminCreationForm
+    fieldsets = (
+        (None, {"fields": ("email", "password")}),
+        (_("Personal info"), {"fields": ("name", "avatar",)}),
+        (_("Permissions"),
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ),
+        },),
+        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
+    )
+    list_display = ["email", "name", "is_superuser"]
+    search_fields = ["name", 'email']
+    ordering = ["id"]
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2"),
+            },
+        ),
+    )

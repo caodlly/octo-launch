@@ -1,9 +1,9 @@
 from celery import Celery
 # from celery.schedules import crontab
 from django.conf import settings
-from config.utils.buildenvironment import chanageSettingsBasedOnEnvironment
+import os
 
-chanageSettingsBasedOnEnvironment()
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.development')
 
 app = Celery('app_config')
 app.conf.update(**settings.CELERY_CONFIG)

@@ -1,9 +1,11 @@
 from rest_framework import permissions, status, generics
 from rest_framework.response import Response
-from apps.users.models import User
 from apps.utils.permissions import EmailNotVerified
 from apps.authentications.models import VerificationCode
 from apps.authentications.tasks import send_verification_email
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class SendCodeEmailVerified(generics.GenericAPIView):

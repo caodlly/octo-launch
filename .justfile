@@ -7,21 +7,8 @@ stop:
     ./shell/stop
 
 install:
-    python -m pip install --upgrade pip
-    uv pip install -r requirements/base.txt
-    uv pip install -r requirements/development.txt
-
-dev-start:
-    @docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
-
-dev-stop:
-    @docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
-
-prod-start:
-   @docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-
-prod-stop:
-    @docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
+    pip install uv
+    uv pip install -r requirements.txt
 
 manage-start:
     python manage.py runserver 0.0.0.0:8080
@@ -34,6 +21,11 @@ clean-migrations:
 migrate:
     python manage.py makemigrations
     python manage.py migrate
+
+translate:
+    python manage.py makemessages --all --ignore=env
+    python manage.py compilemessages
+
 
 test path='':
     pytest -n auto {{path}}

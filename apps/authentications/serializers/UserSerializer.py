@@ -1,6 +1,7 @@
-from apps.users.models import User
 from rest_framework import serializers
-from drf_spectacular.utils import extend_schema_field
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class EmailDetails(serializers.Serializer):
@@ -13,21 +14,13 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'name', 'first_name', 'last_name', 'email_details',
-                  'avatar', 'is_superuser',
-                  'date_joined', 'last_login']
-
-    @extend_schema_field(EmailDetails)
-    def get_email_details(self, obj):
-        return EmailDetails({"email": obj.email, "verified": obj.email_verified}).data
+        fields = ['id', 'name',  'email', 'avatar',
+                  'is_superuser', 'date_joined', 'last_login']
 
 
 class UserSerializerPublic(serializers.Serializer):
     id = serializers.IntegerField()
-    first_name = serializers.CharField()
-    last_name = serializers.CharField()
     name = serializers.CharField()
-    username = serializers.CharField()
     avatar = serializers.ImageField()
 
 
@@ -35,8 +28,7 @@ class UserSerializerPrivate(UserSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'name',
-                  'first_name', 'last_name', 'email', 'avatar']
+        fields = ['id', 'username', 'name', 'email', 'avatar']
 
 
 class UserStatusAuth(serializers.Serializer):

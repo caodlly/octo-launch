@@ -10,4 +10,8 @@ urlpatterns = [
     path('user/email/verified/',
          views.SendCodeEmailVerified.as_view(), name='email_verified'),
     path('user/email/code/', views.CodeEmailVerified.as_view(), name='email_code'),
+
+    path('auth/social/google/',
+         views.GoogleConnect.as_view(), name='social-google'),
+
 ]
