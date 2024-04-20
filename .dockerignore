@@ -1,0 +1,16 @@
+venv
+env
+.gitignore
+sqlite3.db
+.git
+.idea
+.github
+.gitattributes
+.env
+staticfiles
+docker-compose*
+.gitlab-ci.yml
+.editorconfig
+.pre-commit-config.yaml
+.readthedocs.yml
+.travis.yml
