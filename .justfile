@@ -1,10 +1,10 @@
 start: stop
-    chmod +x ./shell/start
-    ./shell/start
+    chmod +x ./scripts/start
+    ./scripts/start
 
 stop:
-    chmod +x ./shell/stop
-    ./shell/stop
+    chmod +x ./scripts/stop
+    ./scripts/stop
 
 install:
     pip install uv
@@ -35,3 +35,6 @@ cicd-test:
 
 check-database-connection:
     python check_database_connection.py
+    
+create_superuser:
+    python create_superuser.py
