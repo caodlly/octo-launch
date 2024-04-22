@@ -14,6 +14,7 @@ SECRET_KEY = env(
 )
 # === GENERAL ================================================
 DEBUG = False
+ADMIN_EMAIL = env("ADMIN_EMAIL", default="admin@email.com")
 SITE_ID = 1
 TIME_ZONE = "UTC"
 LANGUAGE_CODE = "en-us"
