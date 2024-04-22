@@ -1,1 +1,1 @@
-from .resize_image import ReSizeImages
+from .resize_image import ReSizeImages  # noqa: F401
