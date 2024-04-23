@@ -5,50 +5,57 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelManagers(
-            name='user',
+            name="user",
             managers=[
-                ('objects', apps.users.managers.UserManager()),
+                ("objects", apps.users.managers.UserManager()),
             ],
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='avatar',
+            model_name="user",
+            name="avatar",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='customer_id',
+            model_name="user",
+            name="customer_id",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='email_verified',
+            model_name="user",
+            name="email_verified",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='first_name',
+            model_name="user",
+            name="first_name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='last_name',
+            model_name="user",
+            name="last_name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='username',
+            model_name="user",
+            name="username",
         ),
         migrations.AddField(
-            model_name='user',
-            name='name',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Name of User'),
+            model_name="user",
+            name="name",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Name of User"
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='email',
-            field=models.EmailField(blank=True, max_length=254, null=True, unique=True, verbose_name='email address'),
+            model_name="user",
+            name="email",
+            field=models.EmailField(
+                blank=True,
+                max_length=254,
+                null=True,
+                unique=True,
+                verbose_name="email address",
+            ),
         ),
     ]

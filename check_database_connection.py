@@ -6,15 +6,15 @@ from config.settings.base import env
 def check_database_connection():
     try:
         # Get the database configuration URL from environment variables
-        db_url = env.db_url('DATABASE_URL')
+        db_url = env.db_url("DATABASE_URL")
 
         # Convert the db_url dictionary to match psycopg2.connect() parameters
         db_config = {
-            'dbname': db_url['NAME'],
-            'user': db_url['USER'],
-            'password': db_url['PASSWORD'],
-            'host': db_url['HOST'],
-            'port': db_url['PORT'],
+            "dbname": db_url["NAME"],
+            "user": db_url["USER"],
+            "password": db_url["PASSWORD"],
+            "host": db_url["HOST"],
+            "port": db_url["PORT"],
         }
 
         # Connect to the PostgreSQL database
@@ -26,7 +26,9 @@ def check_database_connection():
         # Print PostgreSQL server version
         cursor.execute("SELECT version();")
         db_version = cursor.fetchone()
-        print("Connected to PostgreSQL database. PostgreSQL Server version:", db_version)
+        print(
+            "Connected to PostgreSQL database. PostgreSQL Server version:", db_version
+        )
 
         # Close the cursor and connection
         cursor.close()

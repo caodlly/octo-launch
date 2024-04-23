@@ -20,14 +20,15 @@ class CodeEmailVerified(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated, EmailNotVerified]
 
     def post(self, *args, **kwargs):
-        code = self.request.data.get('code')
+        code = self.request.data.get("code")
         if not code:
-            return Response({'code': 'This field is required.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"code": "This field is required."}, status=status.HTTP_400_BAD_REQUEST
+            )
         try:
-            model = VerificationCode.objects.get(
-                code=code, user=self.request.user)
+            model = VerificationCode.objects.get(code=code, user=self.request.user)
         except VerificationCode.DoesNotExist:
-            return Response({'detail': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
 
         user = User.objects.get(email=self.request.user.email)
         user.email_verified = True

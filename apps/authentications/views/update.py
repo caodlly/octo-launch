@@ -13,7 +13,7 @@ class UpdateProfile(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.request in ['PUT', 'PATCH']:
+        if self.request in ["PUT", "PATCH"]:
             return UpdateUserSerializer
         return UserSerializer
 
@@ -22,8 +22,7 @@ class UpdateProfile(generics.RetrieveUpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         super().update(request, *args, **kwargs)
-        serializer = UserSerializer(
-            User.objects.get(id=request.user.id))
+        serializer = UserSerializer(User.objects.get(id=request.user.id))
         return Response(serializer.data)
 
     @extend_schema(operation_id=_("Update Profile User"), responses=UserSerializer)

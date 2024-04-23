@@ -1,5 +1,5 @@
 wsgi_app = "config.wsgi:application"
-bind = '0.0.0.0:8080'
+bind = "0.0.0.0:8080"
 worker_class = "gthread"
 threads = 4
 timeout = 120

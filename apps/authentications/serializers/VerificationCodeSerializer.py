@@ -3,7 +3,6 @@ from apps.authentications.models import VerificationCode
 
 
 class VerificationCodeSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = VerificationCode
-        fields = '__all__'
+        fields = "__all__"

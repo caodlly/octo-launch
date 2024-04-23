@@ -6,14 +6,14 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 def generate():
-    characters = string.ascii_letters + string.digits + '{0:9}'
-    name = ''.join(random.choice(characters) for _ in range(20))
+    characters = string.ascii_letters + string.digits + "{0:9}"
+    name = "".join(random.choice(characters) for _ in range(20))
     return name
 
 
 def exif_transpose(img):
     exif_orientation_tag = 274
-    if hasattr(img, '_getexif'):
+    if hasattr(img, "_getexif"):
         exif_data = img._getexif()
         if exif_data is not None:
             orientation = exif_data.get(exif_orientation_tag, 1)
@@ -40,10 +40,9 @@ def ReSizeImages(avatar, w, h):
     avatar_new_size = image.resize(size_avatar)
     image.close()
     avatar_new = BytesIO()
-    avatar_new_size.save(avatar_new, format='PNG')
+    avatar_new_size.save(avatar_new, format="PNG")
     avatar_new.seek(0)
-    namefile = generate() + '.png'
+    namefile = generate() + ".png"
     return InMemoryUploadedFile(
-        avatar_new, None, namefile, 'image/png', len(
-            avatar_new.getvalue()), None
+        avatar_new, None, namefile, "image/png", len(avatar_new.getvalue()), None
     )

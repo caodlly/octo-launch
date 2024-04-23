@@ -17,20 +17,20 @@ class LoginSerializer(serializers.Serializer):
         label=_("Password"),
         style={"input_type": "password"},
         max_length=128,
-        write_only=True)
+        write_only=True,
+    )
 
     def validate(self, data):
         email = data.get("email")
         password = data.get("password")
         request = self.context.get("request")
         if email and password:
-            user = authenticate(
-                request=request, email=email, password=password)
+            user = authenticate(request=request, email=email, password=password)
 
             if not user:
                 raise AuthenticationFailed()
         else:
             msg = _("Must include 'username' and 'password'.")
-            raise ValidationError(msg, code='authorization')
-        data['user'] = user
+            raise ValidationError(msg, code="authorization")
+        data["user"] = user
         return data

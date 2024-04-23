@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0003_alter_user_email_alter_user_name'),
+        ("users", "0003_alter_user_email_alter_user_name"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='avatar',
-            field=models.ImageField(default='avatar.svg', upload_to='avatar/'),
+            model_name="user",
+            name="avatar",
+            field=models.ImageField(default="avatar.svg", upload_to="avatar/"),
         ),
         migrations.AddField(
-            model_name='user',
-            name='email_verified',
+            model_name="user",
+            name="email_verified",
             field=models.BooleanField(default=False),
         ),
     ]

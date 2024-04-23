@@ -16,13 +16,11 @@ class Register(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         serializer = super().create(request, *args, **kwargs)
-        username = serializer.data['username']
-        user_serializer = UserSerializer(
-            User.objects.get(username=username))
+        username = serializer.data["username"]
+        user_serializer = UserSerializer(User.objects.get(username=username))
         return Response(user_serializer.data, status=status.HTTP_201_CREATED)
 
-    @extend_schema(operation_id="Register a user account",
-                   responses=UserSerializer)
+    @extend_schema(operation_id="Register a user account", responses=UserSerializer)
     def post(self, request, *args, **kwargs):
         """
         Creates an account for the user

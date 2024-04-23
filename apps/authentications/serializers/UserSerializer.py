@@ -14,8 +14,15 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'name',  'email', 'avatar',
-                  'is_superuser', 'date_joined', 'last_login']
+        fields = [
+            "id",
+            "name",
+            "email",
+            "avatar",
+            "is_superuser",
+            "date_joined",
+            "last_login",
+        ]
 
 
 class UserSerializerPublic(serializers.Serializer):
@@ -25,10 +32,9 @@ class UserSerializerPublic(serializers.Serializer):
 
 
 class UserSerializerPrivate(UserSerializer):
-
     class Meta:
         model = User
-        fields = ['id', 'username', 'name', 'email', 'avatar']
+        fields = ["id", "username", "name", "email", "avatar"]
 
 
 class UserStatusAuth(serializers.Serializer):

@@ -2,8 +2,8 @@ import sys
 
 
 def cancel_create_superuser(func):
-    """Decorator to prevent the creation of a superuser under certain conditions.
-    """
+    """Decorator to prevent the creation of a superuser under certain conditions."""
+
     def file_missing_error():
         return print("You can only use this on the manage.py file")
 

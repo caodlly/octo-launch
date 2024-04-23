@@ -118,8 +118,7 @@ LOGIN_REDIRECT_URL = "users:redirect"
 LOGIN_URL = "account_login"
 
 # === allauth ===========================================
-ACCOUNT_ALLOW_REGISTRATION = env.bool(
-    "DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 # https://docs.allauth.org/en/latest/account/configuration.html
@@ -136,7 +135,7 @@ SOCIALACCOUNT_PROVIDERS = {
         "APP": {
             "client_id": env("GOOGLE_CLIENT_ID"),
             "secret": env("GOOGLE_SECRET"),
-            "key": ""
+            "key": "",
         },
         "SCOPE": [
             "profile",

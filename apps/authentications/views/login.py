@@ -13,15 +13,17 @@ class Login(APIView):
     throttle_classes = [AnonThrottlingLogin]
 
     @staticmethod
-    @extend_schema(request=LoginSerializer, responses=UserSerializer,
-                   operation_id="Login Session")
+    @extend_schema(
+        request=LoginSerializer, responses=UserSerializer, operation_id="Login Session"
+    )
     def post(request):
         login_serializer = LoginSerializer(
-            data=request.data, context={'request': request})
+            data=request.data, context={"request": request}
+        )
 
         login_serializer.is_valid(raise_exception=True)
 
-        user = login_serializer.validated_data['user']
+        user = login_serializer.validated_data["user"]
 
         login(request, user)
         user_serializer = UserSerializer(user)

@@ -26,14 +26,15 @@ def send_verification_email(user_email):
 
     code = str(uuid.uuid4())[:6]
 
-    data = {'user': user.id, 'code': code}
+    data = {"user": user.id, "code": code}
     serializer = VerificationCodeSerializer(data=data)
 
     if serializer.is_valid():
         serializer.save()
-        id = serializer.data.get('id')
+        id = serializer.data.get("id")
         remove_verification_code.apply_async(
-            args=[id], countdown=timedelta(minutes=10).seconds)
+            args=[id], countdown=timedelta(minutes=10).seconds
+        )
 
     else:
         try:
@@ -43,8 +44,9 @@ def send_verification_email(user_email):
             return "VerificationCode_DoesNotExist"
 
     return send_mail(
-        subject='Verification Code',
-        message=f'Your verification code is: {code}',
+        subject="Verification Code",
+        message=f"Your verification code is: {code}",
         from_email=settings.EMAIL_HOST,
         recipient_list=[user.email],
-        fail_silently=True)
+        fail_silently=True,
+    )

@@ -9,25 +9,21 @@ password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-
-    password2 = serializers.CharField(
-        required=True, max_length=128, write_only=True)
-    password = serializers.CharField(
-        required=True, max_length=128, write_only=True)
+    password2 = serializers.CharField(required=True, max_length=128, write_only=True)
+    password = serializers.CharField(required=True, max_length=128, write_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'name', 'email', 'password', 'password2']
+        fields = ["id", "name", "email", "password", "password2"]
         extra_kwargs = {
-            'email': {'required': True},
+            "email": {"required": True},
         }
 
     def validate_password(self, value):
         password = value
         password2 = self.initial_data.get("password2")
         if password != password2:
-            raise serializers.ValidationError(
-                _("Password fields didn't match"))
+            raise serializers.ValidationError(_("Password fields didn't match"))
 
         password_check = re.match(password_pattern, value)
         if password_check is None:
@@ -37,5 +33,5 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate(self, value):
         password2 = value.get("password2")
         if password2:
-            del value['password2']
+            del value["password2"]
         return value
