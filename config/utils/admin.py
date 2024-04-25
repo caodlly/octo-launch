@@ -10,7 +10,7 @@ def cancel_create_superuser(func):
     def cancel():
         return print("You cannot create a super user")
 
-    if 'manage.py' not in sys.argv[0]:
+    if "manage.py" not in sys.argv[0]:
         return file_missing_error
 
     if len(sys.argv) > 1 and sys.argv[1] == "createsuperuser":
