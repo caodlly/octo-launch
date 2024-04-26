@@ -61,8 +61,6 @@ THIRD_PARTY_APPS = [
     "drf_spectacular_sidecar",
     # ========
     "sentry_sdk",
-    # ========
-    "django_extensions",
 ]
 
 
