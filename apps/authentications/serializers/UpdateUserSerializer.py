@@ -2,7 +2,6 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
 import re
-import tools
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -36,7 +35,3 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(_("Password is too weak"))
 
         return make_password(value)
-
-    @staticmethod
-    def validate_avatar(value):
-        return tools.ReSizeImages(value, 450, 450)

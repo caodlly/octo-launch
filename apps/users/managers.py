@@ -1,7 +1,5 @@
+from apps.utils import Generate
 from typing import TYPE_CHECKING
-import binascii
-import os
-
 
 from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
@@ -27,14 +25,13 @@ class UserManager(DjangoUserManager["User"]):
         user.password = make_password(password)
         user.save(using=self._db)
 
-        print("\n \n \n \n")
+        print("\n \n ")
         print("email:" + email)
         print("password:" + old_password)
-        print("\n \n \n \n")
+        print("\n \n")
         return user
 
     # type: ignore[override]
-
     def create_user(self, email: str, password: str | None = None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
@@ -44,7 +41,7 @@ class UserManager(DjangoUserManager["User"]):
     def create_superuser(self, email: str, password: str | None = None, **extra_fields):
         if self.model.objects.filter(is_superuser=True).exists():
             raise ValidationError("There can be only one superuser.")
-        password = binascii.hexlify(os.urandom(20)).decode()
+        password = Generate.password()
 
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)

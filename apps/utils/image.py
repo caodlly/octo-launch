@@ -1,14 +1,7 @@
-import random
-import string
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
-
-
-def generate():
-    characters = string.ascii_letters + string.digits + "{0:9}"
-    name = "".join(random.choice(characters) for _ in range(20))
-    return name
+import uuid
 
 
 def exif_transpose(img):
@@ -31,7 +24,7 @@ def exif_transpose(img):
     return img
 
 
-def ReSizeImages(avatar, w, h):
+def resize_image(avatar, w, h):
     image = Image.open(avatar)
 
     image = exif_transpose(image)
@@ -42,7 +35,8 @@ def ReSizeImages(avatar, w, h):
     avatar_new = BytesIO()
     avatar_new_size.save(avatar_new, format="PNG")
     avatar_new.seek(0)
-    namefile = generate() + ".png"
+    name = str(uuid.uuid4()).replace("-", "")[:10]
+    namefile = name + ".png"
     return InMemoryUploadedFile(
         avatar_new, None, namefile, "image/png", len(avatar_new.getvalue()), None
     )

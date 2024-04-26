@@ -3,10 +3,10 @@
 
 import os
 import sys
-from config.utils.admin import cancel_create_superuser
+from config.utils.manager.decorator import manager
 
 
-@cancel_create_superuser
+@manager
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
