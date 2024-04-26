@@ -30,6 +30,7 @@ django-celery-beat==2.6.0
 django-cors-headers==4.3.1
 django-debug-toolbar==4.3.0
 django-environ==0.11.2
+django-extensions==3.2.3
 django-filter==24.2
 django-hosts==6.0
 django-redis==5.4.0
@@ -50,7 +51,7 @@ identify==2.5.36
 idna==3.7
 inflection==0.5.1
 iniconfig==2.0.0
-ipython==8.23.0
+ipython==8.24.0
 itypes==1.2.0
 jedi==0.19.1
 Jinja2==3.1.3
