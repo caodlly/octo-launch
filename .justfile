@@ -20,7 +20,7 @@ shell:
 clean:
     find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
-    python manage.py clear_chche
+    python manage.py clear_cache
     
 
 migrate:
