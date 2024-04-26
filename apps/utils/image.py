@@ -35,7 +35,7 @@ def resize_image(avatar, w, h):
     avatar_new = BytesIO()
     avatar_new_size.save(avatar_new, format="PNG")
     avatar_new.seek(0)
-    name = f"{uuid.uuid4()}".replace("-", "")[:15]
+    name = str(uuid.uuid4()).replace("-", "")[:10]
     namefile = name + ".png"
     return InMemoryUploadedFile(
         avatar_new, None, namefile, "image/png", len(avatar_new.getvalue()), None
