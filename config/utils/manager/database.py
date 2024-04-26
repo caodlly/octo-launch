@@ -4,6 +4,7 @@ from config.settings.base import env
 
 
 def check_database_connection():
+    """Verify database connection"""
     try:
         # Get the database configuration URL from environment variables
         db_url = env.db_url("DATABASE_URL")
@@ -37,7 +38,3 @@ def check_database_connection():
     except OperationalError as e:
         print("Unable to connect to PostgreSQL database:", e)
         exit(1)
-
-
-# Call the function to check the database connection
-check_database_connection()

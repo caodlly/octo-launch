@@ -1,11 +1,15 @@
 from .manager import Manager as ManagerTemplate
 from django.core.exceptions import ValidationError
+from .database import check_database_connection
 
 
 class Manager(ManagerTemplate):
     def __init__(self):
         super().__init__()
-        schema = {"createsuperuser": "create_superuser"}
+        schema = {
+            "createsuperuser": "create_superuser",
+            "check_database": "check_database",
+        }
         self.set_schema(schema)
 
     def create_superuser(self):
@@ -18,6 +22,11 @@ class Manager(ManagerTemplate):
             User.objects.create_superuser(email=settings.ADMIN_EMAIL)
         except ValidationError as e:
             raise ValueError(e.message)
+
+    @staticmethod
+    def check_database():
+        """Verify database connection"""
+        return check_database_connection()
 
 
 def manager(func):
