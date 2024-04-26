@@ -34,7 +34,7 @@ cicd-test:
     pytest -n auto --disable-warnings
 
 check_database:
-    python manage.py check_database
+    python manage.py check_database --no-django
     
 createsuperuser:
     python manage.py createsuperuser
