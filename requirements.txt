@@ -26,7 +26,6 @@ distlib==0.3.8
 dj-rest-auth==6.0.0
 Django==5.0.4
 django-allauth==0.61.1
-django-celery-beat==2.6.0
 django-cors-headers==4.3.1
 django-debug-toolbar==4.3.0
 django-environ==0.11.2
@@ -109,5 +108,6 @@ uv==0.1.33
 vine==5.1.0
 virtualenv==20.25.3
 wcwidth==0.2.13
+Werkzeug==3.0.2
 zope.event==5.0
 zope.interface==6.3

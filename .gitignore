@@ -61,3 +61,4 @@ celerybeat-schedule
 
 # File MAINT for Some Testing
 MAINT.py
+ADMIN_PASS
