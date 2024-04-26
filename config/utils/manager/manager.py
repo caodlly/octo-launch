@@ -68,8 +68,11 @@ class Manager:
 
     def setup(self) -> None:
         self.validate()
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
-        django.setup()
+        if "--no-django" not in self._args:
+            os.environ.setdefault(
+                "DJANGO_SETTINGS_MODULE", "config.settings.development"
+            )
+            django.setup()
         self.run()
 
     def run(self) -> None:
