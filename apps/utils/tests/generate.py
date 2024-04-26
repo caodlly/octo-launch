@@ -9,13 +9,17 @@ class Generate:
     fake = Faker()
 
     def __init__(self):
-        pass
+        self.data_register = self.register()
+        self.data_login = self.login()
 
     def login(self):
-        return {"email": self.fake.email(), "password": self.fake.password(20)}
+        return {
+            "email": self.data_register.get("email"),
+            "password": self.data_register.get("password"),
+        }
 
     def register(self):
-        password = self.fake.password(20)
+        password = self.password()
 
         return {
             "first_name": self.fake.first_name(),
