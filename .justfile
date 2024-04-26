@@ -33,8 +33,8 @@ test path='':
 cicd-test:
     pytest -n auto --disable-warnings
 
-check-database-connection:
-    python check_database_connection.py
+check_database:
+    python manage.py check_database
     
-create_superuser:
-    python create_superuser.py
+createsuperuser:
+    python manage.py createsuperuser
