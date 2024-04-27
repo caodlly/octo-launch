@@ -26,13 +26,13 @@ class Manager:
         to ensure that any desired command can be executed and its features added to the new object."
     """
 
+    # _schema = {"command_name", "method_name"}
+    # use set_schema for add on this
     _schema = {}
 
     def __init__(
         self,
     ) -> None:
-        # _schema = {"command_name", "method_name"}
-        # use set_schema for add on this
         self._args = sys.argv
 
     def validate(self) -> None:
