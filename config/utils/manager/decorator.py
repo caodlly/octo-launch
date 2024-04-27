@@ -30,7 +30,12 @@ class Manager(ManagerTemplate):
 
 
 def manager(func):
-    """Decorator to configure and customize the behavior of the manage.py file in Django."""
+    """Decorator to configure and customize the behavior of the manage.py file in Django.
+    
+    This is used to change basic behavior in manage.py so if you want to create instructions
+    specific to your application see here:
+    https://docs.djangoproject.com/en/5.0/howto/custom-management-commands/
+    """
 
     def wrapper():
         try:
