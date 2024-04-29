@@ -16,7 +16,6 @@ manage-start:
 shell:
     python manage.py shell_plus
 
-[linux]
 clean:
     find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
