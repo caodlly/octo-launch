@@ -43,3 +43,6 @@ check_database:
     
 createsuperuser:
     python manage.py createsuperuser
+
+collectstatic:
+    python manage.py collectstatic --noinput
