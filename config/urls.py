@@ -2,18 +2,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 
 # include apps
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path("api/", include("apps.urls")),
-]
+)
 
 
 # include Admin
-urlpatterns += [
+urlpatterns += i18n_patterns(
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
-]
+    prefix_default_language=True,
+)
 
 
 # Local Storage
