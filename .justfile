@@ -16,8 +16,7 @@ manage-start:
 shell:
     python manage.py shell_plus
 
-[linux]
-[macos]
+[linux, macos]
 clean:
     find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
@@ -28,8 +27,10 @@ migrate:
     python manage.py makemigrations
     python manage.py migrate
 
-translate:
+makemessages:
     python manage.py makemessages --all --ignore=env
+
+compilemessages:
     python manage.py compilemessages
 
 
