@@ -44,7 +44,6 @@ logs/
 htmlcov/
 
 # Ignore compiled translations
-locale/
 *.mo
 
 # SSL KEY
