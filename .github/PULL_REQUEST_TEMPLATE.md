@@ -19,7 +19,7 @@
 - [ ] Coding style and formatting have been followed in line with the project.
 - [ ] All tests have been run and no failures occurred.
 - [ ] Ensure all migrations have been followed for database changes (if applicable).
-- [ ] PEP8 and isort checks have been performed.
+- [ ] Ruff checks have been performed.
 
 ### Screenshots (if applicable)
 [Include screenshots of the user interface or results after the changes if relevant.]
