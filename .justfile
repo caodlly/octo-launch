@@ -6,6 +6,8 @@ stop:
     chmod +x ./scripts/stop
     ./scripts/stop
 
+restart: stop start
+
 install:
     pip install uv
     uv pip install -r requirements.txt
