@@ -19,8 +19,6 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
 ADMIN_URL = env("ADMIN_URL", default="admin")
-# === DEBUG Tools ====================================================
-DEBUG = False
 # === DATABASES ==========================================
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 # === REST FRAMEWORK ================================================

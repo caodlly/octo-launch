@@ -3,9 +3,9 @@ from .base import INSTALLED_APPS, MIDDLEWARE
 from config.utils.storages import *  # noqa: F403
 
 
+# === Admin ================================================
 ADMIN_URL = "admin"
 # === DEBUG Tools ================================================
-DEBUG = True
 INTERNAL_IPS = [
     "127.0.0.1",
     "0.0.0.0",
@@ -18,5 +18,7 @@ INSTALLED_APPS += [
 MIDDLEWARE += [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+# === Email ================================================
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# === SECURITY ================================================
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
