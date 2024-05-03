@@ -24,7 +24,8 @@ class User(AbstractUser):
 
 @receiver(signals.pre_save,sender=User)
 def resize_image_before_save(sender,instance,**kwargs):
-    try:
-        instance.avatar = resize_image(instance.avatar,450,450)
-    except Exception as e:
-        raise Exception(e.args)
+    if instance.avatar != "avatar.svg":
+        try:
+            instance.avatar = resize_image(instance.avatar,450,450)
+        except Exception as e:
+            raise Exception(e.args)
