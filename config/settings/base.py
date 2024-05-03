@@ -13,7 +13,7 @@ SECRET_KEY = env(
     "SECRET_KEY", default="xi!i5mux!+r2h=13+$%7@w)3u4eur20#v&6at43h-a+%9*kash"
 )
 # === GENERAL ================================================
-DEBUG = False
+DEBUG = env("DEBUG", default=False)
 ADMIN_EMAIL = env("ADMIN_EMAIL", default="admin@email.com")
 SITE_ID = 1
 TIME_ZONE = "UTC"

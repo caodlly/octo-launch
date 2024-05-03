@@ -4,12 +4,13 @@
 import os
 import sys
 from config.utils.manager.decorator import manager
+from config.utils.general import get_settings_module
 
 
 @manager
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", get_settings_module())
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
