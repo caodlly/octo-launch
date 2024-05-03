@@ -1,0 +1,25 @@
+{
+  "name": "Django-EaseLaunch",
+  "description": "EaseLaunch simplifies the setup process of Django projects for faster development.",
+  "version": "v1.0",
+  "repository": "https://github.com/wissam-al-kahwaji/Django-EaseLaunch",
+  "developers": {
+    "author": {
+      "name": "Wissam Al-Kahwaji",
+      "github": "https://github.com/wissam-al-kahwaji",
+      "email": "wissamalkahwaji@gmail.com"
+    },
+    "contributors": [
+      {
+      "name": "a",
+      "github": "",
+      "email": ""
+    },
+      {
+      "name": "b",
+      "github": "",
+      "email": ""
+    }
+    ]
+  }
+}

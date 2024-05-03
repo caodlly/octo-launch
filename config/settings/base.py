@@ -2,7 +2,10 @@ from environ import Env
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from config.utils.app import App
 
+# === App ========================================================
+APP = App()
 # === BASE_DIR ===================================================
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # === Get .env  ===================================================
@@ -242,9 +245,9 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 # === DRF SPECTACULAR ======================================================
 SPECTACULAR_SETTINGS = {
-    "TITLE": "APP NAME API",
-    "DESCRIPTION": "Documentation of API endpoints of [APP NAME]",
-    "VERSION": "1.0.0",
+    "TITLE": f"{APP.name} API",
+    "DESCRIPTION": f"Documentation of API endpoints of {APP.name}",
+    "VERSION": APP.version,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     # "SCHEMA_PATH_PREFIX": "/api/",
 }
