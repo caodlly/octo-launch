@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from typing import ClassVar
 from .managers import UserManager
+from django.db.models import signals
+from django.dispatch import receiver
+from apps.utils.image import resize_image
 
 
 class User(AbstractUser):
@@ -18,3 +21,12 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects: ClassVar[UserManager] = UserManager()
+
+
+@receiver(signals.pre_save, sender=User)
+def resize_image_before_save(sender, instance, **kwargs):
+    if instance.avatar != "avatar.svg":
+        try:
+            instance.avatar = resize_image(instance.avatar, 450, 450)
+        except Exception as e:
+            raise Exception(e.args)
