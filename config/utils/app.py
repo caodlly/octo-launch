@@ -17,9 +17,6 @@ class App:
     def __getattr__(self, query):
         data = self._data
         query = query.split("__")
-        try:
-            for q in query:
-                data = data[q]
-            return data
-        except Exception:
-            raise TypeError("This item does not exist")
+        for q in query:
+            data = data.get(q, None)
+        return data
