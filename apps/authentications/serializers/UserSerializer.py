@@ -4,14 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class EmailDetails(serializers.Serializer):
-    email = serializers.EmailField(required=False, read_only=True)
-    verified = serializers.BooleanField(required=False, read_only=True)
-
-
 class UserSerializer(serializers.ModelSerializer):
-    email_details = serializers.SerializerMethodField(read_only=True)
-
     class Meta:
         model = User
         fields = [
