@@ -16,19 +16,16 @@ class UserManager(DjangoUserManager["User"]):
         """
         Create and save a user with the given email and password.
         """
+        password = password[:8] + "#@"
         if not email:
             msg = "The given email must be set"
             raise ValueError(msg)
-        old_password = password
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
         user.save(using=self._db)
-
-        print("\n \n ")
-        print("email:" + email)
-        print("password:" + old_password)
-        print("\n \n")
+        print("\n" + "email:" + email)
+        print("password:" + password)
         return user
 
     # type: ignore[override]
