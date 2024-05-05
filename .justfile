@@ -1,52 +1,55 @@
-start: stop
+@start: stop
     chmod +x ./scripts/start
     ./scripts/start
 
-stop:
+@stop:
     chmod +x ./scripts/stop
     ./scripts/stop
 
-restart: stop start
+@restart: stop start
 
-install:
+@install:
     pip install uv
     uv pip install -r requirements.txt
 
-manage-start:
+@manage-start:
     python manage.py runserver_plus 0.0.0.0:8080
 
-shell:
+@shell:
     python manage.py shell_plus
 
 [linux, macos]
-clean:
+@clean:
     find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
     python manage.py clear_cache
     
 
-migrate:
+@migrate:
     python manage.py makemigrations
     python manage.py migrate
 
-makemessages:
+@makemessages:
     python manage.py makemessages --all --ignore=env
 
-compilemessages:
+@compilemessages:
     python manage.py compilemessages
 
 
 test path='':
     pytest -n auto {{path}}
 
-cicd-test:
+@cicd-test:
     pytest -n auto --disable-warnings
 
-check_database:
+@check_database:
     python manage.py check_database --no-django
     
-createsuperuser:
+@createsuperuser:
     python manage.py createsuperuser
 
-collectstatic:
+@collectstatic:
     python manage.py collectstatic --noinput
+
+@search-files query="#LATER" file="*.py":
+    find . -name "{{file}}" -not -path "*/env/*" -exec grep -nH "{{query}}" {} \;
