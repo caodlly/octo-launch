@@ -57,30 +57,6 @@ if TYPE_STORAGE == "s3":
     STATIC_URL = f"{AWS_S3_HOST}/static/"
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 
-
-elif TYPE_STORAGE == "gcp":
-    STORAGES = {
-        "default": {
-            "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-            "OPTIONS": {
-                "location": "media",
-                "file_overwrite": False,
-            },
-        },
-        "staticfiles": {
-            "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-            "OPTIONS": {
-                "location": "static",
-                "default_acl": "publicRead",
-            },
-        },
-    }
-    GS_BUCKET_NAME = env("GCP_STORAGE_BUCKET_NAME")
-    GS_DEFAULT_ACL = "publicRead"
-    MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
-    COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
-    STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
-
 elif TYPE_STORAGE == "local":
     STATIC_URL = "static/"
     MEDIA_URL = "/media/"
