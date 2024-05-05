@@ -6,6 +6,27 @@ INSTALLED_APPS += ["collectfast", "storages"]
 TYPE_STORAGE = env("TYPE_STORAGE", default="local")
 
 if TYPE_STORAGE == "s3":
+    """
+    If you want to protect media files and allow static files to be public,
+    you can use these settings and add this configuration to
+    Bucket policy:
+    
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "PublicReadForStaticFiles",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::your-bucket-name/static/*"
+            }
+        ]
+    }
+    
+    # TODO Change -> [your-bucket-name]
+    """
+
     STORAGES = {
         "default": {
             "BACKEND": "storages.backends.s3.S3Storage",
@@ -19,6 +40,7 @@ if TYPE_STORAGE == "s3":
             "OPTIONS": {
                 "location": "static",
                 "default_acl": "public-read",
+                "querystring_auth": False,  # This setting does not send authentication keys when requesting static files
             },
         },
     }
@@ -30,7 +52,8 @@ if TYPE_STORAGE == "s3":
     # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
     # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-    AWS_QUERYSTRING_AUTH = False
+    # DO NOT change these unless you know what you're doing.
+    AWS_QUERYSTRING_AUTH = True
     # DO NOT change these unless you know what you're doing.
     _AWS_EXPIRY = 60 * 60 * 24 * 7
     # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
