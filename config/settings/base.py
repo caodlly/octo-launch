@@ -33,6 +33,10 @@ USE_TZ = True
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # === URLs Allowed Hosts ==========================================
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+# === CORS Headers ================================================
+# CORS_URLS_REGEX = r"^/api/.*$"
+CORS_ORIGIN_WHITELIST = []
+CORS_ORIGIN_ALLOW_ALL = False
 # === Application definition =====================================
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -47,15 +51,9 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     # ========
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
-    # ========
+    "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
-    "corsheaders",
-    "dj_rest_auth",
     # ========
     "django_filters",
     # ========
@@ -93,7 +91,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -240,8 +238,6 @@ REST_FRAMEWORK["DEFAULT_METADATA_CLASS"] = None
 
 # REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
 #     "rest_framework.renderers.JSONRenderer"]
-
-CORS_URLS_REGEX = r"^/api/.*$"
 
 # === DRF SPECTACULAR ======================================================
 SPECTACULAR_SETTINGS = {

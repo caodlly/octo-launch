@@ -22,9 +22,9 @@ billiard==4.2.0
     # via celery
 bleach==6.1.0
     # via nbconvert
-boto3==1.34.96
+boto3==1.34.98
     # via -r requirements.in
-botocore==1.34.96
+botocore==1.34.98
     # via
     #   boto3
     #   s3transfer
@@ -65,11 +65,11 @@ coreapi==2.3.3
     #   openapi-codec
 coreschema==0.0.4
     # via coreapi
-coverage==7.5.0
+coverage==7.5.1
     # via -r requirements.in
 cron-descriptor==1.4.3
     # via -r requirements.in
-cryptography==42.0.5
+cryptography==42.0.6
     # via -r requirements.in
 decorator==5.1.1
     # via ipython
@@ -77,14 +77,10 @@ defusedxml==0.7.1
     # via nbconvert
 distlib==0.3.8
     # via virtualenv
-dj-rest-auth==6.0.0
-    # via -r requirements.in
 django==5.0.4
     # via
     #   -r requirements.in
     #   collectfast
-    #   dj-rest-auth
-    #   django-allauth
     #   django-cors-headers
     #   django-debug-toolbar
     #   django-extensions
@@ -95,8 +91,6 @@ django==5.0.4
     #   djangorestframework
     #   drf-spectacular
     #   drf-spectacular-sidecar
-django-allauth==0.62.1
-    # via -r requirements.in
 django-cors-headers==4.3.1
     # via -r requirements.in
 django-debug-toolbar==4.3.0
@@ -113,13 +107,12 @@ django-redis==5.4.0
     # via -r requirements.in
 django-rest-swagger==2.2.0
     # via -r requirements.in
-django-storages==1.14.2
+django-storages==1.14.3
     # via collectfast
 django-timezone-field==6.1.0
     # via -r requirements.in
 djangorestframework==3.15.1
     # via
-    #   dj-rest-auth
     #   django-rest-swagger
     #   drf-spectacular
 docopt==0.6.2
@@ -132,7 +125,7 @@ execnet==2.1.1
     # via pytest-xdist
 executing==2.0.1
     # via stack-data
-faker==25.0.0
+faker==25.0.1
     # via -r requirements.in
 fastjsonschema==2.19.1
     # via nbformat
@@ -244,7 +237,7 @@ pure-eval==0.2.2
     # via stack-data
 pycparser==2.22
     # via cffi
-pygments==2.17.2
+pygments==2.18.0
     # via
     #   ipython
     #   nbconvert
@@ -281,7 +274,7 @@ qrcode==7.4.2
     # via -r requirements.in
 redis==5.0.4
     # via django-redis
-referencing==0.35.0
+referencing==0.35.1
     # via
     #   jsonschema
     #   jsonschema-specifications
@@ -293,7 +286,7 @@ rpds-py==0.18.0
     # via
     #   jsonschema
     #   referencing
-ruff==0.4.2
+ruff==0.4.3
     # via -r requirements.in
 s3transfer==0.10.1
     # via boto3

@@ -5,9 +5,7 @@ Collectfast
 coverage
 cron-descriptor
 cryptography
-dj-rest-auth
 Django~=5.0
-django-allauth
 django-cors-headers
 django-debug-toolbar
 django-environ
