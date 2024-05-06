@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from config.utils.app import App
+import datetime
 
 # === App ========================================================
 APP = App()
@@ -115,6 +116,8 @@ LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
 
+# Cookies last 2 weeks
+SESSION_COOKIE_AGE = int(datetime.timedelta(weeks=2).total_seconds())
 # === ROOT URLCONF ===========================================
 ROOT_URLCONF = "config.urls"
 # === WSGI APPLICATION ===========================================
