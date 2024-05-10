@@ -14,6 +14,8 @@ django-filter
 django-hosts
 django-redis
 django-rest-swagger
+djangorestframework
+djangorestframework-simplejwt
 django-timezone-field
 docopt
 drf-spectacular
