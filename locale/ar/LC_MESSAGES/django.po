@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-26 21:15+0000\n"
+"POT-Creation-Date: 2024-05-10 20:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Wissam Al Kahwaji <wissamalkahwaji@gmail.com>\n"
 "Language-Team: Arabic <LL@li.org>\n"
@@ -20,8 +20,9 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: apps/authentications/serializers/LoginSerializer.py:9
-msgid "No active account found with the given credentials"
-msgstr "لا يوجد حساب نشط مع البيانات المُقدمة"
+#: apps/authentications/views/jwt.py:15
+msgid "Email or password is incorrect."
+msgstr "البريد الالكتروني او كلمة المرور غير صحيحة"
 
 #: apps/authentications/serializers/LoginSerializer.py:14
 msgid "Email"
@@ -65,19 +66,18 @@ msgstr "التواريخ الهامة"
 msgid "This email has already been taken."
 msgstr "هذا البريد الإلكتروني مستخدم بالفعل."
 
-#: apps/users/models.py:13
+#: apps/users/models.py:16
 msgid "Name of User"
 msgstr "اسم المستخدم"
 
-#: apps/users/models.py:14
+#: apps/users/models.py:17
 msgid "email address"
 msgstr "البريد الإلكتروني"
 
-#: config/settings/base.py:23
+#: config/settings/base.py:27
 msgid "English"
 msgstr "الإنجليزية"
 
-#: config/settings/base.py:24
+#: config/settings/base.py:28
 msgid "Arabic"
 msgstr "العربية"
-

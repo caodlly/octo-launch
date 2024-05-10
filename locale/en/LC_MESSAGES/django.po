@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-30 03:14+0000\n"
+"POT-Creation-Date: 2024-05-10 20:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: apps/authentications/serializers/LoginSerializer.py:9
-msgid "No active account found with the given credentials"
+#: apps/authentications/views/jwt.py:15
+msgid "Email or password is incorrect."
 msgstr ""
 
 #: apps/authentications/serializers/LoginSerializer.py:14
@@ -64,18 +65,18 @@ msgstr ""
 msgid "This email has already been taken."
 msgstr ""
 
-#: apps/users/models.py:13
+#: apps/users/models.py:16
 msgid "Name of User"
 msgstr ""
 
-#: apps/users/models.py:14
+#: apps/users/models.py:17
 msgid "email address"
 msgstr ""
 
-#: config/settings/base.py:23
+#: config/settings/base.py:27
 msgid "English"
 msgstr ""
 
-#: config/settings/base.py:24
+#: config/settings/base.py:28
 msgid "Arabic"
 msgstr ""

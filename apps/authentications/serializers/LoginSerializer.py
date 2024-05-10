@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 class AuthenticationFailed(APIException):
     status_code = status.HTTP_401_UNAUTHORIZED
-    default_detail = _("No active account found with the given credentials")
+    default_detail = _("Email or password is incorrect.")
     default_code = "no_active_account"
 
 
