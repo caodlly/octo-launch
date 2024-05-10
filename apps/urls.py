@@ -18,8 +18,6 @@ class SpectacularAPIView(SpectacularView):
 
 urlpatterns += [
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
-    path(
-        "docs/ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"
-    ),
-    path("docs/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    path("docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ]
