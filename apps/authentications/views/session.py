@@ -8,7 +8,7 @@ from apps.authentications.serializers import LoginSerializer, UserSerializer
 from apps.authentications.throttling import AnonThrottlingLogin
 
 
-class Login(APIView):
+class LoginSession(APIView):
     permission_classes = [LoginPermission]
     throttle_classes = [AnonThrottlingLogin]
 
