@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from config.utils.app import App
-import datetime
+from datetime import timedelta
 
 # === App ========================================================
 APP = App()
@@ -35,8 +35,7 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # === URLs Allowed Hosts ==========================================
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 # === CORS Headers ================================================
-# CORS_URLS_REGEX = r"^/api/.*$"
-CORS_ORIGIN_WHITELIST = []
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]  # Frontend Domain
 CORS_ORIGIN_ALLOW_ALL = False
 # === Application definition =====================================
 DJANGO_APPS = [
@@ -54,7 +53,7 @@ THIRD_PARTY_APPS = [
     # ========
     "corsheaders",
     "rest_framework",
-    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
     # ========
     "django_filters",
     # ========
@@ -117,7 +116,7 @@ LOGIN_REDIRECT_URL = "users:redirect"
 LOGIN_URL = "account_login"
 
 # Cookies last 2 weeks
-SESSION_COOKIE_AGE = int(datetime.timedelta(weeks=2).total_seconds())
+SESSION_COOKIE_AGE = int(timedelta(weeks=2).total_seconds())
 # === ROOT URLCONF ===========================================
 ROOT_URLCONF = "config.urls"
 # === WSGI APPLICATION ===========================================
@@ -194,6 +193,7 @@ REST_FRAMEWORK = {}
 
 REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] = [
     "rest_framework.authentication.SessionAuthentication",
+    "rest_framework_simplejwt.authentication.JWTAuthentication",
 ]
 REST_FRAMEWORK["DEFAULT_PERMISSION_CLASSES"] = [
     "rest_framework.permissions.IsAuthenticatedOrReadOnly"
@@ -201,12 +201,18 @@ REST_FRAMEWORK["DEFAULT_PERMISSION_CLASSES"] = [
 REST_FRAMEWORK["DEFAULT_PAGINATION_CLASS"] = (
     "apps.utils.pagination.SmallResultsSetPagination"
 )
-REST_FRAMEWORK["PAGE_SIZE"] = 20
+REST_FRAMEWORK["PAGE_SIZE"] = 30
 REST_FRAMEWORK["DEFAULT_SCHEMA_CLASS"] = "drf_spectacular.openapi.AutoSchema"
 REST_FRAMEWORK["DEFAULT_METADATA_CLASS"] = None
 
 # REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
 #     "rest_framework.renderers.JSONRenderer"]
+
+SIMPLE_JWT = {
+    # "AUTH_HEADER_TYPES": ("bearer",),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+}
 
 # === DRF SPECTACULAR ======================================================
 SPECTACULAR_SETTINGS = {
@@ -217,5 +223,5 @@ SPECTACULAR_SETTINGS = {
     # "SCHEMA_PATH_PREFIX": "/api/",
 }
 # === THROTTLING ======================================================
-LOGIN_THROTTLING = 10
+LOGIN_THROTTLING = 15
 LOGIN_THROTTLING_IN = "hour"
