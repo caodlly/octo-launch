@@ -40,3 +40,4 @@ Werkzeug
 wheel
 yarg
 pip-tools
+pyotp
