@@ -36,11 +36,11 @@
     python manage.py compilemessages
 
 
-test path='':
+test path='apps':
     pytest -n auto {{path}}
 
 @cicd-test:
-    pytest -n auto --disable-warnings
+    pytest -n auto
 
 @check_database:
     python manage.py check_database --no-django
