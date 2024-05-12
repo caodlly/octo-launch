@@ -130,8 +130,12 @@ execnet==2.1.1
     # via pytest-xdist
 executing==2.0.1
     # via stack-data
+factory-boy==3.3.0
+    # via pytest-factoryboy
 faker==25.1.0
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   factory-boy
 fastjsonschema==2.19.1
     # via nbformat
 filelock==3.14.0
@@ -147,7 +151,9 @@ identify==2.5.36
 idna==3.7
     # via requests
 inflection==0.5.1
-    # via drf-spectacular
+    # via
+    #   drf-spectacular
+    #   pytest-factoryboy
 iniconfig==2.0.0
     # via pytest
 ipython==8.24.0
@@ -210,6 +216,7 @@ packaging==24.0
     #   nbconvert
     #   pipdeptree
     #   pytest
+    #   pytest-factoryboy
 pandocfilters==1.5.1
     # via nbconvert
 parso==0.8.4
@@ -259,8 +266,11 @@ pyproject-hooks==1.1.0
 pytest==8.2.0
     # via
     #   pytest-django
+    #   pytest-factoryboy
     #   pytest-xdist
 pytest-django==4.8.0
+    # via -r requirements.in
+pytest-factoryboy==2.7.0
     # via -r requirements.in
 pytest-xdist==3.6.1
     # via -r requirements.in
@@ -332,6 +342,7 @@ traitlets==5.14.3
 typing-extensions==4.11.0
     # via
     #   collectfast
+    #   pytest-factoryboy
     #   qrcode
 tzdata==2024.1
     # via celery

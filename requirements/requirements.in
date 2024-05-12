@@ -13,9 +13,9 @@ django-extensions
 django-filter
 django-hosts
 django-redis
-django-rest-swagger
 djangorestframework
 djangorestframework-simplejwt
+django-rest-swagger
 django-timezone-field
 docopt
 drf-spectacular
@@ -27,9 +27,12 @@ ipython
 nbconvert
 pillow
 pipdeptree
+pip-tools
 pre-commit
 psycopg2
+pyotp
 pytest-django
+pytest-factoryboy
 pytest-xdist
 python-crontab
 qrcode
@@ -39,5 +42,3 @@ uv
 Werkzeug
 wheel
 yarg
-pip-tools
-pyotp
