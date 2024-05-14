@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-10 20:14+0000\n"
+"POT-Creation-Date: 2024-05-12 18:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Wissam Al Kahwaji <wissamalkahwaji@gmail.com>\n"
 "Language-Team: Arabic <LL@li.org>\n"
@@ -36,15 +36,20 @@ msgstr "كلمة المرور"
 msgid "Must include 'username' and 'password'."
 msgstr "يجب تضمين 'اسم المستخدم' و 'كلمة المرور'."
 
-#: apps/authentications/serializers/RegisterSerializer.py:26
-#: apps/authentications/serializers/UpdateUserSerializer.py:31
+#: apps/authentications/serializers/RegisterSerializer.py:25
+#: apps/authentications/serializers/UpdateUserSerializer.py:30
 msgid "Password fields didn't match"
 msgstr "حقول كلمة المرور غير متطابقة"
 
-#: apps/authentications/serializers/RegisterSerializer.py:30
-#: apps/authentications/serializers/UpdateUserSerializer.py:35
-msgid "Password is too weak"
-msgstr "كلمة المرور ضعيفة جداً"
+#: apps/authentications/serializers/RegisterSerializer.py:31
+#: apps/authentications/serializers/UpdateUserSerializer.py:36
+msgid ""
+"The password must be at least 6 characters long and contain at least one "
+"uppercase letter, one lowercase letter, one digit, and one special character "
+"(#?!@$%^&*-)."
+msgstr ""
+"يجب أن تتكون كلمة المرور من ما لا يقل عن 6 أحرف وتحتوي على حرف كبير واحد وحرف "
+"صغير واحد ورقم واحد وحرف خاص واحد (#?!@$%^&*-)."
 
 #: apps/authentications/views/update.py:28
 msgid "Update Profile User"
@@ -62,11 +67,11 @@ msgstr "الصلاحيات"
 msgid "Important dates"
 msgstr "التواريخ الهامة"
 
-#: apps/users/forms.py:25
+#: apps/users/forms.py:26
 msgid "This email has already been taken."
 msgstr "هذا البريد الإلكتروني مستخدم بالفعل."
 
-#: apps/users/models.py:16
+#: apps/users/models.py:15
 msgid "Name of User"
 msgstr "اسم المستخدم"
 

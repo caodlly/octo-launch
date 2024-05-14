@@ -20,8 +20,11 @@
 
 [linux, macos]
 @clean:
+    # Do not use this in production
     find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
+    python manage.py reset_db
+    python manage.py reset_schema
     python manage.py clear_cache
     
 
@@ -47,6 +50,11 @@ test path='apps':
     
 @createsuperuser:
     python manage.py createsuperuser
+
+@create-admin-pass:
+    # Do not use this in production
+    python manage.py createsuperuser > ADMIN_PASS
+    cat ADMIN_PASS
 
 @collectstatic:
     python manage.py collectstatic --noinput

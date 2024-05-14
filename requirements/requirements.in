@@ -21,6 +21,7 @@ docopt
 drf-spectacular
 drf-spectacular-sidecar
 Faker
+flower
 gevent
 gunicorn
 ipython

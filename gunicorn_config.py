@@ -11,6 +11,6 @@ graceful_timeout = 30
 # accesslog = "./logs/access.log"
 # errorlog = "./logs/error.log"
 loglevel = "debug"
-pidfile = "./prod.pid"
+pidfile = "./server.pid"
 # capture_output = True
 # daemon = True

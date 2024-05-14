@@ -2,9 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
 import re
-from django.contrib.auth import get_user_model
+from apps.users.models import User
 
-User = get_user_model()
 password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"
 
 
@@ -18,7 +17,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "name", "email", "password", "password2", "avatar"]
+        fields = ["id", "name", "username", "email", "password", "password2", "avatar"]
         extra_kwargs = {
             "email": {"required": False},
         }
@@ -32,6 +31,11 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
         password_check = re.match(password_pattern, value)
         if password_check is None:
-            raise serializers.ValidationError(_("Password is too weak"))
+            raise serializers.ValidationError(
+                _(
+                    "The password must be at least 6 characters long and contain at least one uppercase letter, "
+                    "one lowercase letter, one digit, and one special character (#?!@$%^&*-)."
+                )
+            )
 
         return make_password(value)

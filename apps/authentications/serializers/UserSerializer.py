@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
+from apps.users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "username",
             "email",
             "avatar",
             "is_superuser",
@@ -27,7 +26,7 @@ class UserSerializerPublic(serializers.Serializer):
 class UserSerializerPrivate(UserSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "name", "email", "avatar"]
+        fields = ["id", "username", "name", "avatar"]
 
 
 class UserStatusAuth(serializers.Serializer):

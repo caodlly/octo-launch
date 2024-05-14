@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-10 20:21+0000\n"
+"POT-Creation-Date: 2024-05-12 18:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,14 +35,17 @@ msgstr ""
 msgid "Must include 'username' and 'password'."
 msgstr ""
 
-#: apps/authentications/serializers/RegisterSerializer.py:26
-#: apps/authentications/serializers/UpdateUserSerializer.py:31
+#: apps/authentications/serializers/RegisterSerializer.py:25
+#: apps/authentications/serializers/UpdateUserSerializer.py:30
 msgid "Password fields didn't match"
 msgstr ""
 
-#: apps/authentications/serializers/RegisterSerializer.py:30
-#: apps/authentications/serializers/UpdateUserSerializer.py:35
-msgid "Password is too weak"
+#: apps/authentications/serializers/RegisterSerializer.py:31
+#: apps/authentications/serializers/UpdateUserSerializer.py:36
+msgid ""
+"The password must be at least 6 characters long and contain at least one "
+"uppercase letter, one lowercase letter, one digit, and one special character "
+"(#?!@$%^&*-)."
 msgstr ""
 
 #: apps/authentications/views/update.py:28
@@ -61,11 +64,11 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: apps/users/forms.py:25
+#: apps/users/forms.py:26
 msgid "This email has already been taken."
 msgstr ""
 
-#: apps/users/models.py:16
+#: apps/users/models.py:15
 msgid "Name of User"
 msgstr ""
 
