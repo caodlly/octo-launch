@@ -67,4 +67,4 @@ jobs:
     - name: Run Tests
       run: |
         . env/bin/activate
-        cicd-test
+        just cicd-test
