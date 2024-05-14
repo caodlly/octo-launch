@@ -9,7 +9,6 @@
 @restart: stop start
 
 @install:
-    pip install uv
     uv pip install -r requirements/requirements.txt
 
 @manage-start:
