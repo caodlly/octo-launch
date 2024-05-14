@@ -21,7 +21,7 @@ DEBUG = env("DEBUG", default=False)
 ADMIN_EMAIL = env("ADMIN_EMAIL", default="admin@email.com")
 SITE_ID = 1
 TIME_ZONE = "UTC"
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
 LANGUAGES = [
     ("en", _("English")),
@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
     "drf_spectacular_sidecar",
     # ========
     "sentry_sdk",
+    # ========
 ]
 
 
@@ -182,7 +183,7 @@ CELERY_TASK_TIME_LIMIT = 5 * 60
 # TODO: set to whatever value is adequate in your circumstances
 CELERY_TASK_SOFT_TIME_LIMIT = 60
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#beat-scheduler
-CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+# CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#worker-send-task-events
 CELERY_WORKER_SEND_TASK_EVENTS = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-task_send_sent_event
@@ -209,7 +210,7 @@ REST_FRAMEWORK["DEFAULT_METADATA_CLASS"] = None
 #     "rest_framework.renderers.JSONRenderer"]
 
 SIMPLE_JWT = {
-    # "AUTH_HEADER_TYPES": ("bearer",),
+    "AUTH_HEADER_TYPES": ("bearer",),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }

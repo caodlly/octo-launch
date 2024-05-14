@@ -1,5 +1,6 @@
 from faker import Faker
 from PIL import Image
+import uuid
 import random
 import secrets
 import string
@@ -22,8 +23,7 @@ class Generate:
         password = self.password()
 
         return {
-            "first_name": self.fake.first_name(),
-            "last_name": self.fake.last_name(),
+            "name": self.fake.name(),
             "username": self.fake.user_name()[0:10],
             "email": self.fake.email(),
             "password": password,
@@ -32,9 +32,14 @@ class Generate:
 
     @staticmethod
     def password():
-        alphabet = string.ascii_letters + string.digits
-        password = "".join(secrets.choice(alphabet) for i in range(30))
+        """I didn't use Faker to avoid password guessing"""
+        alphabet = "#@$#@$#@$#@$#@$#@$" + string.ascii_letters + string.digits
+        password = "".join(secrets.choice(alphabet) for i in range(25))
         return password
+
+    @staticmethod
+    def remove_email(email):
+        return email.split("@")[0] + "_" + uuid.uuid4().hex[:4]
 
     @staticmethod
     def image(width=500, height=500, color=None):

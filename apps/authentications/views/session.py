@@ -2,13 +2,13 @@ from django.contrib.auth import login, logout
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
 from apps.utils.permissions import LoginPermission
 from apps.authentications.serializers import LoginSerializer, UserSerializer
 from apps.authentications.throttling import AnonThrottlingLogin
 
 
-class LoginSession(APIView):
+class LoginSession(generics.GenericAPIView):
     permission_classes = [LoginPermission]
     throttle_classes = [AnonThrottlingLogin]
 
@@ -31,7 +31,7 @@ class LoginSession(APIView):
         return Response(user_serializer.data, status=status.HTTP_200_OK)
 
     @staticmethod
-    @extend_schema(operation_id="Logout Session")
+    @extend_schema(operation_id="Logout Session", request=None, responses=None)
     def delete(request):
         logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
