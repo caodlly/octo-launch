@@ -10,7 +10,7 @@
 
 @install:
     pip install uv
-    uv pip install -r requirements.txt
+    uv pip install -r requirements/requirements.txt
 
 @manage-start:
     python manage.py runserver_plus 0.0.0.0:8080
