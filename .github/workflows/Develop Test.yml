@@ -60,7 +60,11 @@ jobs:
         just install
 
     - name: Migrations
-      run: just migrate
+      run: |
+        . env/bin/activate
+        just migrate
         
     - name: Run Tests
-      run: cicd-test
+      run: |
+        . env/bin/activate
+        cicd-test
