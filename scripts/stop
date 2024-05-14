@@ -20,6 +20,7 @@ stop_process() {
     fi
 }
 
-stop_process "prod"
+stop_process "server"
 stop_process "worker"
 stop_process "beat"
+stop_process "flower"
