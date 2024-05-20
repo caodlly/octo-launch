@@ -14,6 +14,7 @@ class UserFactory(factory.Factory):
     email = Faker().email()
     username = Faker().user_name()[0:10]
     password = make_password(password)
+    email_verified = True
 
 
 class AdminFactory(factory.Factory):
@@ -26,3 +27,4 @@ class AdminFactory(factory.Factory):
     password = make_password(password)
     is_staff = True
     is_superuser = True
+    email_verified = True
