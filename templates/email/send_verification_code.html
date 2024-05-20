@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .code {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: #444;
+            padding: 5px 15px 5px 15px;
+            margin: auto;
+            text-align: center;
+            max-width: max-content;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dear {{ name }},</h2>
+        <h3>I hope this message finds you well.</h3>
+        <p><strong>To complete your verification process, please use the following verification code:</strong></p>
+        <p class="code">{{code}}</p>
+        <p>If you did not request this code, please ignore this email.</p>
+        <p>For any assistance or if you have any questions, feel free to contact our support team.</p>
+        <p>Thank you for your prompt attention to this matter.</p>
+        <p>Best regards,</p>
+        {% include "email/footer.html" %}
+    </div>
+</body>
+</html>
