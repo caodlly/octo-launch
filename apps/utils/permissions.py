@@ -1,9 +1,5 @@
 from rest_framework.permissions import BasePermission, DjangoModelPermissions
 
-SAFE_METHODS = ("GET",)
-SELLER_METHODS = ("POST",)
-ADMIN_METHODS = ("POST", "PUT", "DELETE")
-
 
 class IsStaff(BasePermission):
     def has_permission(self, request, view):
@@ -24,8 +20,6 @@ class UserVerified(BasePermission):
     def has_permission(self, request, view):
         if request.user.email_verified:
             return True
-        if request.user.phone_verified:
-            return True
         return False
 
 
@@ -36,25 +30,9 @@ class EmailNotVerified(BasePermission):
 
 class ReadOrAdmin(BasePermission):
     def has_permission(self, request, view):
-        print(request.method)
-        if request.method in SAFE_METHODS:
+        if request.method in "GET":
             return True
-        if request.method in ADMIN_METHODS:
-            if request.user.is_authenticated:
-                if request.user.is_superuser:
-                    return True
-        return False
-
-
-class ReadOrWriteSellerOrAdmin(BasePermission):
-    def has_permission(self, request, view):
-        if request.method in SAFE_METHODS:
-            return True
-        if request.method in SELLER_METHODS:
-            if request.user.is_authenticated:
-                if request.user.is_seller() or request.user.is_superuser:
-                    return True
-        if request.method in ADMIN_METHODS:
+        if request.method in ["POST", "PUT", "DELETE"]:
             if request.user.is_authenticated:
                 if request.user.is_superuser:
                     return True

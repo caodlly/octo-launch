@@ -1,25 +1,35 @@
 from .manager import Manager as ManagerTemplate
 from django.core.exceptions import ValidationError
 from .database import check_database_connection
+from apps.utils.generate import generate_password
+from django.contrib.auth.hashers import make_password
 
 
 class Manager(ManagerTemplate):
     def __init__(self):
         super().__init__()
-        schema = {
-            "createsuperuser": "create_superuser",
-            "check_database": "check_database",
-        }
-        self.set_schema(schema)
+        self.set_schema(
+            {
+                "createsuperuser": "create_superuser",
+                "check_database": "check_database",
+            }
+        )
 
     def create_superuser(self):
         """Create a superuser for the Django application."""
-
         from apps.users.models import User
         from django.conf import settings
 
+        email = settings.ADMIN_EMAIL
+        password = generate_password()
+
         try:
-            User.objects.create_superuser(email=settings.ADMIN_EMAIL)
+            user = User.objects.create_superuser(
+                email=email, password=make_password(password)
+            )
+            if user:
+                print(f"Email: {email}")
+                print(f"Password: {password}")
         except ValidationError as e:
             raise ValueError(e.message)
 
