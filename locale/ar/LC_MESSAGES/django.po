@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 18:02+0000\n"
+"POT-Creation-Date: 2024-05-20 19:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Wissam Al Kahwaji <wissamalkahwaji@gmail.com>\n"
 "Language-Team: Arabic <LL@li.org>\n"
@@ -19,41 +19,44 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: apps/authentications/serializers/LoginSerializer.py:9
-#: apps/authentications/views/jwt.py:15
+#: apps/accounts/models.py:10
+msgid "Code"
+msgstr "الرمز"
+
+#: apps/accounts/models.py:11
+msgid "The time it was created"
+msgstr "وقت الانشاء"
+
+#: apps/accounts/serializers/LoginSerializer.py:9 apps/accounts/views/jwt.py:15
 msgid "Email or password is incorrect."
 msgstr "البريد الالكتروني او كلمة المرور غير صحيحة"
 
-#: apps/authentications/serializers/LoginSerializer.py:14
+#: apps/accounts/serializers/LoginSerializer.py:14
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
-#: apps/authentications/serializers/LoginSerializer.py:17
+#: apps/accounts/serializers/LoginSerializer.py:17
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: apps/authentications/serializers/LoginSerializer.py:33
+#: apps/accounts/serializers/LoginSerializer.py:33
 msgid "Must include 'username' and 'password'."
 msgstr "يجب تضمين 'اسم المستخدم' و 'كلمة المرور'."
 
-#: apps/authentications/serializers/RegisterSerializer.py:25
-#: apps/authentications/serializers/UpdateUserSerializer.py:30
+#: apps/accounts/serializers/RegisterSerializer.py:25
+#: apps/accounts/serializers/UpdateUserSerializer.py:32
 msgid "Password fields didn't match"
 msgstr "حقول كلمة المرور غير متطابقة"
 
-#: apps/authentications/serializers/RegisterSerializer.py:31
-#: apps/authentications/serializers/UpdateUserSerializer.py:36
+#: apps/accounts/serializers/RegisterSerializer.py:31
+#: apps/accounts/serializers/UpdateUserSerializer.py:38
 msgid ""
 "The password must be at least 6 characters long and contain at least one "
 "uppercase letter, one lowercase letter, one digit, and one special character "
 "(#?!@$%^&*-)."
 msgstr ""
-"يجب أن تتكون كلمة المرور من ما لا يقل عن 6 أحرف وتحتوي على حرف كبير واحد وحرف "
-"صغير واحد ورقم واحد وحرف خاص واحد (#?!@$%^&*-)."
-
-#: apps/authentications/views/update.py:28
-msgid "Update Profile User"
-msgstr "تحديث ملف التعريف للمستخدم"
+"يجب أن تتكون كلمة المرور من ما لا يقل عن 6 أحرف وتحتوي على حرف كبير واحد "
+"وحرف صغير واحد ورقم واحد وحرف خاص واحد (#?!@$%^&*-)."
 
 #: apps/users/admin.py:17
 msgid "Personal info"
@@ -67,17 +70,27 @@ msgstr "الصلاحيات"
 msgid "Important dates"
 msgstr "التواريخ الهامة"
 
-#: apps/users/forms.py:26
+#: apps/users/forms.py:24
 msgid "This email has already been taken."
 msgstr "هذا البريد الإلكتروني مستخدم بالفعل."
 
 #: apps/users/models.py:15
 msgid "Name of User"
-msgstr "اسم المستخدم"
+msgstr "الاسم الكامل"
 
 #: apps/users/models.py:17
-msgid "email address"
+#, fuzzy
+#| msgid "email address"
+msgid "Email Address"
 msgstr "البريد الإلكتروني"
+
+#: apps/users/models.py:21
+msgid "Email Verified"
+msgstr "تم التحقق من البريد الإلكتروني"
+
+#: apps/users/models.py:22
+msgid "Avatar"
+msgstr "الصورة الرمزية"
 
 #: config/settings/base.py:27
 msgid "English"
@@ -86,3 +99,6 @@ msgstr "الإنجليزية"
 #: config/settings/base.py:28
 msgid "Arabic"
 msgstr "العربية"
+
+#~ msgid "Update Profile User"
+#~ msgstr "تحديث ملف التعريف للمستخدم"

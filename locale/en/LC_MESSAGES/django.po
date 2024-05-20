@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 18:02+0000\n"
+"POT-Creation-Date: 2024-05-20 19:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,38 +18,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/authentications/serializers/LoginSerializer.py:9
-#: apps/authentications/views/jwt.py:15
+#: apps/accounts/models.py:10
+msgid "Code"
+msgstr ""
+
+#: apps/accounts/models.py:11
+msgid "The time it was created"
+msgstr ""
+
+#: apps/accounts/serializers/LoginSerializer.py:9 apps/accounts/views/jwt.py:15
 msgid "Email or password is incorrect."
 msgstr ""
 
-#: apps/authentications/serializers/LoginSerializer.py:14
+#: apps/accounts/serializers/LoginSerializer.py:14
 msgid "Email"
 msgstr ""
 
-#: apps/authentications/serializers/LoginSerializer.py:17
+#: apps/accounts/serializers/LoginSerializer.py:17
 msgid "Password"
 msgstr ""
 
-#: apps/authentications/serializers/LoginSerializer.py:33
+#: apps/accounts/serializers/LoginSerializer.py:33
 msgid "Must include 'username' and 'password'."
 msgstr ""
 
-#: apps/authentications/serializers/RegisterSerializer.py:25
-#: apps/authentications/serializers/UpdateUserSerializer.py:30
+#: apps/accounts/serializers/RegisterSerializer.py:25
+#: apps/accounts/serializers/UpdateUserSerializer.py:32
 msgid "Password fields didn't match"
 msgstr ""
 
-#: apps/authentications/serializers/RegisterSerializer.py:31
-#: apps/authentications/serializers/UpdateUserSerializer.py:36
+#: apps/accounts/serializers/RegisterSerializer.py:31
+#: apps/accounts/serializers/UpdateUserSerializer.py:38
 msgid ""
 "The password must be at least 6 characters long and contain at least one "
 "uppercase letter, one lowercase letter, one digit, and one special character "
 "(#?!@$%^&*-)."
-msgstr ""
-
-#: apps/authentications/views/update.py:28
-msgid "Update Profile User"
 msgstr ""
 
 #: apps/users/admin.py:17
@@ -64,7 +67,7 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: apps/users/forms.py:26
+#: apps/users/forms.py:24
 msgid "This email has already been taken."
 msgstr ""
 
@@ -73,7 +76,15 @@ msgid "Name of User"
 msgstr ""
 
 #: apps/users/models.py:17
-msgid "email address"
+msgid "Email Address"
+msgstr ""
+
+#: apps/users/models.py:21
+msgid "Email Verified"
+msgstr ""
+
+#: apps/users/models.py:22
+msgid "Avatar"
 msgstr ""
 
 #: config/settings/base.py:27
