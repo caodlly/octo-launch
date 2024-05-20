@@ -3,7 +3,6 @@ from rest_framework.test import APIClient, APIRequestFactory
 from django.utils.translation import activate
 from apps.users.factories import UserFactory, AdminFactory
 from pytest_factoryboy import register
-from django.core.cache import cache
 
 # === register =====================================
 register(UserFactory)
@@ -12,22 +11,22 @@ register(AdminFactory)
 
 # === fixture ======================================
 @pytest.fixture
-def client():
+def client() -> APIClient:
     return APIClient()
 
 
 @pytest.fixture
-def factory():
+def factory() -> APIRequestFactory:
     return APIRequestFactory()
 
 
 @pytest.fixture
-def lang_en():
+def lang_en() -> None:
     return activate("en")
 
 
 @pytest.fixture
-def lang_ar():
+def lang_ar() -> None:
     return activate("ar")
 
 
@@ -41,9 +40,3 @@ def user(user_factory):
 def admin(admin_factory):
     admin_factory.build().save()
     return admin_factory
-
-
-# === cache ===============================================
-@pytest.fixture()
-def clear_cache():
-    cache.clear()

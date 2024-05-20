@@ -5,7 +5,7 @@ from drf_spectacular.utils import extend_schema
 
 
 urlpatterns = [
-    path("", include("apps.authentications.urls")),
+    path("", include("apps.accounts.urls")),
 ]
 
 
