@@ -2,7 +2,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework.response import Response
 from rest_framework import generics
 from apps.utils.permissions import MePermission
-from apps.accounts.serializers import UserSerializer, UserStatusAuth
+from apps.accounts.serializers import UserSerializer, StatusSerializer
 
 
 class Me(generics.GenericAPIView):
@@ -14,7 +14,7 @@ class Me(generics.GenericAPIView):
 
     def get_serializer(self, *args, **kwargs):
         if self.request.method in "POST":
-            return UserStatusAuth()
+            return StatusSerializer()
         if self.request.method in "GET":
             return UserSerializer()
 
@@ -29,7 +29,7 @@ class Me(generics.GenericAPIView):
 
         This endpoint retrieves and returns the personal data of the authenticated user.
         """
-        user_serializer = UserSerializer(request.user)
+        user_serializer = self.get_serializer(request.user)
         return Response(user_serializer.data)
 
     @extend_schema(
@@ -43,4 +43,6 @@ class Me(generics.GenericAPIView):
 
         This endpoint checks if the user is logged in and returns the authentication status.
         """
-        return Response(UserStatusAuth({"status": request.user.is_authenticated}).data)
+        return Response(
+            self.get_serializer({"status": request.user.is_authenticated}).data
+        )

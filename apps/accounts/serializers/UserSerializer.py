@@ -42,5 +42,5 @@ class UserSerializerPrivate(UserSerializer):
         fields = ["id", "username", "name", "avatar"]
 
 
-class UserStatusAuth(serializers.Serializer):
+class StatusSerializer(serializers.Serializer):
     status = serializers.BooleanField(required=False, read_only=True)
