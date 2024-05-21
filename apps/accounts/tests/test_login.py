@@ -77,7 +77,7 @@ def verify_jwt_200(client, token):
 
 
 @pytest.mark.django_db
-def test_login_jwt_en_401(client, user, login_provide):
+def test_login_jwt_en_401(client, user, lang_en, login_provide):
     data_login = {
         "email": user.email,
         "password": "foo",
@@ -102,7 +102,7 @@ def test_login_jwt_ar_401(client, user, lang_ar, login_provide):
 
 
 @pytest.mark.django_db
-def test_login_session_en_401(client, user, login_provide):
+def test_login_session_en_401(client, user, lang_en, login_provide):
     data_login = {
         "email": user.email,
         "password": "foo",
