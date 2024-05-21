@@ -42,7 +42,7 @@ test path='apps':
     pytest -n auto {{path}}
 
 @cicd-test:
-    pytest -n auto
+    pytest -vrP -n auto
 
 @check_database:
     python manage.py check_database --no-django
