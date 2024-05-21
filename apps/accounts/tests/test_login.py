@@ -27,7 +27,7 @@ def me_session_POST(client):
     response = client.post(reverse("user_me"))
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data.get("status") is True
+    assert response.data["status"] is True
 
 
 @pytest.mark.django_db
@@ -41,8 +41,8 @@ def test_login_refresh_jwt_200_200(client, user, login_provide):
 
     assert response.status_code == status.HTTP_200_OK
 
-    access = response.data.get("access")
-    refresh = response.data.get("refresh")
+    access = response.data["access"]
+    refresh = response.data["refresh"]
 
     assert isinstance(refresh, str) is True
     assert isinstance(access, str) is True
@@ -53,11 +53,11 @@ def test_login_refresh_jwt_200_200(client, user, login_provide):
 
 
 def me_jwt_200(client, access):
-    response_me = client.post(
+    response = client.post(
         reverse("user_me"), headers={"Authorization": f"bearer {access}"}
     )
-    assert response_me.status_code == status.HTTP_200_OK
-    assert response_me.data.get("status") is True
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data["status"] is True
 
 
 def refresh_jwt_200(client, refresh):
@@ -86,7 +86,7 @@ def test_login_jwt_en_401(client, user, login_provide):
     response = client.post(reverse("token_obtain_pair"), data_login)
 
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.data.get("detail") == "Email or password is incorrect."
+    assert response.data["detail"] == "Email or password is incorrect."
 
 
 @pytest.mark.django_db
@@ -98,7 +98,7 @@ def test_login_jwt_ar_401(client, user, lang_ar, login_provide):
 
     response = client.post(reverse("token_obtain_pair"), data_login)
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.data.get("detail") == "البريد الالكتروني او كلمة المرور غير صحيحة"
+    assert response.data["detail"] == "البريد الالكتروني او كلمة المرور غير صحيحة"
 
 
 @pytest.mark.django_db
@@ -110,7 +110,7 @@ def test_login_session_en_401(client, user, login_provide):
     response = client.post(reverse("login_session"), data_login)
 
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.data.get("detail") == "Email or password is incorrect."
+    assert response.data["detail"] == "Email or password is incorrect."
 
 
 @pytest.mark.django_db
@@ -122,4 +122,4 @@ def test_login_session_ar_401(client, user, lang_ar, login_provide):
     response = client.post(reverse("login_session"), data_login)
 
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.data.get("detail") == "البريد الالكتروني او كلمة المرور غير صحيحة"
+    assert response.data["detail"] == "البريد الالكتروني او كلمة المرور غير صحيحة"

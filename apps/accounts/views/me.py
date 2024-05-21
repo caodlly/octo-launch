@@ -13,10 +13,9 @@ class Me(generics.GenericAPIView):
     permission_classes = [MePermission]
 
     def get_serializer(self, *args, **kwargs):
-        if self.request.method in "POST":
-            return StatusSerializer()
-        if self.request.method in "GET":
-            return UserSerializer()
+        if self.request.method is ["POST"]:
+            return StatusSerializer
+        return UserSerializer
 
     @extend_schema(
         operation_id="Me",
@@ -44,5 +43,5 @@ class Me(generics.GenericAPIView):
         This endpoint checks if the user is logged in and returns the authentication status.
         """
         return Response(
-            self.get_serializer({"status": request.user.is_authenticated}).data
+            StatusSerializer({"status": request.user.is_authenticated}).data
         )

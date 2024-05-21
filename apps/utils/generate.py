@@ -22,7 +22,7 @@ def generate_register():
 
     return {
         "name": fake.name(),
-        "username": fake.user_name()[0:10],
+        "username": fake.user_name()[:10],
         "email": fake.email(),
         "password": password,
         "password2": password,

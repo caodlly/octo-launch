@@ -1,5 +1,6 @@
 from rest_framework import permissions, status, serializers
 from rest_framework.generics import GenericAPIView
+from apps.accounts.serializers import StatusSerializer
 from rest_framework.response import Response
 from apps.utils.permissions import EmailNotVerified
 from apps.accounts.models import VerificationCode
@@ -22,16 +23,13 @@ class SendEmailCodeVerified(GenericAPIView):
     """
 
     permission_classes = [permissions.IsAuthenticated, EmailNotVerified]
-    queryset = VerificationCode.objects.all()
-
-    def get_serializer(self, *args, **kwargs):
-        return None
+    queryset = None
+    serializer_class = StatusSerializer
 
     @extend_schema(
         request=None,
         operation_id="Send verification code via email",
         summary="Send an email verification code to the user",
-        responses={204: None},
     )
     def post(self, request, *args, **kwargs):
         """
@@ -40,10 +38,11 @@ class SendEmailCodeVerified(GenericAPIView):
         This endpoint sends a verification code to the user's email address if the user
         has not yet verified their email.
         """
-        user = self.get_queryset.filter(user=request.user).exists()
-        if user:
+        if not request.user.email_verified:
             send_verification_email.delay(self.request.user.email)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(
+            self.get_serializer({"status": True}).data, status=status.HTTP_200_OK
+        )
 
 
 class EmailCodeVerified(GenericAPIView):
@@ -77,7 +76,7 @@ class EmailCodeVerified(GenericAPIView):
         except VerificationCode.DoesNotExist:
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        user = self.get_queryset.get(email=self.request.user.email)
+        user = self.queryset.get(email=self.request.user.email)
         user.email_verified = True
         user.save()
         model.delete()
