@@ -6,7 +6,7 @@ from .serializers import VerificationCodeSerializer
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
-from config.utils.app import App
+from config.settings.base import APP
 from apps.utils.generate import generate_code
 
 
@@ -20,7 +20,7 @@ def remove_verification_code(id):
 
 
 @shared_task
-def send_verification_email(user_email):
+def send_verification_email(user_email: str):
     try:
         user = User.objects.get(email=user_email)
     except User.DoesNotExist:
@@ -44,10 +44,10 @@ def send_verification_email(user_email):
         except VerificationCode.DoesNotExist:
             return "VerificationCode_DoesNotExist"
 
-    subject = f"{App().name} - Verification Code"
+    subject = f"{APP.name} - Verification Code"
     context = {
         "name": user.name,
-        "app_name": App().name,
+        "app_name": APP.name,
         "code": code,
     }
     html_message = render_to_string(
@@ -56,7 +56,7 @@ def send_verification_email(user_email):
     plain_message = strip_tags(html_message)
 
     message = EmailMultiAlternatives(
-        subject=subject, body=plain_message, from_email=App().name, to=[user_email]
+        subject=subject, body=plain_message, from_email=APP.name, to=[user_email]
     )
     message.attach_alternative(html_message, "text/html")
 
