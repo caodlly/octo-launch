@@ -1,12 +1,12 @@
 wsgi_app = "config.wsgi:application"
 bind = "0.0.0.0:8080"
 worker_class = "gthread"
-threads = 4
 timeout = 120
 reload = True
 max_requests = 1000
 max_requests_jitter = 200
-workers = 4
+workers = 3  # Number of Central Processing Units (CPUs)
+threads = 2  # Number of threads within each processing unit
 graceful_timeout = 30
 # accesslog = "./logs/access.log"
 # errorlog = "./logs/error.log"
