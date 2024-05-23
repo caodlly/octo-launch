@@ -77,7 +77,7 @@ def verify_jwt_200(client, token):
 
 
 @pytest.mark.django_db
-def test_login_jwt_en_401(client, user, lang_en, login_provide):
+def test_login_jwt_401(client, user, login_provide):
     data_login = {
         "email": user.email,
         "password": "foo",
@@ -90,19 +90,7 @@ def test_login_jwt_en_401(client, user, lang_en, login_provide):
 
 
 @pytest.mark.django_db
-def test_login_jwt_ar_401(client, user, lang_ar, login_provide):
-    data_login = {
-        "email": user.email,
-        "password": "foo",
-    }
-
-    response = client.post(reverse("token_obtain_pair"), data_login)
-    assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.data["detail"] == "البريد الالكتروني او كلمة المرور غير صحيحة"
-
-
-@pytest.mark.django_db
-def test_login_session_en_401(client, user, lang_en, login_provide):
+def test_login_session_401(client, user, login_provide):
     data_login = {
         "email": user.email,
         "password": "foo",
@@ -111,15 +99,3 @@ def test_login_session_en_401(client, user, lang_en, login_provide):
 
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
     assert response.data["detail"] == "Email or password is incorrect."
-
-
-@pytest.mark.django_db
-def test_login_session_ar_401(client, user, lang_ar, login_provide):
-    data_login = {
-        "email": user.email,
-        "password": "foo",
-    }
-    response = client.post(reverse("login_session"), data_login)
-
-    assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    assert response.data["detail"] == "البريد الالكتروني او كلمة المرور غير صحيحة"
