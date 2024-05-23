@@ -1,6 +1,5 @@
 import pytest
 from rest_framework.test import APIClient, APIRequestFactory
-from django.utils.translation import activate
 from apps.users.factories import UserFactory, AdminFactory
 from pytest_factoryboy import register
 
@@ -21,17 +20,7 @@ def factory() -> APIRequestFactory:
 
 
 @pytest.fixture
-def lang_en() -> None:
-    return activate("en")
-
-
-@pytest.fixture
-def lang_ar() -> None:
-    return activate("ar")
-
-
-@pytest.fixture
-def user(user_factory):
+def user(db, user_factory):
     user_factory.build().save()
     return user_factory
 
