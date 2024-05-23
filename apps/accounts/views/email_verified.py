@@ -17,7 +17,7 @@ class EmailCodeSerializer(serializers.Serializer):
     )
 
 
-class SendEmailCodeVerified(GenericAPIView):
+class SendEmailCodeVerify(GenericAPIView):
     """
     API view to send a verification code via email to the user.
     """
@@ -45,7 +45,7 @@ class SendEmailCodeVerified(GenericAPIView):
         )
 
 
-class EmailCodeVerified(GenericAPIView):
+class EmailCodeVerify(GenericAPIView):
     """
     API view to verify the email activation code.
     """
@@ -67,7 +67,7 @@ class EmailCodeVerified(GenericAPIView):
         This endpoint verifies the email activation code submitted by the user. If the code is
         correct, the user's email is marked as verified.
         """
-        serializer: EmailCodeVerified = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         code = serializer.validated_data["code"]
 

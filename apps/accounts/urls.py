@@ -15,9 +15,9 @@ urlpatterns = [
     path("user/update/", views.UpdateProfile.as_view(), name="user_update"),
     # =======
     path(
-        "user/email/verified/",
-        views.SendEmailCodeVerified.as_view(),
-        name="email_verified",
+        "user/email/code/send",
+        views.SendEmailCodeVerify.as_view(),
+        name="send_email_verify",
     ),
-    path("user/email/code/", views.EmailCodeVerified.as_view(), name="email_code"),
+    path("user/email/code/", views.EmailCodeVerify.as_view(), name="email_code_verify"),
 ]
