@@ -134,7 +134,7 @@ executing==2.0.1
     # via stack-data
 factory-boy==3.3.0
     # via pytest-factoryboy
-faker==25.1.0
+faker==25.2.0
     # via
     #   -r requirements.in
     #   factory-boy
