@@ -96,7 +96,7 @@ django==5.0.6
     #   drf-spectacular-sidecar
 django-cors-headers==4.3.1
     # via -r requirements.in
-django-debug-toolbar==4.3.0
+django-debug-toolbar==4.4.1
     # via -r requirements.in
 django-environ==0.11.2
     # via -r requirements.in
