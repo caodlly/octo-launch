@@ -4,7 +4,14 @@ from .UserSerializer import (
     UserSerializerPrivate,  # noqa: F401
     UserSerializerPublic,  # noqa: F401
     StatusSerializer,  # noqa: F401
+    EmailSerializer,  # noqa: F401
 )
 from .RegisterSerializer import RegisterSerializer  # noqa: F401
 from .UpdateUserSerializer import UpdateUserSerializer  # noqa: F401
-from .VerificationCodeSerializer import VerificationCodeSerializer  # noqa: F401
+from .VerificationCodeSerializer import (
+    VerificationCodeSerializer,  # noqa: F401
+    KeySerializer,  # noqa: F401
+    GetKeySerializer,  # noqa: F401
+    CodeSerializer,  # noqa: F401
+    ResetPassword,  # noqa: F401
+)

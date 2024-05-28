@@ -4,3 +4,8 @@ from .register import Register  # noqa: F401
 from .me import Me  # noqa: F401
 from .update import UpdateProfile  # noqa: F401
 from .email_verified import SendEmailCodeVerify, EmailCodeVerify  # noqa: F401
+from .reset_password import (
+    SendCodeRestPassword,  # noqa: F401
+    VerifyCodeResetPassowrd,  # noqa: F401
+    ResetPassowrd,  # noqa: F401
+)

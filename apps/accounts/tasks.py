@@ -1,13 +1,10 @@
-from datetime import timedelta
 from celery import shared_task
-from apps.users.models import User
 from .models import VerificationCode
-from .serializers import VerificationCodeSerializer
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
-from django.core.mail import EmailMultiAlternatives
 from config.settings.base import APP
-from apps.utils.generate import generate_code
+from apps.utils.email import send_email
+from datetime import timedelta
+from apps.users.models import User
 
 
 @shared_task
@@ -20,49 +17,50 @@ def remove_verification_code(id):
 
 
 @shared_task
-def send_verification_email(user_email: str):
-    try:
-        user = User.objects.get(email=user_email)
-    except User.DoesNotExist:
-        return "Email_DoesNotExist"
-
-    code = generate_code()
-
-    data = {"user": user.id, "code": code}
-    serializer = VerificationCodeSerializer(data=data)
-
-    if serializer.is_valid():
-        serializer.save()
-        id = serializer.data.get("id")
-        remove_verification_code.apply_async(
-            args=[id], countdown=timedelta(minutes=10).seconds
+def send_verification_email(email: str):
+    code_obj, user = get_verification_code(email)
+    if code_obj and user:
+        subject = f"{APP.name} - Verification Code"
+        context = {
+            "name": user.name,
+            "app_name": APP.name,
+            "code": code_obj.code,
+        }
+        html_message = render_to_string(
+            "email/send_verification_code.html", context=context
         )
-    else:
-        try:
-            code_obj = VerificationCode.objects.get(user=user)
-            code = code_obj.code
-        except VerificationCode.DoesNotExist:
-            return "VerificationCode_DoesNotExist"
+        send_email(subject, [email], html_message)
+    return False
 
-    subject = f"{APP.name} - Verification Code"
-    context = {
-        "name": user.name,
-        "app_name": APP.name,
-        "code": code,
-    }
-    html_message = render_to_string(
-        "email/send_verification_code.html", context=context
-    )
-    plain_message = strip_tags(html_message)
 
-    message = EmailMultiAlternatives(
-        subject=subject, body=plain_message, from_email=APP.name, to=[user_email]
-    )
-    message.attach_alternative(html_message, "text/html")
-
-    try:
-        message.send()
+@shared_task
+def send_code_reset_password(email: str):
+    code_obj, user = get_verification_code(email)
+    if code_obj and user:
+        subject = f"{APP.name} - Code Reset Password"
+        context = {
+            "name": user.name,
+            "app_name": APP.name,
+            "code": code_obj.code,
+        }
+        html_message = render_to_string(
+            "email/send_code_reset_password.html", context=context
+        )
+        send_email(subject, [email], html_message)
         return True
-    except Exception as e:
-        print("An error occurred while sending email:", e)
-        return False
+    return False
+
+
+def get_verification_code(email: str):
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return False, False
+
+    code_obj, created = VerificationCode.objects.get_or_create(user=user)
+    if created:
+        remove_verification_code.apply_async(
+            args=[code_obj.id], countdown=timedelta(minutes=10).seconds
+        )
+
+    return code_obj, user

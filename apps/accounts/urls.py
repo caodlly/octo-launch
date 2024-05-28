@@ -20,4 +20,20 @@ urlpatterns = [
         name="send_email_verify",
     ),
     path("user/email/code/", views.EmailCodeVerify.as_view(), name="email_code_verify"),
+    # =======
+    path(
+        "user/reset_password/code/send/",
+        views.SendCodeRestPassword.as_view(),
+        name="send_code_reset_password",
+    ),
+    path(
+        "user/reset_password/code/",
+        views.VerifyCodeResetPassowrd.as_view(),
+        name="verify_code_reset_password",
+    ),
+    path(
+        "user/reset_password/",
+        views.ResetPassowrd.as_view(),
+        name="reset_password",
+    ),
 ]
