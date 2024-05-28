@@ -4,7 +4,6 @@ from apps.users.models import User
 from apps.users.factories import password
 from rest_framework import status
 from apps.accounts.models import VerificationCode
-from apps.utils.generate import generate_code
 
 
 # === fixture ======================================
@@ -18,9 +17,7 @@ def user_not_verified(user) -> User:
 
 @pytest.fixture
 def verification_code(user_not_verified) -> VerificationCode:
-    obj_code = VerificationCode.objects.create(
-        user_id=user_not_verified.id, code=generate_code()
-    )
+    obj_code = VerificationCode.objects.create(user_id=user_not_verified.id)
     obj_code.save()
     return obj_code
 
