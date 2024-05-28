@@ -18,9 +18,6 @@ class UpdateProfile(generics.UpdateAPIView):
             return UserSerializer
         return UpdateUserSerializer
 
-    def get_queryset(self, request, *args, **kwargs):
-        return User.objects.filter(email=request.user.email)
-
     def get_object(self):
         return User.objects.get(email=self.request.user.email)
 

@@ -1,20 +1,12 @@
-from rest_framework import permissions, status, serializers
+from rest_framework import permissions, status
 from rest_framework.generics import GenericAPIView
-from apps.accounts.serializers import StatusSerializer
+from apps.accounts.serializers import StatusSerializer, CodeSerializer
 from rest_framework.response import Response
 from apps.utils.permissions import EmailNotVerified
 from apps.accounts.models import VerificationCode
 from apps.accounts.tasks import send_verification_email
 from apps.users.models import User
 from drf_spectacular.utils import extend_schema
-
-
-class EmailCodeSerializer(serializers.Serializer):
-    code = serializers.CharField(
-        required=True,
-        max_length=128,
-        write_only=True,
-    )
 
 
 class SendEmailCodeVerify(GenericAPIView):
@@ -52,12 +44,12 @@ class EmailCodeVerify(GenericAPIView):
 
     permission_classes = [permissions.IsAuthenticated, EmailNotVerified]
     queryset = User.objects.all()
-    serializer_class = EmailCodeSerializer
+    serializer_class = CodeSerializer
 
     @extend_schema(
         operation_id="Verify the email activation code",
         summary="Verify the email activation code and activate the user's email",
-        request=EmailCodeSerializer,
+        request=CodeSerializer,
         responses={204: None},
     )
     def post(self, request, *args, **kwargs):
@@ -67,7 +59,7 @@ class EmailCodeVerify(GenericAPIView):
         This endpoint verifies the email activation code submitted by the user. If the code is
         correct, the user's email is marked as verified.
         """
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         code = serializer.validated_data["code"]
 

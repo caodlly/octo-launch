@@ -24,6 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
             "last_login",
             "groups",
         ]
+        read_only_fields = fields
 
     @extend_schema_field(EmailDetails)
     def get_email(self, obj):
@@ -44,3 +45,7 @@ class UserSerializerPrivate(UserSerializer):
 
 class StatusSerializer(serializers.Serializer):
     status = serializers.BooleanField(required=False, read_only=True)
+
+
+class EmailSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)

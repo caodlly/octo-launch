@@ -15,22 +15,22 @@ class LoginSession(generics.GenericAPIView):
 
     permission_classes = [LoginPermission]
     throttle_classes = [AnonThrottlingLogin]
+    serializer_class = LoginSerializer
 
-    @staticmethod
     @extend_schema(
         request=LoginSerializer,
         responses=UserSerializer,
         operation_id="Login Session",
         summary="Log in using session authentication.",
     )
-    def post(request):
+    def post(self, request):
         """
         Log in a user using session-based authentication.
 
         This endpoint validates user credentials and creates a session for the user.
         If the login is successful, it returns the user's serialized data.
         """
-        login_serializer = LoginSerializer(
+        login_serializer = self.serializer_class(
             data=request.data, context={"request": request}
         )
 

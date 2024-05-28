@@ -11,11 +11,7 @@ class Me(generics.GenericAPIView):
     """
 
     permission_classes = [MePermission]
-
-    def get_serializer(self, *args, **kwargs):
-        if self.request.method is ["POST"]:
-            return StatusSerializer
-        return UserSerializer
+    serializer_class = UserSerializer
 
     @extend_schema(
         operation_id="Me",
@@ -35,6 +31,7 @@ class Me(generics.GenericAPIView):
         operation_id="Me Status",
         summary="Check if the user is authenticated",
         request=None,
+        responses=StatusSerializer,
     )
     def post(self, request, *args, **kwargs):
         """

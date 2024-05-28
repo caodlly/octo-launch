@@ -1,7 +1,7 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import status, generics
 from rest_framework.response import Response
-from apps.utils.permissions import RegisterPermission
+from apps.utils.permissions import NotAuthenticatedPermission
 from apps.accounts.serializers import RegisterSerializer, UserSerializer
 from apps.users.models import User
 
@@ -12,10 +12,9 @@ class Register(generics.CreateAPIView):
     Allows new users to create an account.
     """
 
-    authentication_classes = []
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
-    permission_classes = [RegisterPermission]
+    permission_classes = [NotAuthenticatedPermission]
 
     def create(self, request, *args, **kwargs):
         serializer = super().create(request, *args, **kwargs)

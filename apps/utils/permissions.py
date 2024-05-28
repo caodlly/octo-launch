@@ -11,14 +11,9 @@ class IsSuperUser(BasePermission):
         return request.user.is_superuser
 
 
-class IsSeller(BasePermission):
-    def has_permission(self, request, view):
-        return request.user.is_seller()
-
-
 class UserVerified(BasePermission):
     def has_permission(self, request, view):
-        if request.user.email_verified:
+        if request.user.email_verified and request.user.is_staff:
             return True
         return False
 
@@ -30,27 +25,23 @@ class EmailNotVerified(BasePermission):
 
 class ReadOrAdmin(BasePermission):
     def has_permission(self, request, view):
-        if request.method in "GET":
+        if request.method in ["GET"]:
             return True
         if request.method in ["POST", "PUT", "DELETE"]:
-            if request.user.is_authenticated:
-                if request.user.is_superuser:
-                    return True
+            if request.user.is_authenticated and request.user.is_superuser:
+                return True
         return False
 
 
 class LoginPermission(BasePermission):
     def has_permission(self, request, view):
-        if request.method == "POST":
+        if request.method in ["DELETE"]:
             if not request.user.is_authenticated:
-                return True
-        if request.method == "DELETE":
-            if request.user.is_authenticated:
-                return True
-        return False
+                return False
+        return True
 
 
-class RegisterPermission(BasePermission):
+class NotAuthenticatedPermission(BasePermission):
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
             return True
@@ -59,12 +50,9 @@ class RegisterPermission(BasePermission):
 
 class MePermission(BasePermission):
     def has_permission(self, request, view):
-        if request.method == "GET":
-            if request.user.is_authenticated:
-                return True
-        if request.method == "POST":
-            return True
-        return False
+        if request.method in ["GET"] and not request.user.is_authenticated:
+            return False
+        return True
 
 
 class ModelPermissions(DjangoModelPermissions):

@@ -41,8 +41,6 @@ def pre_save_user(sender: User, instance: User, **kwargs):
             if instance.avatar != old_instance.avatar:
                 instance.avatar = resize_image(instance.avatar, 450, 450)
 
-            old_instance = sender.objects.get(pk=instance.pk)
-
             if instance.email != old_instance.email:
                 instance.email_verified = False
 
