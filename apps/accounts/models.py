@@ -1,6 +1,7 @@
 from django.db import models
 from apps.users.models import User
 from django.utils.translation import gettext_lazy as _
+from apps.utils.generate import generate_key, generate_code
 
 
 class VerificationCode(models.Model):
@@ -8,6 +9,7 @@ class VerificationCode(models.Model):
         User, on_delete=models.CASCADE, related_name="code_verified"
     )
     code = models.CharField(_("Code"), max_length=6, blank=True)
+    key = models.CharField(_("Key"), max_length=40, blank=True)
     created = models.DateTimeField(_("The time it was created"), auto_now_add=True)
 
     class Meta:
@@ -15,3 +17,10 @@ class VerificationCode(models.Model):
         indexes = [
             models.Index(fields=["user"]),
         ]
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = generate_key()
+        if not self.code:
+            self.code = generate_code()
+        return super().save(*args, **kwargs)
