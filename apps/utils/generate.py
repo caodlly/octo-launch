@@ -6,6 +6,8 @@ import random
 import secrets
 import string
 from django.core.files.uploadedfile import SimpleUploadedFile
+import binascii
+import os
 
 
 def get_login(data: dict):
@@ -62,3 +64,7 @@ def generate_code(length=6):
     characters = string.ascii_lowercase + string.digits
     code = "".join(secrets.choice(characters) for _ in range(length))
     return code
+
+
+def generate_key():
+    return binascii.hexlify(os.urandom(20)).decode()
