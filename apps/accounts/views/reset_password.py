@@ -5,7 +5,7 @@ from apps.accounts.serializers import (
     StatusSerializer,
     EmailSerializer,
     GetKeySerializer,
-    ResetPassword,
+    ResetPasswordSerializer,
 )
 from apps.accounts.tasks import send_code_reset_password
 from drf_spectacular.utils import extend_schema
@@ -75,10 +75,10 @@ class ResetPassowrd(GenericAPIView):
 
     permission_classes = [NotAuthenticatedPermission]
     throttle_classes = [AnonThrottlingResetPassword]
-    serializer_class = ResetPassword
+    serializer_class = ResetPasswordSerializer
 
     @extend_schema(
-        request=ResetPassword,
+        request=ResetPasswordSerializer,
         responses={204: None},
         operation_id="Reset Password",
         summary="Reset the user's password",
