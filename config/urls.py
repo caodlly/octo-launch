@@ -7,7 +7,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 # include apps
 urlpatterns = i18n_patterns(
-    path("api/", include("apps.urls")),
+    path("", include("apps.urls")),
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
     prefix_default_language=True,
 )
