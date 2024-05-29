@@ -2,6 +2,7 @@ import pytest
 from rest_framework.test import APIClient, APIRequestFactory
 from apps.users.factories import UserFactory, AdminFactory
 from pytest_factoryboy import register
+from apps.users.models import User
 
 # === register =====================================
 register(UserFactory)
@@ -20,12 +21,14 @@ def factory() -> APIRequestFactory:
 
 
 @pytest.fixture
-def user(db, user_factory):
+def user(db, user_factory) -> User:
     user_factory.build().save()
-    return user_factory
+    _user = User.objects.get(email=user_factory.email)
+    return _user
 
 
 @pytest.fixture
-def admin(admin_factory):
+def admin(db, admin_factory) -> User:
     admin_factory.build().save()
-    return admin_factory
+    _user = User.objects.get(email=admin_factory.email)
+    return _user

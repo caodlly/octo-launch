@@ -9,10 +9,9 @@ from apps.accounts.models import VerificationCode
 # === fixture ======================================
 @pytest.fixture
 def user_not_verified(user) -> User:
-    _user = User.objects.get(email=user.email)
-    _user.email_verified = False
-    _user.save()
-    return _user
+    user.email_verified = False
+    user.save()
+    return user
 
 
 @pytest.fixture
