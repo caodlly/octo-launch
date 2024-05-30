@@ -12,8 +12,8 @@ def remove_verification_code(id):
     try:
         VerificationCode.objects.get(id=id).delete()
     except VerificationCode.DoesNotExist:
-        pass
-    return
+        return False
+    return True
 
 
 @shared_task
