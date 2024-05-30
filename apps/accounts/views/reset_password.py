@@ -11,6 +11,7 @@ from apps.accounts.tasks import send_code_reset_password
 from drf_spectacular.utils import extend_schema
 from apps.accounts.throttling import AnonThrottlingResetPassword
 from apps.utils.permissions import NotAuthenticatedPermission
+from apps.users.models import User
 
 
 class SendCodeRestPassword(GenericAPIView):
@@ -37,7 +38,12 @@ class SendCodeRestPassword(GenericAPIView):
         """
         serializer = EmailSerializer(data=self.request.data)
         serializer.is_valid(raise_exception=True)
-        send_code_reset_password.delay(serializer.data.get("email"))
+        email = serializer.data.get("email")
+        try:
+            user = User.objects.get(email=email)
+            send_code_reset_password.delay(user.email)
+        except User.DoesNotExist:
+            ...
         return Response(
             StatusSerializer({"status": True}).data, status=status.HTTP_200_OK
         )
@@ -64,8 +70,7 @@ class VerifyCodeResetPassowrd(GenericAPIView):
         """
         serializer = self.serializer_class(data=self.request.data)
         serializer.is_valid(raise_exception=True)
-        serializer = serializer.validated_data
-        return Response(serializer, status=status.HTTP_200_OK)
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
 class ResetPassowrd(GenericAPIView):
