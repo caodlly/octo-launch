@@ -4,6 +4,7 @@ from apps.users.models import User
 from apps.users.factories import password
 from rest_framework import status
 from apps.accounts.models import VerificationCode
+from apps.accounts.tasks import remove_verification_code
 
 
 # === fixture ======================================
@@ -23,13 +24,21 @@ def verification_code(user_not_verified) -> VerificationCode:
 
 # === Tests =====================================
 @pytest.mark.django_db
-def test_send_email_200(client, user_not_verified):
+def test_send_email_200(client, user_not_verified, mocker):
+    mocker.patch("apps.accounts.tasks.remove_verification_code.apply_async")
     user = user_not_verified
     assert user.email_verified is False
     client.login(email=user.email, password=password)
     response = client.post(reverse("send_email_verify"))
     assert response.status_code == status.HTTP_200_OK
     assert response.data["status"] is True
+
+    try:
+        code_obj = VerificationCode.objects.get(user=user)
+    except VerificationCode.DoesNotExist:
+        assert False
+
+    assert remove_verification_code(code_obj.id)
 
 
 @pytest.mark.django_db
