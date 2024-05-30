@@ -2,18 +2,11 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 from apps.users.factories import password as get_password
-from django.conf import settings
-
-
-# === fixture ======================================
-@pytest.fixture()
-def login_provide():
-    settings.LOGIN_THROTTLING = 100000
 
 
 # === test ======================================
 @pytest.mark.django_db
-def test_login_session_200(client, user, login_provide):
+def test_login_session_200(client, user):
     data_login = {
         "email": user.email,
         "password": get_password,
@@ -31,7 +24,7 @@ def me_session_POST(client):
 
 
 @pytest.mark.django_db
-def test_login_refresh_jwt_200_200(client, user, login_provide):
+def test_login_refresh_jwt_200_200(client, user):
     data_login = {
         "email": user.email,
         "password": get_password,
@@ -77,7 +70,7 @@ def verify_jwt_200(client, token):
 
 
 @pytest.mark.django_db
-def test_login_jwt_401(client, user, login_provide):
+def test_login_jwt_401(client, user):
     data_login = {
         "email": user.email,
         "password": "foo",
@@ -90,7 +83,7 @@ def test_login_jwt_401(client, user, login_provide):
 
 
 @pytest.mark.django_db
-def test_login_session_401(client, user, login_provide):
+def test_login_session_401(client, user):
     data_login = {
         "email": user.email,
         "password": "foo",
