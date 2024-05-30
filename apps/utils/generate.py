@@ -20,8 +20,7 @@ def get_login(data: dict):
 def generate_register():
     fake = Faker()
 
-    password = generate_password()
-
+    password = generate_password(100)
     return {
         "name": fake.name(),
         "username": fake.user_name()[:10],
@@ -31,10 +30,10 @@ def generate_register():
     }
 
 
-def generate_password():
+def generate_password(length=50):
     """I didn't use Faker to avoid password guessing"""
     alphabet = "#@$#@$#@$#@$#@$#@$" + string.ascii_letters + string.digits
-    password = "".join(secrets.choice(alphabet) for i in range(25))
+    password = "".join(secrets.choice(alphabet) for i in range(length))
     return password
 
 
