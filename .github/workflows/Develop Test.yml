@@ -58,11 +58,6 @@ jobs:
         uv venv env
         . env/bin/activate
         just install
-
-    - name: Migrations
-      run: |
-        . env/bin/activate
-        just migrate
         
     - name: Run Tests
       run: |
