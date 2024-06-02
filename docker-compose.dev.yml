@@ -1,0 +1,103 @@
+networks:
+  django_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 173.14.0.0/24
+  # =====================================
+services:
+
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: django_app_development
+    container_name: django_app_development
+    networks:
+      django_network:
+    depends_on:
+      - redis
+      - postgres
+      - mailpit
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.env
+    ports:
+      - 8080:8080
+    command: just build manage-start
+  # =====================================
+  postgres:
+    image: postgres:latest
+    container_name: django_app_postgres_development
+    environment:
+      PUID: 1000
+      PGID: 1000
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: django_db
+    networks:
+      django_network:
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  # =====================================
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    container_name: django_app_mailpit_development
+    networks:
+      django_network:
+    ports:
+      - 8025:8025
+      - 1025:1025
+  # =====================================
+  redis:
+    image: redis:latest
+    container_name: django_app_redis_development
+    networks:
+      django_network:
+    environment:
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - ./docker/redis/dаta:/root/redis
+    ports:
+      - 6379:6379
+  # =====================================
+  celeryworker:
+    <<: *django
+    image: django_app_celeryworker_development
+    container_name: django_app_celeryworker_development
+    depends_on:
+      - redis
+      - postgres
+      - mailpit
+      - django
+    ports: []
+    command: just celery-worker
+  # =====================================
+  celerybeat:
+    <<: *django
+    image: django_app_celerybeat_development
+    container_name: django_app_celerybeat_development
+    depends_on:
+      - redis
+      - postgres
+      - mailpit
+      - django
+    ports: []
+    command: just celery-beat
+  # =====================================
+  flower:
+    <<: *django
+    image: django_app_flower_development
+    container_name: django_app_flower_development
+    depends_on:
+      - redis
+      - postgres
+      - mailpit
+      - django
+    ports:
+      - 5555:5555
+    command: just celery-flower

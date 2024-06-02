@@ -1,0 +1,14 @@
+services:
+  docs:
+    image: django_app_docs
+    container_name: django_app_docs
+    build:
+      context: .
+      dockerfile: ./compose/docs/Dockerfile
+    env_file:
+      - ./.envs/.env
+    volumes:
+      - .:/app:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
