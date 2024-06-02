@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 19:02+0000\n"
+"POT-Creation-Date: 2024-05-30 19:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Wissam Al Kahwaji <wissamalkahwaji@gmail.com>\n"
 "Language-Team: Arabic <LL@li.org>\n"
@@ -19,11 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: apps/accounts/models.py:10
+#: apps/accounts/models.py:11
 msgid "Code"
 msgstr "الرمز"
 
-#: apps/accounts/models.py:11
+#: apps/accounts/models.py:12
+msgid "Key"
+msgstr "مفتاح"
+
+#: apps/accounts/models.py:13
 msgid "The time it was created"
 msgstr "وقت الانشاء"
 
@@ -57,6 +61,14 @@ msgid ""
 msgstr ""
 "يجب أن تتكون كلمة المرور من ما لا يقل عن 6 أحرف وتحتوي على حرف كبير واحد "
 "وحرف صغير واحد ورقم واحد وحرف خاص واحد (#?!@$%^&*-)."
+
+#: apps/accounts/serializers/VerificationCodeSerializer.py:9
+msgid "The verification code is invalid."
+msgstr "رمز التحقق غير صالح."
+
+#: apps/accounts/serializers/VerificationCodeSerializer.py:15
+msgid "The verification key is invalid."
+msgstr "مفتاح التحقق غير صالح."
 
 #: apps/users/admin.py:17
 msgid "Personal info"

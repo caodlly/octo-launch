@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 19:02+0000\n"
+"POT-Creation-Date: 2024-05-30 19:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/accounts/models.py:10
+#: apps/accounts/models.py:11
 msgid "Code"
 msgstr ""
 
-#: apps/accounts/models.py:11
+#: apps/accounts/models.py:12
+msgid "Key"
+msgstr ""
+
+#: apps/accounts/models.py:13
 msgid "The time it was created"
 msgstr ""
 
@@ -53,6 +57,14 @@ msgid ""
 "The password must be at least 6 characters long and contain at least one "
 "uppercase letter, one lowercase letter, one digit, and one special character "
 "(#?!@$%^&*-)."
+msgstr ""
+
+#: apps/accounts/serializers/VerificationCodeSerializer.py:9
+msgid "The verification code is invalid."
+msgstr ""
+
+#: apps/accounts/serializers/VerificationCodeSerializer.py:15
+msgid "The verification key is invalid."
 msgstr ""
 
 #: apps/users/admin.py:17
