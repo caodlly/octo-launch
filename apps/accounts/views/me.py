@@ -18,7 +18,7 @@ class Me(generics.GenericAPIView):
         summary="Fetch user's personal data",
         responses=UserSerializer,
     )
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         """
         Fetch the authenticated user's personal data.
 

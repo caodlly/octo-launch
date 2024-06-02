@@ -14,5 +14,4 @@ def send_email(subject: str, to: list, html_message: str):
         message.send()
         return True
     except Exception as e:
-        print("An error occurred while sending email:", e)
-        return False
+        return f"An error occurred while sending email: {e}"

@@ -11,7 +11,7 @@ APP = App()
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # === Get .env  ===================================================
 env = Env()
-Env.read_env(os.path.join(BASE_DIR, ".env"))
+Env.read_env(os.path.join(BASE_DIR, ".envs/.env"))
 # === secret =====================================================
 SECRET_KEY = env(
     "SECRET_KEY", default="xi!i5mux!+r2h=13+$%7@w)3u4eur20#v&6at43h-a+%9*kash"
@@ -219,7 +219,7 @@ SIMPLE_JWT = {
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{APP.name} API",
     "DESCRIPTION": f"Documentation of API endpoints of {APP.name}",
-    "VERSION": APP.version,
+    "VERSION": APP.version__latest,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     # "SCHEMA_PATH_PREFIX": "/api/",
 }

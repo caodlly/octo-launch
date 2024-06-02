@@ -29,8 +29,7 @@ def send_verification_email(email: str):
         html_message = render_to_string(
             "email/send_verification_code.html", context=context
         )
-        send_email(subject, [email], html_message)
-    return False
+    return send_email(subject, [email], html_message)
 
 
 @shared_task
