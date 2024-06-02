@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -e "$1.pid" ]; then
+    PID=$(cat "$1.pid")
+    echo "$1 stop | $PID"
+    if ps -p $PID > /dev/null; then
+        kill -9 $PID
+        rm -rf "$1.pid"
+        unset PID
+        if [ "$1" == "worker" ] || [ "$1" == "beat" ]; then
+            pkill -f 'celery'
+        fi
+    else
+        echo "No process found for $1"
+        rm -rf "$1.pid"
+    fi
+else
+    echo "The $1 is not running."
+fi
+

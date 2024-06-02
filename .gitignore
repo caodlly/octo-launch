@@ -60,8 +60,14 @@ celerybeat-schedule
 
 # File MAINT for Some Testing
 MAINT.py
-ADMIN_PASS
+.admin
 
 # pytest
 .coverage
 undefined
+
+# File DBBackup 
+backup
+
+# docker mount
+docker
