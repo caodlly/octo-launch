@@ -19,6 +19,7 @@ class Manager(ManagerTemplate):
         """Create a superuser for the Django application."""
         from apps.users.models import User
         from django.conf import settings
+        import os
 
         email = settings.ADMIN_EMAIL
         password = generate_password()
@@ -28,10 +29,17 @@ class Manager(ManagerTemplate):
                 email=email, password=make_password(password)
             )
             if user:
-                print(f"Email: {email}")
-                print(f"Password: {password}")
+                admin_file_path = os.path.join(settings.BASE_DIR, ".envs/.admin")
+
+                with open(admin_file_path, "w") as admin_file:
+                    admin_file.write(f"Email={email}\n")
+                    admin_file.write(f"Password={password}\n")
+                print(f"Email={email}")
+                print(f"Password={password}")
         except ValidationError as e:
-            raise ValueError(e.message)
+            if "-no-error" not in self._args:
+                print(e.message)
+                exit(1)
 
     @staticmethod
     def check_database():
