@@ -1,12 +1,17 @@
-@start: stop
-    chmod +x ./scripts/start
-    ./scripts/start
+@build: migrate compilemessages create-admin-no-error
 
-@stop:
-    chmod +x ./scripts/stop
-    ./scripts/stop
+@start-gunicorn:
+    #!/bin/bash
+    set -o errexit
+    set -o pipefail
+    set -o nounset
+    export DEBUG=False
+    gunicorn -c gunicorn_config.py
 
-@restart: stop start
+@stop-gunicorn:
+    scripts/stop-pid "server-gunicorn"
+
+@restart-gunicorn: stop-gunicorn start-gunicorn
 
 @install:
     uv pip install -r requirements/requirements.txt
@@ -37,26 +42,43 @@
 @compilemessages:
     python manage.py compilemessages
 
-
-test path='apps':
-    pytest -n auto {{path}}
-
 @cicd-test:
     pytest -vn auto
 
 @check_database:
     python manage.py check_database --no-django
     
-@createsuperuser:
+@create-admin:
     python manage.py createsuperuser
 
-@create-admin-pass:
-    # Do not use this in production
-    python manage.py createsuperuser > ADMIN_PASS
-    cat ADMIN_PASS
+@create-admin-no-error:
+    python manage.py createsuperuser -no-error
 
 @collectstatic:
     python manage.py collectstatic --noinput
 
-@search-files query="#LATER" file="*.py":
-    find . -name "{{file}}" -not -path "*/env/*" -exec grep -nH "{{query}}" {} \;
+@celery-worker:
+    #!/bin/bash
+    set -o errexit
+    set -o pipefail
+    set -o nounset
+    exec watchfiles --filter python celery.__main__.main --args '-A config.celery_app worker -l INFO'
+
+@celery-flower:
+    #!/bin/bash
+    set -o errexit
+    set -o nounset
+    exec watchfiles --filter python celery.__main__.main \
+        --args \
+        "-A config.celery_app flower --basic_auth=\"${CELERY_FLOWER_USER}:${CELERY_FLOWER_PASSWORD}\""
+
+@celery-beat:
+    #!/bin/bash
+    set -o errexit
+    set -o nounset
+    rm -f './celerybeat.pid'
+    exec watchfiles --filter python celery.__main__.main --args '-A config.celery_app beat -l INFO'
+
+@dev-docker status="status":
+    mkdir -p {docker,docker/postgres,docker/postgres/data,docker/redis,docker/redis/data}
+    docker compose -f docker-compose-dev.yml {{status}}
