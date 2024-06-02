@@ -41,6 +41,14 @@ qrcode
 ruff
 sentry-sdk
 uv
+watchfiles
 Werkzeug
 wheel
 yarg
+
+# == docs ===
+sphinx
+sphinx-rtd-theme
+sphinx-autobuild
+sphinx-copybutton
+sphinxext-opengraph
