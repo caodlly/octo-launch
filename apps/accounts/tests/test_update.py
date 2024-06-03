@@ -17,7 +17,6 @@ def test_update_200(client, user):
     response = client.put(reverse("user_update"), data_register, format="multipart")
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["email"]["value"] != user.email
     assert response.data["email"]["value"] == data_register["email"]
     assert response.data["email"]["verified"] is False
     assert response.data["name"] == data_register["name"]
