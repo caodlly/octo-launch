@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView
+from rest_framework.views import APIView
 from apps.accounts.serializers import (
     StatusSerializer,
     EmailSerializer,
@@ -14,15 +14,13 @@ from apps.utils.permissions import NotAuthenticatedPermission
 from apps.users.models import User
 
 
-class SendCodeRestPassword(GenericAPIView):
+class SendCodeRestPassword(APIView):
     """
     API view to send a reset password code via email to the user.
     """
 
     throttle_classes = [AnonThrottlingResetPassword]
     permission_classes = [NotAuthenticatedPermission]
-    queryset = None
-    serializer_class = EmailSerializer
 
     @extend_schema(
         request=EmailSerializer,
@@ -49,14 +47,13 @@ class SendCodeRestPassword(GenericAPIView):
         )
 
 
-class VerifyCodeResetPassowrd(GenericAPIView):
+class VerifyCodeResetPassowrd(APIView):
     """
     API view to verify a reset password code sent to the user's email.
     """
 
     permission_classes = [NotAuthenticatedPermission]
     throttle_classes = [AnonThrottlingResetPassword]
-    serializer_class = GetKeySerializer
 
     @extend_schema(
         operation_id="Verify Reset Password Code",
@@ -68,19 +65,18 @@ class VerifyCodeResetPassowrd(GenericAPIView):
         This endpoint verifies the reset password code sent to the user's email
         to ensure it matches the code stored in the system.
         """
-        serializer = self.serializer_class(data=self.request.data)
+        serializer = GetKeySerializer(data=self.request.data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
-class ResetPassowrd(GenericAPIView):
+class ResetPassowrd(APIView):
     """
     API view to reset the user's password.
     """
 
     permission_classes = [NotAuthenticatedPermission]
     throttle_classes = [AnonThrottlingResetPassword]
-    serializer_class = ResetPasswordSerializer
 
     @extend_schema(
         request=ResetPasswordSerializer,
@@ -89,6 +85,6 @@ class ResetPassowrd(GenericAPIView):
         summary="Reset the user's password",
     )
     def post(self, *args, **kwargs):
-        serializer = self.serializer_class(data=self.request.data)
+        serializer = ResetPasswordSerializer(data=self.request.data)
         serializer.is_valid(raise_exception=True)
         return Response(status=status.HTTP_204_NO_CONTENT)

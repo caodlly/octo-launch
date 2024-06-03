@@ -1,11 +1,12 @@
 from drf_spectacular.utils import extend_schema
-from rest_framework import permissions, generics
+from rest_framework import permissions
+from rest_framework.generics import UpdateAPIView
 from rest_framework.response import Response
 from apps.accounts.serializers import UpdateUserSerializer, UserSerializer
 from apps.users.models import User
 
 
-class UpdateProfile(generics.UpdateAPIView):
+class UpdateProfile(UpdateAPIView):
     """
     API view to update user profile data.
     Supports both full update (PUT) and partial update (PATCH).

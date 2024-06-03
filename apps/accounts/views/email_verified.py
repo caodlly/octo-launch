@@ -1,5 +1,5 @@
 from rest_framework import permissions, status
-from rest_framework.generics import GenericAPIView
+from rest_framework.views import APIView
 from apps.accounts.serializers import StatusSerializer, CodeSerializer
 from rest_framework.response import Response
 from apps.utils.permissions import EmailNotVerified
@@ -9,14 +9,12 @@ from apps.users.models import User
 from drf_spectacular.utils import extend_schema
 
 
-class SendEmailCodeVerify(GenericAPIView):
+class SendEmailCodeVerify(APIView):
     """
     API view to send a verification code via email to the user.
     """
 
     permission_classes = [permissions.IsAuthenticated, EmailNotVerified]
-    queryset = None
-    serializer_class = StatusSerializer
 
     @extend_schema(
         request=None,
@@ -33,17 +31,16 @@ class SendEmailCodeVerify(GenericAPIView):
         if not request.user.email_verified:
             send_verification_email.delay(self.request.user.email)
         return Response(
-            self.get_serializer({"status": True}).data, status=status.HTTP_200_OK
+            StatusSerializer({"status": True}).data, status=status.HTTP_200_OK
         )
 
 
-class EmailCodeVerify(GenericAPIView):
+class EmailCodeVerify(APIView):
     """
     API view to verify the email activation code.
     """
 
     permission_classes = [permissions.IsAuthenticated, EmailNotVerified]
-    queryset = User.objects.all()
     serializer_class = CodeSerializer
 
     @extend_schema(
@@ -68,7 +65,7 @@ class EmailCodeVerify(GenericAPIView):
         except VerificationCode.DoesNotExist:
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        user = self.queryset.get(email=self.request.user.email)
+        user = User.objects.get(email=self.request.user.email)
         user.email_verified = True
         user.save()
         model.delete()

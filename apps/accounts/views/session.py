@@ -2,13 +2,13 @@ from django.contrib.auth import login, logout
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework.views import APIView
 from apps.utils.permissions import LoginPermission
 from apps.accounts.serializers import LoginSerializer, UserSerializer
 from apps.accounts.throttling import AnonThrottlingLogin
 
 
-class LoginSession(generics.GenericAPIView):
+class LoginSession(APIView):
     """
     API view for handling user login and logout sessions.
     """
