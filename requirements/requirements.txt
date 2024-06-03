@@ -141,7 +141,7 @@ docutils==0.20.1
     #   sphinx-rtd-theme
 drf-spectacular==0.27.2
     # via -r requirements.in
-drf-spectacular-sidecar==2024.5.1
+drf-spectacular-sidecar==2024.6.1
     # via -r requirements.in
 execnet==2.1.1
     # via pytest-xdist
