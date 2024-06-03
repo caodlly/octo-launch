@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
 import re
 from apps.users.models import User
+from .UserSerializer import UserSerializer
 
 password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"
 
@@ -39,3 +40,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         if password2:
             del value["password2"]
         return value
+
+    def to_representation(self, instance):
+        return UserSerializer(instance).data
