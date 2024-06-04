@@ -347,7 +347,7 @@ ruff==0.4.7
     # via -r requirements.in
 s3transfer==0.10.1
     # via boto3
-sentry-sdk==2.3.1
+sentry-sdk==2.4.0
     # via -r requirements.in
 simplejson==3.19.2
     # via django-rest-swagger
