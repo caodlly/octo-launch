@@ -1,16 +1,16 @@
 {
-  "name": "Django-EaseLaunch",
-  "description": "EaseLaunch simplifies the setup process of Django projects for faster development.",
+  "name": "octo-launch",
+  "description": "octo-launch simplifies the setup process of Django projects for faster development.",
   "version": {
     "latest": "v1.0",
     "all": [
       "v1.0"
   ]
   },
-  "repository": "https://github.com/wissam-al-kahwaji/Django-EaseLaunch",
+  "repository": "https://github.com/oc-to/octo-launch",
   "author": {
-      "name": "Wissam Al-Kahwaji",
-      "github": "https://github.com/wissam-al-kahwaji",
-      "email": "wissamalkahwaji@gmail.com"
+      "name": "Octo Software",
+      "github": "https://github.com/oc-to/",
+      "email": "octo.team.dev@gmail.com"
     }
 }
