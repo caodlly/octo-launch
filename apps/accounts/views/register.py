@@ -1,11 +1,11 @@
 from drf_spectacular.utils import extend_schema
-from rest_framework import generics
+from rest_framework.generics import CreateAPIView
 from apps.utils.permissions import NotAuthenticatedPermission
 from apps.accounts.serializers import RegisterSerializer, UserSerializer
 from apps.users.models import User
 
 
-class Register(generics.CreateAPIView):
+class Register(CreateAPIView):
     """
     API view for user registration.
     Allows new users to create an account.

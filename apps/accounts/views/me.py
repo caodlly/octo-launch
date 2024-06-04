@@ -1,11 +1,12 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import status
+from rest_framework.generics import GenericAPIView
 from apps.utils.permissions import MePermission
 from apps.accounts.serializers import UserSerializer, StatusSerializer
 
 
-class Me(generics.GenericAPIView):
+class Me(GenericAPIView):
     """
     API view to fetch the user's personal data and check authentication status.
     """
@@ -25,7 +26,7 @@ class Me(generics.GenericAPIView):
         This endpoint retrieves and returns the personal data of the authenticated user.
         """
         user_serializer = self.get_serializer(request.user)
-        return Response(user_serializer.data)
+        return Response(user_serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         operation_id="Me Status",
@@ -40,5 +41,6 @@ class Me(generics.GenericAPIView):
         This endpoint checks if the user is logged in and returns the authentication status.
         """
         return Response(
-            StatusSerializer({"status": request.user.is_authenticated}).data
+            StatusSerializer({"status": request.user.is_authenticated}).data,
+            status=status.HTTP_200_OK,
         )
