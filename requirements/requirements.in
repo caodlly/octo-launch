@@ -45,6 +45,8 @@ watchfiles
 Werkzeug
 wheel
 yarg
+uwsgi
+
 
 # == docs ===
 sphinx

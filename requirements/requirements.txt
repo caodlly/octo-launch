@@ -435,6 +435,8 @@ uv==0.2.6
     # via -r requirements.in
 uvicorn==0.30.0
     # via sphinx-autobuild
+uwsgi==2.0.26
+    # via -r requirements.in
 vine==5.1.0
     # via
     #   amqp
