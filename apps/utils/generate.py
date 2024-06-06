@@ -30,7 +30,7 @@ def generate_register():
     }
 
 
-def generate_password(length=50):
+def generate_password(length=15):
     """I didn't use Faker to avoid password guessing"""
     alphabet = "#@$#@$#@$#@$#@$#@$" + string.ascii_letters + string.digits
     password = "".join(secrets.choice(alphabet) for i in range(length))
