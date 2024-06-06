@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from typing import ClassVar
 from .managers import UserManager
+from apps.utils.generate import generate_code
 
 
 class User(AbstractUser):
@@ -43,7 +44,8 @@ def pre_save_user(sender: User, instance: User, **kwargs):
 
             if instance.email != old_instance.email:
                 instance.email_verified = False
-
+        if not instance.username:
+            instance.username = instance.email.split("@")[0] + "_" + generate_code()
     except Exception as e:
         raise Exception(f"Error in pre_save signal: {e}")
 
