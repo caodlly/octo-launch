@@ -124,6 +124,10 @@
 @dev-docker *cmd: create-dev-env
     docker compose -f docker-compose.dev.yml {{cmd}}
 
+@clean-dev-docker:
+    docker compose -f docker-compose.dev.yml down
+    rm -rf /mnt/django_dev
+
 # Manage Docker docs environment
 @docs-docker *cmd: create-dev-env
     docker compose -f docker-compose.docs.yml {{cmd}}
