@@ -12,13 +12,32 @@
 
 # Stop Gunicorn server
 @stop-gunicorn:
+    chmod +x scripts/stop-pid
     scripts/stop-pid "server-gunicorn"
 
 # Restart Gunicorn server
 @restart-gunicorn: stop-gunicorn start-gunicorn
 
+# Start uwsgi server
+@start-uwsgi:
+    #!/bin/bash
+    set -o errexit
+    set -o pipefail
+    set -o nounset
+    export DEBUG=False
+    uwsgi --ini uwsgi.ini
+
+# Stop uwsgi server
+@stop-uwsgi:
+    uwsgi --stop server-uwsgi.pid
+
+# Restart uwsgi server
+@restart-uwsgi:
+    uwsgi --reload server-uwsgi.pid
+
 # Install required packages
 @install:
+    pip install uv
     uv pip install -r requirements/requirements.txt
 
 # Start Django development server
@@ -30,7 +49,8 @@
     python manage.py shell_plus
 
 # Clean development environment (Do not use in production)
-[linux, macos]
+[macos]
+[linux]
 @clean:
     find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
@@ -72,32 +92,38 @@
     python manage.py collectstatic --noinput
 
 # Start Celery worker
+[macos]
+[linux]
 @celery-worker:
-    #!/bin/bash
-    set -o errexit
-    set -o pipefail
-    set -o nounset
-    exec watchfiles --filter python celery.__main__.main --args '-A config.celery_app worker -l INFO'
+    chmod +x scripts/start-celery-worker
+    ./scripts/start-celery-worker
 
 # Start Celery Flower monitoring tool
+[macos]
+[linux]
 @celery-flower:
-    #!/bin/bash
-    set -o errexit
-    set -o nounset
-    exec watchfiles --filter python celery.__main__.main --args "-A config.celery_app flower --basic_auth=\"${CELERY_FLOWER_USER}:${CELERY_FLOWER_PASSWORD}\""
+    chmod +x scripts/start-celery-flower
+    ./scripts/start-celery-flower
 
 # Start Celery Beat scheduler
+[macos]
+[linux]
 @celery-beat:
-    #!/bin/bash
-    set -o errexit
-    set -o nounset
-    rm -f './celerybeat.pid'
-    exec watchfiles --filter python celery.__main__.main --args '-A config.celery_app beat -l INFO'
+    chmod +x scripts/start-celery-beat
+    ./scripts/start-celery-beat
+
+
+# Create file .env for dev-docker
+[macos]
+[linux]
+@create-dev-env:
+    chmod +x scripts/create-dev-env
+    ./scripts/create-dev-env
 
 # Manage Docker development environment
-@dev-docker *cmd:
+@dev-docker *cmd: create-dev-env
     docker compose -f docker-compose.dev.yml {{cmd}}
 
 # Manage Docker docs environment
-@docs-docker *cmd:
+@docs-docker *cmd: create-dev-env
     docker compose -f docker-compose.docs.yml {{cmd}}
