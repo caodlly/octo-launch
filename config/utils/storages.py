@@ -82,9 +82,9 @@ if TYPE_STORAGE == "s3":
 
 elif TYPE_STORAGE == "local":
     STATIC_URL = "static/"
-    MEDIA_URL = "/media/"
+    MEDIA_URL = "media/"
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    MEDIA_ROOT = BASE_DIR / "static/media"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
     COLLECTFAST_STRATEGY = "collectfast.strategies.filesystem.FileSystemStrategy"
 
 else:
