@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ ! -e .envs/.env ]; then
+    cat .envs/.env.dev > .envs/.env
+fi
