@@ -2,9 +2,12 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: 
+      - "develop"
+      - "release/*"
   pull_request:
-    branches: [ "develop" ]
+    branches: 
+      -  "develop" 
   schedule:
     - cron: "40 4 * * 6"
 
@@ -20,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ python ]
+        language: [ python, javascript-typescript ]
 
     steps:
       - name: Checkout
@@ -34,7 +37,6 @@ jobs:
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
-        if: ${{ matrix.language == 'python' || matrix.language == 'javascript' }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
