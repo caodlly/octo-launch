@@ -1,10 +1,13 @@
-name: develop Test
+name: Develop Test
 
 on:
   push:
-    branches: [ "develop" ]
+    branches:
+      - "develop"
+      - "release/*"
   pull_request:
-    branches: [ "develop" ]
+    branches:
+      - "develop"
     
 env:
     DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
