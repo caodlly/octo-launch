@@ -5,6 +5,7 @@ from config.utils.storages import *  # noqa: F403
 
 # === GENERAL ================================================
 ADMIN_URL = "admin"
+ADMIN_DASHBORD = True
 # === DEBUG Tools ================================================
 INTERNAL_IPS = [
     "127.0.0.1",
