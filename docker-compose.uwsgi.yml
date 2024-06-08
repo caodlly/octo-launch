@@ -1,0 +1,68 @@
+networks:
+  django_uwsgi_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 174.14.0.0/24
+  # =====================================
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: django_uwsgi
+    container_name: django_uwsgi
+    networks:
+      django_uwsgi_network:
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.env
+    ports:
+      - 8080:8080
+    command: just build start-uwsgi
+    restart: always
+  # =====================================
+  nginx:
+    image: nginx:latest
+    container_name: nginx_uwsgi
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Africa/Cairo
+    depends_on:
+      - django
+    networks:
+      django_uwsgi_network:
+    volumes:
+      - ./compose/nginx/uwsgi:/etc/nginx/conf.d
+      - .:/app:z
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+  # =====================================
+  celeryworker:
+    <<: *django
+    image: celeryworker_uwsgi
+    container_name: celeryworker_uwsgi
+    ports: []
+    command: just celery-worker
+    restart: always
+  # =====================================
+  celerybeat:
+    <<: *django
+    image: celerybeat_uwsgi
+    container_name: celerybeat_uwsgi
+    ports: []
+    command: just celery-beat
+    restart: always
+  # =====================================
+  flower:
+    <<: *django
+    image: flower_uwsgi
+    container_name: flower_uwsgi
+    ports:
+      - 5555:5555
+    command: just celery-flower
+    restart: always
