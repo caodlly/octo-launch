@@ -1,0 +1,36 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "develop" ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+
+  pull_request:
+    branches: [ "develop" ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+      
+  schedule:
+    - cron: '0 0 * * 4'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: ['javascript', 'python', 'dockerfile', 'django', 'djangorestframework']
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
