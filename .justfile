@@ -1,5 +1,5 @@
 # Build the project to run
-@build: migrate compilemessages create-admin-no-error
+@build: migrate create-admin-no-error
 
 # Start Gunicorn server
 @start-gunicorn:
