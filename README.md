@@ -2,7 +2,6 @@
 **octo-launch simplifies the setup process of Django projects for faster development.**
 
 ### Features
-**This template includes several pre-configured additions to help you save time and get started with development faster**
 - **Pre-configured Settings:** Essential settings are already configured, allowing you to focus on developing features rather than setup.
 - **Integrated Docker Support:** Docker configurations are included to simplify containerization and environment consistency.
 - **Ready-to-Use Commands:** [just](https://github.com/casey/just) commands are provided to streamline project setup and management.
