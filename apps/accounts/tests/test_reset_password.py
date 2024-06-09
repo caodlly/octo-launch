@@ -25,8 +25,7 @@ def test_send_reset_password_200(client, user, mocker):
     data = {"email": user.email}
     response = client.post(reverse("send_code_reset_password"), data)
 
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is True
+    assert response.status_code == status.HTTP_204_NO_CONTENT
 
     try:
         code_obj = VerificationCode.objects.get(user=user)
@@ -49,8 +48,7 @@ def test_send_reset_password_404(client, mocker):
     data = {"email": "test@email.com"}
     mocker.patch("apps.accounts.tasks.remove_verification_code.apply_async")
     response = client.post(reverse("send_code_reset_password"), data)
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is True
+    assert response.status_code == status.HTTP_204_NO_CONTENT
 
     with pytest.raises(VerificationCode.DoesNotExist):
         VerificationCode.objects.get(user__email=data["email"])

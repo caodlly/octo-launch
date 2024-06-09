@@ -30,8 +30,7 @@ def test_send_email_200(client, user_not_verified, mocker):
     assert user.email_verified is False
     client.login(email=user.email, password=password)
     response = client.post(reverse("send_email_verify"))
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is True
+    assert response.status_code == status.HTTP_204_NO_CONTENT
 
     try:
         code_obj = VerificationCode.objects.get(user=user)
