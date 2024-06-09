@@ -2,12 +2,13 @@ from celery import shared_task
 from django.template.loader import render_to_string
 from config.settings.base import APP
 from apps.utils.email import send_email
+from apps.users.models import User
+from .models import VerificationCode
+from datetime import timedelta
 
 
 @shared_task
 def remove_verification_code(id):
-    from .models import VerificationCode
-
     try:
         VerificationCode.objects.get(id=id).delete()
     except VerificationCode.DoesNotExist:
@@ -17,8 +18,6 @@ def remove_verification_code(id):
 
 @shared_task
 def send_verification_email(email: str):
-    from .utils import get_verification_code
-
     code_obj, user = get_verification_code(email)
     if code_obj and user:
         subject = f"{APP.name} - Verification Code"
@@ -36,8 +35,6 @@ def send_verification_email(email: str):
 
 @shared_task
 def send_code_reset_password(email: str):
-    from .utils import get_verification_code
-
     code_obj, user = get_verification_code(email)
     if code_obj and user:
         subject = f"{APP.name} - Code Reset Password"
@@ -52,3 +49,18 @@ def send_code_reset_password(email: str):
         send_email(subject, [email], html_message)
         return True
     return False
+
+
+def get_verification_code(email: str):
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return False, False
+
+    code_obj, created = VerificationCode.objects.get_or_create(user=user)
+    if created:
+        remove_verification_code.apply_async(
+            args=[code_obj.id], countdown=timedelta(minutes=10).seconds
+        )
+
+    return code_obj, user
