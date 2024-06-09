@@ -1,7 +1,9 @@
 from django.db import models
-from apps.users.models import User
 from django.utils.translation import gettext_lazy as _
 from apps.utils.generate import generate_key, generate_code
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class VerificationCode(models.Model):
