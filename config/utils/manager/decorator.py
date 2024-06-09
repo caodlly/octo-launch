@@ -39,5 +39,6 @@ def manager(func):
             if str(e) in "foo":
                 return func()
             print(e)
+        return func()
 
     return wrapper

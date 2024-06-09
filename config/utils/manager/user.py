@@ -18,6 +18,7 @@ def _create_superuser(args, email, password):
         if "-no-error" not in args:
             print(e.message)
             exit(1)
+    return None
 
 
 def create_superuser(args):
