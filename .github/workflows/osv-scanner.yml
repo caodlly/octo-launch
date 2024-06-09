@@ -1,0 +1,39 @@
+name: OSV-Scanner
+
+on:
+  push:
+    branches:
+      - develop
+      - 'release/*'
+  pull_request:
+    branches:
+      - develop
+  schedule:
+    - cron: '40 4 * * 6'  # Runs at 04:40 every Saturday
+
+permissions:
+  security-events: write
+  contents: read
+
+jobs:
+  scan-scheduled:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run OSV-Scanner
+        uses: google/osv-scanner-action@v1.7.1
+        with:
+          scan-args: -r --skip-git ./
+
+  scan-pr:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run OSV-Scanner
+        uses: google/osv-scanner-action@v1.7.1
+        with:
+          scan-args: -r --skip-git ./
