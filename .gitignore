@@ -43,9 +43,6 @@ logs/
 # Ignore coverage reports
 htmlcov/
 
-# Ignore compiled translations
-*.mo
-
 # SSL KEY
 ssl/
 
