@@ -1,14 +1,14 @@
 from celery import shared_task
-from .models import VerificationCode
 from django.template.loader import render_to_string
 from config.settings.base import APP
 from apps.utils.email import send_email
 from datetime import timedelta
-from apps.users.models import User
 
 
 @shared_task
 def remove_verification_code(id):
+    from .models import VerificationCode
+
     try:
         VerificationCode.objects.get(id=id).delete()
     except VerificationCode.DoesNotExist:
@@ -52,6 +52,9 @@ def send_code_reset_password(email: str):
 
 
 def get_verification_code(email: str):
+    from apps.users.models import User
+    from .models import VerificationCode
+
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
