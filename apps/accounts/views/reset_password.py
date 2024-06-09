@@ -2,7 +2,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.accounts.serializers import (
-    StatusSerializer,
     EmailSerializer,
     GetKeySerializer,
     ResetPasswordSerializer,
@@ -24,7 +23,7 @@ class SendCodeRestPassword(APIView):
 
     @extend_schema(
         request=EmailSerializer,
-        responses=StatusSerializer,
+        responses={204: None},
         operation_id="Send Reset Password Code",
         summary="Send a reset password code to the user's email",
     )
@@ -42,9 +41,7 @@ class SendCodeRestPassword(APIView):
             send_code_reset_password.delay(user.email)
         except User.DoesNotExist:
             ...
-        return Response(
-            StatusSerializer({"status": True}).data, status=status.HTTP_200_OK
-        )
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class VerifyCodeResetPassowrd(APIView):

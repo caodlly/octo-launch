@@ -1,6 +1,6 @@
 from rest_framework import permissions, status
 from rest_framework.views import APIView
-from apps.accounts.serializers import StatusSerializer, CodeSerializer
+from apps.accounts.serializers import CodeSerializer
 from rest_framework.response import Response
 from apps.utils.permissions import EmailNotVerified
 from apps.accounts.models import VerificationCode
@@ -18,6 +18,7 @@ class SendEmailCodeVerify(APIView):
 
     @extend_schema(
         request=None,
+        responses={204: None},
         operation_id="Send verification code via email",
         summary="Send an email verification code to the user",
     )
@@ -28,11 +29,8 @@ class SendEmailCodeVerify(APIView):
         This endpoint sends a verification code to the user's email address if the user
         has not yet verified their email.
         """
-        if not request.user.email_verified:
-            send_verification_email.delay(self.request.user.email)
-        return Response(
-            StatusSerializer({"status": True}).data, status=status.HTTP_200_OK
-        )
+        send_verification_email.delay(self.request.user.email)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class EmailCodeVerify(APIView):
