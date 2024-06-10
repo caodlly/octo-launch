@@ -431,7 +431,7 @@ urllib3==2.2.1
     #   botocore
     #   requests
     #   sentry-sdk
-uv==0.2.6
+uv==0.2.9
     # via -r requirements.in
 uvicorn==0.30.0
     # via sphinx-autobuild
