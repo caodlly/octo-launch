@@ -44,24 +44,24 @@ services:
   # =====================================
   celeryworker:
     <<: *django
-    image: celeryworker_uwsgi
-    container_name: celeryworker_uwsgi
+    image: celeryworker_django_app
+    container_name: celeryworker_django_app
     ports: []
     command: just celery-worker
     restart: always
   # =====================================
   celerybeat:
     <<: *django
-    image: celerybeat_uwsgi
-    container_name: celerybeat_uwsgi
+    image: celerybeat_django_app
+    container_name: celerybeat_django_app
     ports: []
     command: just celery-beat
     restart: always
   # =====================================
   flower:
     <<: *django
-    image: flower_uwsgi
-    container_name: flower_uwsgi
+    image: flower_django_app
+    container_name: flower_django_app
     ports:
       - 5555:5555
     command: just celery-flower
