@@ -12,6 +12,7 @@ import django
 
 sys.path.insert(0, os.path.abspath(".."))
 os.environ["DATABASE_URL"] = "sqlite:///readthedocs.db"
+os.environ["REDIS_URL"] = "redis://dummy:dummy@localhost:6379/0"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
 django.setup()
 
