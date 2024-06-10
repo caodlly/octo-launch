@@ -1,0 +1,67 @@
+networks:
+  django_gunicorn_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 175.14.0.0/24
+  # =====================================
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: django_app
+    container_name: django_gunicorn
+    networks:
+      django_gunicorn_network:
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.env
+    command: just build start-gunicorn
+    restart: always
+  # =====================================
+  nginx:
+    image: nginx:latest
+    container_name: nginx_gunicorn
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Africa/Cairo
+    depends_on:
+      - django
+    networks:
+      django_gunicorn_network:
+    volumes:
+      - ./compose/nginx/gunicorn:/etc/nginx/conf.d
+      - .:/app:z
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+  # =====================================
+  celeryworker:
+    <<: *django
+    image: celeryworker_gunicorn
+    container_name: celeryworker_gunicorn
+    ports: []
+    command: just celery-worker
+    restart: always
+  # =====================================
+  celerybeat:
+    <<: *django
+    image: celerybeat_gunicorn
+    container_name: celerybeat_gunicorn
+    ports: []
+    command: just celery-beat
+    restart: always
+  # =====================================
+  flower:
+    <<: *django
+    image: flower_gunicorn
+    container_name: flower_gunicorn
+    command: just celery-flower
+    ports:
+      - 5555:5555
+    restart: always
+  # =====================================

@@ -136,3 +136,7 @@
 # Manage Docker production uwsgi environment
 @uwsgi-docker *cmd:
     docker compose -f docker-compose.uwsgi.yml {{cmd}}
+
+# Manage Docker production gunicorn environment
+@gunicorn-docker *cmd:
+    docker compose -f docker-compose.gunicorn.yml {{cmd}}
