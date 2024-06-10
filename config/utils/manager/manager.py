@@ -1,6 +1,7 @@
 import sys
 import django
 import os
+from config.utils.general import get_settings_module
 
 
 class Manager:
@@ -30,9 +31,7 @@ class Manager:
     # use set_schema for add on this
     _schema = {}
 
-    def __init__(
-        self,
-    ) -> None:
+    def __init__(self) -> None:
         self._args = sys.argv
 
     def validate(self) -> None:
@@ -69,9 +68,7 @@ class Manager:
     def setup(self) -> None:
         self.validate()
         if "--no-django" not in self._args:
-            os.environ.setdefault(
-                "DJANGO_SETTINGS_MODULE", "config.settings.development"
-            )
+            os.environ.setdefault("DJANGO_SETTINGS_MODULE", get_settings_module())
             django.setup()
         self.run()
 
