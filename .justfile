@@ -1,6 +1,11 @@
 # Build the project to run
 @build: migrate create-admin-no-error
 
+# Creates django applications
+@startapp app_name:
+    cd apps && django-admin startapp {{app_name}} --template=../config/utils/app_template
+
+
 # Start Gunicorn server
 @start-gunicorn:
     #!/bin/bash
