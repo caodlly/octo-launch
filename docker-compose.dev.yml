@@ -11,7 +11,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
-    image: django_dev
+    image: django_app
     container_name: django_dev
     networks:
       django_network:

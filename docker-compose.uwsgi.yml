@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
-    image: django_uwsgi
+    image: django_app
     container_name: django_uwsgi
     networks:
       django_uwsgi_network:
