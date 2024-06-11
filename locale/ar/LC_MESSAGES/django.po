@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-30 19:32+0000\n"
+"POT-Creation-Date: 2024-06-11 19:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Wissam Al Kahwaji <wissamalkahwaji@gmail.com>\n"
 "Language-Team: Arabic <LL@li.org>\n"
@@ -19,41 +19,41 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: apps/accounts/models.py:11
+#: app/account/models.py:13
 msgid "Code"
 msgstr "الرمز"
 
-#: apps/accounts/models.py:12
+#: app/account/models.py:14
 msgid "Key"
 msgstr "مفتاح"
 
-#: apps/accounts/models.py:13
+#: app/account/models.py:15
 msgid "The time it was created"
 msgstr "وقت الانشاء"
 
-#: apps/accounts/serializers/LoginSerializer.py:9 apps/accounts/views/jwt.py:15
+#: app/account/serializers/LoginSerializer.py:9 app/account/views/jwt.py:15
 msgid "Email or password is incorrect."
 msgstr "البريد الالكتروني او كلمة المرور غير صحيحة"
 
-#: apps/accounts/serializers/LoginSerializer.py:14
+#: app/account/serializers/LoginSerializer.py:14
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
-#: apps/accounts/serializers/LoginSerializer.py:17
+#: app/account/serializers/LoginSerializer.py:17
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: apps/accounts/serializers/LoginSerializer.py:33
+#: app/account/serializers/LoginSerializer.py:33
 msgid "Must include 'username' and 'password'."
 msgstr "يجب تضمين 'اسم المستخدم' و 'كلمة المرور'."
 
-#: apps/accounts/serializers/RegisterSerializer.py:25
-#: apps/accounts/serializers/UpdateUserSerializer.py:32
+#: app/account/serializers/RegisterSerializer.py:26
+#: app/account/serializers/UpdateUserSerializer.py:32
 msgid "Password fields didn't match"
 msgstr "حقول كلمة المرور غير متطابقة"
 
-#: apps/accounts/serializers/RegisterSerializer.py:31
-#: apps/accounts/serializers/UpdateUserSerializer.py:38
+#: app/account/serializers/RegisterSerializer.py:32
+#: app/account/serializers/UpdateUserSerializer.py:38
 msgid ""
 "The password must be at least 6 characters long and contain at least one "
 "uppercase letter, one lowercase letter, one digit, and one special character "
@@ -62,53 +62,53 @@ msgstr ""
 "يجب أن تتكون كلمة المرور من ما لا يقل عن 6 أحرف وتحتوي على حرف كبير واحد "
 "وحرف صغير واحد ورقم واحد وحرف خاص واحد (#?!@$%^&*-)."
 
-#: apps/accounts/serializers/VerificationCodeSerializer.py:9
+#: app/account/serializers/VerificationCodeSerializer.py:9
 msgid "The verification code is invalid."
 msgstr "رمز التحقق غير صالح."
 
-#: apps/accounts/serializers/VerificationCodeSerializer.py:15
+#: app/account/serializers/VerificationCodeSerializer.py:15
 msgid "The verification key is invalid."
 msgstr "مفتاح التحقق غير صالح."
 
-#: apps/users/admin.py:17
+#: app/user/admin.py:17
 msgid "Personal info"
 msgstr "المعلومات الشخصية"
 
-#: apps/users/admin.py:26
+#: app/user/admin.py:26
 msgid "Permissions"
 msgstr "الصلاحيات"
 
-#: apps/users/admin.py:37
+#: app/user/admin.py:37
 msgid "Important dates"
 msgstr "التواريخ الهامة"
 
-#: apps/users/forms.py:24
+#: app/user/forms.py:24
 msgid "This email has already been taken."
 msgstr "هذا البريد الإلكتروني مستخدم بالفعل."
 
-#: apps/users/models.py:15
+#: app/user/models.py:12
 msgid "Name of User"
 msgstr "الاسم الكامل"
 
-#: apps/users/models.py:17
+#: app/user/models.py:14
 #, fuzzy
 #| msgid "email address"
 msgid "Email Address"
 msgstr "البريد الإلكتروني"
 
-#: apps/users/models.py:21
+#: app/user/models.py:18
 msgid "Email Verified"
 msgstr "تم التحقق من البريد الإلكتروني"
 
-#: apps/users/models.py:22
+#: app/user/models.py:19
 msgid "Avatar"
 msgstr "الصورة الرمزية"
 
-#: config/settings/base.py:27
+#: config/settings/base.py:28
 msgid "English"
 msgstr "الإنجليزية"
 
-#: config/settings/base.py:28
+#: config/settings/base.py:29
 msgid "Arabic"
 msgstr "العربية"
 
