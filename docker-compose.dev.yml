@@ -41,7 +41,7 @@ services:
     networks:
       django_network:
     volumes:
-      - ./docker/postgres/data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
   # =====================================
@@ -63,7 +63,7 @@ services:
       PUID: 1000
       PGID: 1000
     volumes:
-      - ./docker/redis/dаta:/root/redis
+      - redis_data:/data
     ports:
       - 6379:6379
   # =====================================
@@ -113,3 +113,7 @@ services:
     ports:
       - 5555:5555
     command: just celery-flower
+
+volumes:
+    postgres_data:
+    redis_data:
