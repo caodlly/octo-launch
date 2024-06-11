@@ -5,7 +5,6 @@
 @startapp app_name:
     cd apps && django-admin startapp {{app_name}} --template=../config/utils/app_template
 
-
 # Start Gunicorn server
 @start-gunicorn:
     #!/bin/bash
