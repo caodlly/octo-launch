@@ -18,6 +18,9 @@ services:
     depends_on:
       - redis
       - postgres
+    environment:
+      PUID: 1000
+      PGID: 1000
     volumes:
       - .:/app:z
     env_file:
@@ -38,7 +41,7 @@ services:
     networks:
       django_network:
     volumes:
-      - /mnt/django_dev/docker/postgres/data:/var/lib/postgresql/data
+      - ./docker/postgres/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
   # =====================================
@@ -60,7 +63,7 @@ services:
       PUID: 1000
       PGID: 1000
     volumes:
-      - /mnt/django_dev/docker/redis/dаta:/root/redis
+      - ./docker/redis/dаta:/root/redis
     ports:
       - 6379:6379
   # =====================================
