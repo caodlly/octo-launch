@@ -5,8 +5,11 @@ networks:
       config:
         - subnet: 173.14.0.0/24
   # =====================================
+volumes:
+    postgres_data:
+    redis_data:
+  # =====================================
 services:
-
   django: &django
     build:
       context: .
@@ -113,7 +116,3 @@ services:
     ports:
       - 5555:5555
     command: just celery-flower
-
-volumes:
-    postgres_data:
-    redis_data:
