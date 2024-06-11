@@ -69,7 +69,7 @@
 
 # Make message files for translation
 @makemessages:
-    python manage.py makemessages --all --ignore=env
+    python manage.py makemessages --all --ignore=env --ignore=docs
 
 # Compile message files for translation
 @compilemessages:
