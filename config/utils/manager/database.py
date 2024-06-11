@@ -1,9 +1,13 @@
 import psycopg2
 from psycopg2 import OperationalError
 from config.settings.base import env
+from colorama import init, Fore, Style
+import time
 
 
 def check_database_connection():
+    init()
+
     def connect():
         """Verify database connection"""
         try:
@@ -29,9 +33,10 @@ def check_database_connection():
             cursor.execute("SELECT version();")
             db_version = cursor.fetchone()
             print(
-                "\033[32m"
+                Fore.GREEN
+                + Style.BRIGHT
                 + f"Connected to PostgreSQL database. PostgreSQL Server version:{db_version}"
-                + "\033[0m"
+                + Style.RESET_ALL
             )
 
             # Close the cursor and connection
@@ -41,12 +46,23 @@ def check_database_connection():
 
         except OperationalError as e:
             print(
-                "\033[35m"
+                Fore.RED
+                + Style.BRIGHT
                 + f"Unable to connect to PostgreSQL database: {e}"
-                + "\033[0m"
+                + Style.RESET_ALL
             )
 
-    for i in range(0, 25):
-        connect()
-        print("\033[31m" + f"Attempt No. {i} out of 25 attempts" + "\033[0m")
-    exit(1)
+    try:
+        for i in range(0, 25):
+            connect()
+            print(
+                Fore.RED
+                + Style.BRIGHT
+                + f"Attempt No. {i} out of 25 attempts"
+                + Style.RESET_ALL
+            )
+            time.sleep(2)
+        exit(1)
+    except KeyboardInterrupt:
+        print(Fore.MAGENTA + Style.BRIGHT + "\nExit\n" + Style.RESET_ALL)
+        exit(1)
