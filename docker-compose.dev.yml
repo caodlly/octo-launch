@@ -18,6 +18,9 @@ services:
     depends_on:
       - redis
       - postgres
+    environment:
+      PUID: 1000
+      PGID: 1000
     volumes:
       - .:/app:z
     env_file:
