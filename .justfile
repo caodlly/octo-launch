@@ -81,7 +81,7 @@
 
 # Check database status without Django
 @check_database:
-    python manage.py check_database --no-django
+    python manage.py check_database
 
 # Create superuser
 @create-admin:
