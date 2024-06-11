@@ -44,7 +44,8 @@ def create_superuser(args):
         admin_file.write(f"password='{password}'\n")
 
     # Set file permissions to read/write for the owner only
-    os.chmod(admin_path_env, stat.S_IRUSR | stat.S_IWUSR)
+    if not settings.DEBUG:
+        os.chmod(admin_path_env, stat.S_IRUSR | stat.S_IWUSR)
 
     # Print the email and password for the admin
     print(f"{email}")
