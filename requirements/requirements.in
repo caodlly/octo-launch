@@ -2,6 +2,7 @@ boto3
 build
 celery
 Collectfast
+colorlog
 coverage
 cron-descriptor
 cryptography

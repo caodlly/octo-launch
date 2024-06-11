@@ -72,6 +72,8 @@ collectfast==2.2.0
     # via -r requirements.in
 colorama==0.4.6
     # via sphinx-autobuild
+colorlog==6.8.2
+    # via -r requirements.in
 coreapi==2.3.3
     # via
     #   django-rest-swagger
