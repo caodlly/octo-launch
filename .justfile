@@ -3,7 +3,7 @@
 
 # Creates django applications
 @startapp app_name:
-    cd apps && django-admin startapp {{app_name}} --template=../config/utils/app_template
+    cd app && django-admin startapp {{app_name}} --template=../config/utils/app_template
 
 # Start Gunicorn server
 @start-gunicorn:
@@ -56,7 +56,7 @@
 [macos]
 [linux]
 @clean:
-    find . -path "./apps/*/migrations/*.py" -not -name "__init__.py" -delete
+    find . -path "./app/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
     python manage.py reset_db
     python manage.py reset_schema

@@ -67,8 +67,8 @@ THIRD_PARTY_APPS = [
 
 
 LOCAL_APPS = [
-    "apps.users",
-    "apps.accounts",
+    "app.user",
+    "app.account",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -111,7 +111,7 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "user.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
@@ -201,7 +201,7 @@ REST_FRAMEWORK["DEFAULT_PERMISSION_CLASSES"] = [
     "rest_framework.permissions.IsAuthenticatedOrReadOnly"
 ]
 REST_FRAMEWORK["DEFAULT_PAGINATION_CLASS"] = (
-    "apps.utils.pagination.SmallResultsSetPagination"
+    "app.utils.pagination.SmallResultsSetPagination"
 )
 REST_FRAMEWORK["PAGE_SIZE"] = 30
 REST_FRAMEWORK["DEFAULT_SCHEMA_CLASS"] = "drf_spectacular.openapi.AutoSchema"

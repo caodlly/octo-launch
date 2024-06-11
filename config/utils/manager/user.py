@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
-from apps.utils.generate import generate_password
+from app.utils.generate import generate_password
 from django.contrib.auth.hashers import make_password
-from apps.users.models import User
+from app.user.models import User
 from django.conf import settings
 from environ import Env
 import os
@@ -47,5 +47,5 @@ def create_superuser(args):
     os.chmod(admin_path_env, stat.S_IRUSR | stat.S_IWUSR)
 
     # Print the email and password for the admin
-    print(f"email={email}")
-    print(f"password={password}")
+    print(f"{email}")
+    print(f"{password}")
