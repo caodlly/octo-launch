@@ -8,7 +8,7 @@ LOGGING = {
     "formatters": {
         "colored": {
             "()": "colorlog.ColoredFormatter",
-            "format": "%(log_color)s%(asctime)s [%(process)d] -%(module)s- [%(levelname)s] %(message)s %(reset)s",
+            "format": "%(log_color)s[%(asctime)s] [%(process)d] [%(module)s] [%(levelname)s] %(message)s %(reset)s",
             "datefmt": "%Y-%m-%d %H:%M:%S",
             "log_colors": {
                 "DEBUG": "cyan",
