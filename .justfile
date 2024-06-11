@@ -116,7 +116,6 @@
     chmod +x scripts/start-celery-beat
     ./scripts/start-celery-beat
 
-
 # Create file .env for dev-docker
 [macos]
 [linux]
