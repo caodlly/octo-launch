@@ -21,9 +21,6 @@ services:
     depends_on:
       - redis
       - postgres
-    environment:
-      PUID: 1000
-      PGID: 1000
     volumes:
       - .:/app:z
     env_file:
@@ -36,8 +33,6 @@ services:
     image: postgres:latest
     container_name: postgres_dev
     environment:
-      PUID: 1000
-      PGID: 1000
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: django_db
@@ -62,9 +57,6 @@ services:
     container_name: redis_dev
     networks:
       django_network:
-    environment:
-      PUID: 1000
-      PGID: 1000
     volumes:
       - redis_data:/data
     ports:
