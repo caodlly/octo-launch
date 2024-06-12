@@ -1,5 +1,6 @@
 # Build the project to run
 @build: migrate create-admin-no-error
+@build-dev: create-admin-no-error
 
 # Creates django applications
 @startapp app_name:

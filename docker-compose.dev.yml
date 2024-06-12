@@ -27,7 +27,7 @@ services:
       - ./.envs/.env
     ports:
       - 8080:8080
-    command: just build manage-start
+    command: just build-dev manage-start
   # =====================================
   postgres:
     image: postgres:latest
