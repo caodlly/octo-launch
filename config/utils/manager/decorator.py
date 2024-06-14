@@ -12,7 +12,7 @@ class Manager(ManagerTemplate):
         )
 
     @staticmethod
-    def create_superuser(self):
+    def create_superuser():
         """Create a superuser for the Django application."""
         from .user import create_superuser
 
