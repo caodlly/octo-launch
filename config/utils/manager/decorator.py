@@ -1,5 +1,4 @@
 from .manager import Manager as ManagerTemplate
-from .database import check_database_connection
 
 
 class Manager(ManagerTemplate):
@@ -21,6 +20,8 @@ class Manager(ManagerTemplate):
     @staticmethod
     def check_database():
         """Verify database connection"""
+        from .database import check_database_connection
+
         return check_database_connection()
 
 
@@ -39,6 +40,6 @@ def manager(func):
             if str(e) in "foo":
                 return func()
             print(e)
-        return func()
+        return exit(0)
 
     return wrapper
