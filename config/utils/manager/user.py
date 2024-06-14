@@ -8,20 +8,17 @@ import os
 import stat
 
 
-def _create_superuser(args, email, password):
+def _create_superuser(email, password):
     """Create a superuser for the Django application."""
     try:
         return User.objects.create_superuser(
             email=email, password=make_password(password)
         )
     except ValidationError as e:
-        if "-no-error" not in args:
-            print(e.message)
-            exit(1)
-    exit(0)
+        raise ValueError(e.message)
 
 
-def create_superuser(args):
+def create_superuser():
     """Processing and creating a super user."""
 
     admin_path_env = os.path.join(settings.BASE_DIR, ".envs/.admin")
@@ -36,7 +33,7 @@ def create_superuser(args):
         email = settings.ADMIN_EMAIL
         password = generate_password()
 
-    _create_superuser(args, email, password)
+    _create_superuser(email, password)
 
     # Write the email and password to the .admin file
     with open(admin_path_env, "w") as admin_file:
