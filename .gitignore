@@ -68,3 +68,5 @@ backup
 
 # docker mount
 docker
+
+nohup.*
