@@ -15,7 +15,7 @@ if settings.ADMIN_DASHBORD:
     urlpatterns += [path(f"{settings.ADMIN_URL}/", admin.site.urls)]
 
 # Local Storage
-if settings.DEBUG is True:
+if settings.DEBUG:
     urlpatterns += [path("__debug__/", include("debug_toolbar.urls"))]
     if "local" in settings.TYPE_STORAGE:
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
