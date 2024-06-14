@@ -5,5 +5,5 @@ updates:
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "build:"
+      prefix: "chore:"
     open-pull-requests-limit: 10
