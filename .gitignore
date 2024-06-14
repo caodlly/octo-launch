@@ -29,7 +29,6 @@ secret_key.txt
 .idea/
 
 # Ignore logs
-logs/
 *.log
 
 
