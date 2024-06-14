@@ -49,18 +49,44 @@
 @manage-start:
     python manage.py runserver_plus 0.0.0.0:8080
 
+# Start Django development server && output in logfile
+@manage-start-logfile:
+    nohup python manage.py runserver_plus 0.0.0.0:8080 > logs/manage.log 2>&1 & echo $! > dev-server.pid
+
+# stop Django development server
+@manage-stop-logfile:
+    kill -9 $(lsof -i :8080 | grep LISTEN | awk '{print $2}')
+    echo "Stop Server" > "logs/manage.log"
+
+# restart Django development server && output in logfile
+@manage-restart-logfile: manage-stop-logfile manage-start-logfile
+
+# Listen to the development log file
+@open-devlog:
+    tail -f logs/manage.log
+
 # Open Django shell
 @shell:
     python manage.py shell_plus
 
 # Clean development environment (Do not use in production)
+@clean-project: rest_db rest_cache clean-migrations-cache
+
+# clean Migrations file (Do not use in production)
 [macos]
 [linux]
-@clean:
+@clean-migrations-cache:
     find . -path "./app/*/migrations/*.py" -not -name "__init__.py" -delete
     python manage.py clean_pyc
+
+# rest database (Do not use in production)
+@rest_db:
     python manage.py reset_db
     python manage.py reset_schema
+
+# rest cache (Do not use in production)
+[confirm('Are you sure you want to clear the cache? [y/n]')]
+@rest_cache:
     python manage.py clear_cache
 
 # Make and apply migrations
@@ -90,7 +116,7 @@
 
 # Create superuser without error
 @create-admin-no-error:
-    python manage.py createsuperuser -no-error
+    python manage.py createsuperuser --no-error
 
 # Collect static files
 @collectstatic:
@@ -123,6 +149,10 @@
 @create-dev-env:
     chmod +x scripts/create-dev-env
     ./scripts/create-dev-env
+
+# use uv in docker 
+@uv-docker *cmd:
+    uv pip install {{cmd}} --python /opt/venv/
 
 # Manage Docker development environment
 @dev-docker *cmd: create-dev-env
