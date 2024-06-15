@@ -49,6 +49,7 @@ class Manager:
         self._args = sys.argv
         self.error = True
         self.use_django = True
+        self.django_run = False
 
     def validate(self) -> None:
         """Validates all the necessary conditions by executing methods starting with 'validate_'."""
@@ -109,10 +110,13 @@ class Manager:
         """Sets up the Django environment by validating conditions, running hooks, and initializing Django."""
         self.validate()
         self.run_hook()
+        self.run()
+
+    def django_setup(self):
         if self.use_django:
             os.environ.setdefault("DJANGO_SETTINGS_MODULE", get_settings_module())
             django.setup()
-        self.run()
+            self.django_run = True
 
     def run_hook(self) -> None:
         """Executes any hooks that match the command-line arguments."""
@@ -141,6 +145,8 @@ class Manager:
                     if method_name:
                         is_use = False
                         method = getattr(self, method_name)
+                        if not self.django_run:
+                            self.django_setup()
                         method()
                 except ValueError as e:
                     if self.error:
