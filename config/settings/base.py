@@ -216,7 +216,7 @@ SIMPLE_JWT = {
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{APP.name} API",
     "DESCRIPTION": f"Documentation of API endpoints of {APP.name}",
-    "VERSION": APP.version__latest,
+    "VERSION": APP.version,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     # "SCHEMA_PATH_PREFIX": "/api/",
 }

@@ -1,12 +1,7 @@
 {
   "name": "octo-launch",
   "description": "octo-launch simplifies the setup process of Django projects for faster development.",
-  "version": {
-    "latest": "v1.0",
-    "all": [
-      "v1.0"
-  ]
-  },
+  "version": "v1.0",
   "repository": "https://github.com/oc-to/octo-launch",
   "author": {
       "name": "Octo Software",
