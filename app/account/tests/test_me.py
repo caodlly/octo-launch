@@ -33,7 +33,7 @@ def test_me_post_200(client, user, factory):
     response = client.post(reverse("user_me"))
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is True
+    assert response.data["status"]
 
 
 @pytest.mark.django_db
@@ -41,4 +41,4 @@ def test_me_post_200_1(client, user, factory):
     response = client.post(reverse("user_me"))
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is False
+    assert not response.data["status"]

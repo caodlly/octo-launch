@@ -20,7 +20,7 @@ def me_session_POST(client):
     response = client.post(reverse("user_me"))
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is True
+    assert response.data["status"]
 
 
 @pytest.mark.django_db
@@ -37,8 +37,8 @@ def test_login_refresh_jwt_200_200(client, user):
     access = response.data["access"]
     refresh = response.data["refresh"]
 
-    assert isinstance(refresh, str) is True
-    assert isinstance(access, str) is True
+    assert isinstance(refresh, str)
+    assert isinstance(access, str)
 
     me_jwt_200(client, access)
     refresh_jwt_200(client, refresh)
@@ -50,7 +50,7 @@ def me_jwt_200(client, access):
         reverse("user_me"), headers={"Authorization": f"bearer {access}"}
     )
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] is True
+    assert response.data["status"]
 
 
 def refresh_jwt_200(client, refresh):
@@ -61,7 +61,7 @@ def refresh_jwt_200(client, refresh):
         },
     )
     assert response.status_code == status.HTTP_200_OK
-    assert isinstance(response.data["access"], str) is True
+    assert isinstance(response.data["access"], str)
 
 
 def verify_jwt_200(client, token):

@@ -18,7 +18,7 @@ def test_update_200(client, user):
 
     assert response.status_code == status.HTTP_200_OK
     assert response.data["email"]["value"] == data_register["email"]
-    assert response.data["email"]["verified"] is False
+    assert not response.data["email"]["verified"]
     assert response.data["name"] == data_register["name"]
     assert response.data["username"] == data_register["username"]
     assert response.data["avatar"].split("/")[3] != "avatar.svg"

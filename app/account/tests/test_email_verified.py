@@ -27,7 +27,7 @@ def verification_code(user_not_verified) -> VerificationCode:
 def test_send_email_200(client, user_not_verified, mocker):
     mocker.patch("app.account.tasks.remove_verification_code.apply_async")
     user = user_not_verified
-    assert user.email_verified is False
+    assert not user.email_verified
     client.login(email=user.email, password=password)
     response = client.post(reverse("send_email_verify"))
     assert response.status_code == status.HTTP_204_NO_CONTENT
@@ -50,7 +50,7 @@ def test_send_email_403(client, user):
 @pytest.mark.django_db
 def test_verify_code_200(client, verification_code):
     user = verification_code.user
-    assert user.email_verified is False
+    assert not user.email_verified
     client.login(email=user.email, password=password)
 
     code = verification_code.code
@@ -58,4 +58,4 @@ def test_verify_code_200(client, verification_code):
     assert response.status_code == status.HTTP_204_NO_CONTENT
 
     _user = User.objects.get(email=user.email)
-    assert _user.email_verified is True
+    assert _user.email_verified
