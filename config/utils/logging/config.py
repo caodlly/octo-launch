@@ -1,4 +1,5 @@
-from config.settings.base import APP, BASE_DIR
+from config.settings.base import BASE_DIR
+from config import app
 import os
 
 
@@ -21,16 +22,16 @@ LOGGING = {
         },
     },
     "handlers": {
-        f"{APP.name}": {
+        f"{app.name}": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, f"logs/{APP.name}.log"),
+            "filename": os.path.join(BASE_DIR, f"logs/{app.name}.log"),
             "formatter": "colored",
         },
     },
     "loggers": {
-        f"{APP.name}": {
-            "handlers": [f"{APP.name}"],
+        f"{app.name}": {
+            "handlers": [f"{app.name}"],
             "level": "DEBUG",
             "propagate": True,
         },

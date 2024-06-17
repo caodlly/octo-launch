@@ -2,11 +2,9 @@ from environ import Env
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
-from config.utils.app import App
+from config import app
 from datetime import timedelta
 
-# === App ========================================================
-APP = App()
 # === BASE_DIR ===================================================
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # === Get .env  ===================================================
@@ -214,9 +212,9 @@ SIMPLE_JWT = {
 
 # === DRF SPECTACULAR ======================================================
 SPECTACULAR_SETTINGS = {
-    "TITLE": f"{APP.name} API",
-    "DESCRIPTION": f"Documentation of API endpoints of {APP.name}",
-    "VERSION": APP.version,
+    "TITLE": f"{app.name} API",
+    "DESCRIPTION": f"Documentation of API endpoints of {app.name}",
+    "VERSION": app.version,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     # "SCHEMA_PATH_PREFIX": "/api/",
 }

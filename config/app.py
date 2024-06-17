@@ -1,0 +1,7 @@
+name = "octo-launch"
+description = "octo-launch simplifies the setup process of Django projects for faster development."
+version = "v1.0"
+repository = "https://github.com/oc-to/octo-launch"
+author_name = "Octo Software"
+author_github = "https://github.com/oc-to/"
+author_email = "octo.team.dev@gmail.com"
