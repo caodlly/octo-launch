@@ -1,29 +1,13 @@
-from .manager import Manager as ManagerTemplate
+from .manager import Manager
+from .command import CreateSuperUser, DBConnect
 
-
-class Manager(ManagerTemplate):
-    def __init__(self):
-        super().__init__()
-        self.set_schema(
-            {
-                "createsuperuser": "create_superuser",
-                "check_database": "check_database",
-            }
-        )
-
-    @staticmethod
-    def create_superuser():
-        """Create a superuser for the Django application."""
-        from .user import create_superuser
-
-        return create_superuser()
-
-    @staticmethod
-    def check_database():
-        """Verify database connection"""
-        from .database import check_database_connection
-
-        return check_database_connection()
+_manager = Manager()
+_manager.set_schema(
+    {
+        "createsuperuser": CreateSuperUser,
+        "check_database": DBConnect,
+    }
+)
 
 
 def manager(func):
@@ -36,8 +20,8 @@ def manager(func):
 
     def wrapper():
         try:
-            return Manager().setup()
-        except ValueError as e:
+            return _manager.setup()
+        except Exception as e:
             if str(e) in "foo":
                 return func()
             print(e)
