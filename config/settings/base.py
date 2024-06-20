@@ -49,7 +49,6 @@ DJANGO_APPS = [
     "django.forms",
 ]
 
-
 THIRD_PARTY_APPS = [
     # ========
     "corsheaders",
@@ -64,7 +63,6 @@ THIRD_PARTY_APPS = [
     "sentry_sdk",
     # ========
 ]
-
 
 LOCAL_APPS = [
     "app.user",
@@ -225,3 +223,5 @@ LOGIN_THROTTLING = 15
 LOGIN_THROTTLING_IN = "hour"
 RESETPASSWORD_THROTTLING = 15
 RESETPASSWORD_THROTTLING_IN = "hour"
+
+ENABLE_SOCIAL_LOGIN = env.bool("ENABLE_SOCIAL_LOGIN", default=False)
