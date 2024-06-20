@@ -38,7 +38,6 @@ urlpatterns = [
         views.ResetPassowrd.as_view(),
         name="reset_password",
     ),
-
 ]
 
 if settings.ENABLE_SOCIAL_LOGIN:
