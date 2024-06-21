@@ -33,9 +33,10 @@ LOGGING = {
     },
     "loggers": {
         f"{app.name}": {
-            "handlers": [f"{app.name}",
-                         # "console"
-                         ],
+            "handlers": [
+                f"{app.name}",
+                # "console"
+            ],
             "level": "DEBUG",
             "propagate": True,
         },
