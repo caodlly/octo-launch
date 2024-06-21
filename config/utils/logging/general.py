@@ -17,5 +17,5 @@ class Logger:
 
     def sanitize_message(self, message: str) -> str:
         """Sanitize the message by removing newlines, tabs,
-            and non-alphanumeric characters, and replacing them with spaces."""
-        return re.sub(r'[\n\r\t\W+]', ' ', message)
+             and replacing them with spaces."""
+        return re.sub(r'[\n\r\t]', ' ', message)
