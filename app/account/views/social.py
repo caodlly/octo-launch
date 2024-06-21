@@ -34,8 +34,6 @@ class OAuthLoginView(APIView):
 
         user_info = handler.get_user_info()
         if not user_info:
-            sanitize_message = Logger().sanitize_message("<html> test </html>")
-            logger.error(f"Failed to fetch user infodddd: {sanitize_message}")
             return Response(
                 {"error": f"Invalid or expired {provider} access token."},
                 status=status.HTTP_400_BAD_REQUEST,
