@@ -1,12 +1,12 @@
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
-from config.settings.base import APP
+from config import app
 
 
 def send_email(subject: str, to: list, html_message: str):
     plain_message = strip_tags(html_message)
     message = EmailMultiAlternatives(
-        subject=subject, body=plain_message, from_email=APP.name, to=to
+        subject=subject, body=plain_message, from_email=app.name, to=to
     )
     message.attach_alternative(html_message, "text/html")
 

@@ -9,21 +9,13 @@ import os
 import sys
 import datetime
 import django
+from config import app
 
 sys.path.insert(0, os.path.abspath(".."))
 os.environ["DATABASE_URL"] = "sqlite:///readthedocs.db"
 os.environ["REDIS_URL"] = "redis://dummy:dummy@localhost:6379/0"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
 django.setup()
-
-
-def get_app():
-    from config.utils.app import App
-
-    return App()
-
-
-app = get_app()
 
 current_year = datetime.datetime.now().year
 if 2024 == current_year:
@@ -33,7 +25,7 @@ else:
 
 
 project = app.name
-copyright = f"{date}, {app.author__name}"
+copyright = f"{date}, {app.author_name}"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

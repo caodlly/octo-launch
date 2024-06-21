@@ -1,6 +1,6 @@
 from celery import shared_task
 from django.template.loader import render_to_string
-from config.settings.base import APP
+from config import app
 from app.utils.email import send_email
 from app.user.models import User
 from .models import VerificationCode
@@ -20,10 +20,10 @@ def remove_verification_code(id):
 def send_verification_email(email: str):
     code_obj, user = get_verification_code(email)
     if code_obj and user:
-        subject = f"{APP.name} - Verification Code"
+        subject = f"{app.name} - Verification Code"
         context = {
             "name": user.name,
-            "app_name": APP.name,
+            "app_name": app.name,
             "code": code_obj.code,
         }
         html_message = render_to_string(
@@ -37,10 +37,10 @@ def send_verification_email(email: str):
 def send_code_reset_password(email: str):
     code_obj, user = get_verification_code(email)
     if code_obj and user:
-        subject = f"{APP.name} - Code Reset Password"
+        subject = f"{app.name} - Code Reset Password"
         context = {
             "name": user.name,
-            "app_name": APP.name,
+            "app_name": app.name,
             "code": code_obj.code,
         }
         html_message = render_to_string(

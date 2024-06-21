@@ -4,7 +4,7 @@
 import os
 import sys
 from config.utils.manager.decorator import manager
-from config.utils.general import get_settings_module
+from octo.base import get_settings_module
 
 
 @manager
