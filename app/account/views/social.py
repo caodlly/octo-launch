@@ -56,6 +56,8 @@ class OAuthLoginView(APIView):
         if "Bearer " in auth_header:
             return auth_header.split("Bearer ")[1].strip()
         else:
-            sanitize_message = Logger().sanitize_message(f"Authorization header malformed or missing: {auth_header}")
+            sanitize_message = Logger().sanitize_message(
+                f"Authorization header malformed or missing: {auth_header}"
+            )
             logger.error(sanitize_message)
             return auth_header

@@ -26,7 +26,9 @@ class BaseOAuthHandler:
             response.raise_for_status()
             return response.json()
         except requests.RequestException as e:
-            sanitize_message = Logger().sanitize_message(f"Failed to fetch user info: {str(e)}")
+            sanitize_message = Logger().sanitize_message(
+                f"Failed to fetch user info: {str(e)}"
+            )
             logger.error(sanitize_message)
         return None
 
@@ -40,7 +42,9 @@ class BaseOAuthHandler:
             )
             return user
         except Exception as e:
-            sanitize_message = Logger().sanitize_message(f"Error creating or retrieving user: {str(e)}")
+            sanitize_message = Logger().sanitize_message(
+                f"Error creating or retrieving user: {str(e)}"
+            )
             logger.error(sanitize_message)
             return None
 
