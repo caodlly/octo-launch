@@ -1,7 +1,7 @@
 from celery import Celery
 
 # from celery.schedules import crontab
-from config.utils.general import get_settings_module
+from octo.base import get_settings_module
 from django.conf import settings
 import os
 

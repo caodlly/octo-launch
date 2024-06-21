@@ -1,5 +1,5 @@
 from django.core.asgi import get_asgi_application
-from config.utils.general import get_settings_module
+from octo.base import get_settings_module
 
 import os
 
