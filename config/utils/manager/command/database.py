@@ -1,15 +1,18 @@
-from . import Command
+from octo.manager import Command
 
 
 class DBConnect(Command):
     """Verify database connection"""
 
     def handle(self):
+        # === import =====================================
         from django.db import connections
         from django.db.utils import OperationalError
-        from colorama import Fore, Style
+        from colorama import Fore, Style, init
         import time
 
+        init()
+        # === Logic ======================================
         connection_attempts = 5
         attempt_interval = 2
 

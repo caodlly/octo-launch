@@ -1,4 +1,4 @@
-from . import Command
+from octo.manager import Command
 
 
 class CreateSuperUser(Command):
