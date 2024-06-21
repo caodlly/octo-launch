@@ -2,13 +2,13 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-import logging
+from config.utils.logging.general import Logger
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from app.utils.oauth_factory import get_oauth_handler
 
 User = get_user_model()
-logger = logging.getLogger(__name__)
+logger = Logger().get()
 
 
 class OAuthLoginView(APIView):
@@ -34,6 +34,8 @@ class OAuthLoginView(APIView):
 
         user_info = handler.get_user_info()
         if not user_info:
+            sanitize_message = Logger().sanitize_message("<html> test </html>")
+            logger.error(f"Failed to fetch user infodddd: {sanitize_message}")
             return Response(
                 {"error": f"Invalid or expired {provider} access token."},
                 status=status.HTTP_400_BAD_REQUEST,
@@ -56,5 +58,6 @@ class OAuthLoginView(APIView):
         if "Bearer " in auth_header:
             return auth_header.split("Bearer ")[1].strip()
         else:
-            logger.error(f"Authorization header malformed or missing: {auth_header}")
+            sanitize_message = Logger().sanitize_message(auth_header)
+            logger.error(f"Authorization header malformed or missing: {sanitize_message}")
             return auth_header

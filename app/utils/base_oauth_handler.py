@@ -4,11 +4,11 @@ import requests
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from app.utils.generate import generate_code
-import logging
+from config.utils.logging.general import Logger
 
 User = get_user_model()
 
-logger = logging.getLogger(__name__)
+logger = Logger().get()
 
 
 class BaseOAuthHandler:
@@ -26,7 +26,8 @@ class BaseOAuthHandler:
             response.raise_for_status()
             return response.json()
         except requests.RequestException as e:
-            logger.error(f"Failed to fetch user info: {e}")
+            sanitize_message = Logger().sanitize_message(str(e))
+            logger.error(f"Failed to fetch user info: {sanitize_message}")
         return None
 
     def get_or_create_user(self, user_info):
@@ -39,7 +40,8 @@ class BaseOAuthHandler:
             )
             return user
         except Exception as e:
-            logger.error(f"Error creating or retrieving user: {e}")
+            sanitize_message = Logger().sanitize_message(str(e))
+            logger.error(f"Error creating or retrieving user: {sanitize_message}")
             return None
 
     @staticmethod
