@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
 
+from django.conf import settings
+from . import views
+from .views.social import OAuthLoginView
 
 urlpatterns = [
     # =======
@@ -37,3 +39,12 @@ urlpatterns = [
         name="reset_password",
     ),
 ]
+
+if settings.ENABLE_SOCIAL_LOGIN:
+    urlpatterns += [
+        path(
+            "auth/social/<str:provider>/",
+            OAuthLoginView.as_view(),
+            name="oauth_login",
+        ),
+    ]
