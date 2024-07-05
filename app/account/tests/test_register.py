@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from app.utils.generate import generate_register
+from octo.utils.generate import generate_register
 from rest_framework import status
 from app.account.models import VerificationCode
 from app.account.tasks import remove_verification_code

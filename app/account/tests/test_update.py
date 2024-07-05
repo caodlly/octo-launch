@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from app.utils.generate import generate_register, generate_image
+from octo.utils.generate import generate_register, generate_image
 from app.user.factories import password
 from rest_framework import status
 from app.user.models import User

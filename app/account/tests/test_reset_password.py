@@ -5,7 +5,7 @@ from app.user.models import User
 from django.urls import reverse
 from rest_framework import status
 from app.account.tasks import remove_verification_code
-from app.utils.generate import generate_password
+from octo.utils.generate import generate_password
 from django.contrib.auth.hashers import check_password
 
 

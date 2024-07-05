@@ -1,8 +1,8 @@
 from django.db.models import signals
 from django.dispatch import receiver
-from app.utils.image import resize_image
+from octo.utils.image import resize_image
 from .models import User
-from app.utils.generate import generate_code
+from octo.utils.generate import generate_code
 from app.account.tasks import send_verification_email
 
 
