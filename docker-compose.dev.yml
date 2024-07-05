@@ -1,6 +1,9 @@
 networks:
   django_network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 173.14.0.0/24
   # =====================================
 volumes:
     postgres_data:
