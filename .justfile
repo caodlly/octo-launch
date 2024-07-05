@@ -165,3 +165,7 @@
 # Manage Docker production gunicorn environment
 @gunicorn-docker *cmd:
     docker compose -f docker-compose.gunicorn.yml {{cmd}}
+
+# Manage Docker production node environment
+@node-docker *cmd:
+    docker compose -f docker-compose.node.yml {{cmd}}

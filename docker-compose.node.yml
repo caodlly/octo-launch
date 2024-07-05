@@ -1,0 +1,13 @@
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./compose/node/Dockerfile
+    image: frontend_app
+    container_name: frontend_app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: /bin/sh -c "npm run build && npm start"
