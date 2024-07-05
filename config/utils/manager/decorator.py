@@ -1,4 +1,4 @@
-from octo.manager import Manager
+from octo.handler.manager import Manager
 from .command import CreateSuperUser, DBConnect
 
 

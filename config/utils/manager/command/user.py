@@ -1,4 +1,4 @@
-from octo.manager import Command
+from octo.handler.command import Command
 
 
 class CreateSuperUser(Command):
@@ -21,7 +21,7 @@ class CreateSuperUser(Command):
         """Processing and creating a super user."""
         # === import =====================================
         from django.core.exceptions import ValidationError
-        from app.utils.generate import generate_password
+        from octo.utils.generate import generate_password
         from django.contrib.auth.hashers import make_password
         from app.user.models import User
         from django.conf import settings

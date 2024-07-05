@@ -1,4 +1,4 @@
-from octo.manager import Command
+from octo.handler.command import Command
 
 
 class DBConnect(Command):
