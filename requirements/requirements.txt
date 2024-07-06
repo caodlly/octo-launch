@@ -44,7 +44,7 @@ celery==5.4.0
     # via
     #   -r requirements.in
     #   flower
-certifi==2024.2.2
+certifi==2024.7.4
     # via
     #   requests
     #   sentry-sdk
@@ -470,9 +470,6 @@ zope-event==5.0
     # via gevent
 zope-interface==6.3
     # via gevent
-
-# add octo from github Temporarily :
-git+https://github.com/oc-to/octo-framework.git
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
