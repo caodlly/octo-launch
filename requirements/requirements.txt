@@ -345,7 +345,7 @@ rpds-py==0.18.1
     # via
     #   jsonschema
     #   referencing
-ruff==0.4.8
+ruff==0.5.1
     # via -r requirements.in
 s3transfer==0.10.1
     # via boto3
@@ -470,9 +470,6 @@ zope-event==5.0
     # via gevent
 zope-interface==6.3
     # via gevent
-
-# add octo from github Temporarily :
-git+https://github.com/oc-to/octo-framework.git
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
