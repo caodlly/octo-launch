@@ -30,9 +30,9 @@ billiard==4.2.0
     # via celery
 bleach==6.1.0
     # via nbconvert
-boto3==1.34.122
+boto3==1.34.140
     # via -r requirements.in
-botocore==1.34.122
+botocore==1.34.140
     # via
     #   boto3
     #   s3transfer
@@ -470,9 +470,6 @@ zope-event==5.0
     # via gevent
 zope-interface==6.3
     # via gevent
-
-# add octo from github Temporarily :
-git+https://github.com/oc-to/octo-framework.git
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
