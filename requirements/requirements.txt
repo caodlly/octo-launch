@@ -92,7 +92,7 @@ defusedxml==0.7.1
     # via nbconvert
 distlib==0.3.8
     # via virtualenv
-django==5.0.6
+django==5.0.7
     # via
     #   -r requirements.in
     #   collectfast
@@ -470,9 +470,6 @@ zope-event==5.0
     # via gevent
 zope-interface==6.3
     # via gevent
-
-# add octo from github Temporarily :
-git+https://github.com/oc-to/octo-framework.git
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
