@@ -80,7 +80,7 @@ coreapi==2.3.3
     #   openapi-codec
 coreschema==0.0.4
     # via coreapi
-coverage==7.5.3
+coverage==7.6.0
     # via -r requirements.in
 cron-descriptor==1.4.3
     # via -r requirements.in
@@ -470,9 +470,6 @@ zope-event==5.0
     # via gevent
 zope-interface==6.3
     # via gevent
-
-# add octo from github Temporarily :
-git+https://github.com/oc-to/octo-framework.git
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
