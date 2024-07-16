@@ -224,6 +224,4 @@ RESETPASSWORD_THROTTLING_IN = "hour"
 
 ENABLE_SOCIAL_LOGIN = env.bool("ENABLE_SOCIAL_LOGIN", default=False)
 # === THROTTLING ======================================================
-OCTO_OAUTH = {
-    "google": env("OCTO_OAUTH_GOOGLE", default=None)
-}
+OCTO_OAUTH = {"google": env("OCTO_OAUTH_GOOGLE", default=None)}
