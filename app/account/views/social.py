@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from app.account.serializers.SocialSerializer import SocialSerializer
 from octo.handler.social import OAuthGoogle
+from octo.handler.oauth import OAuthHandler
 
-
-def get_oauth_handler(provider, access_token):
+def get_oauth_handler(provider, access_token) -> OAuthHandler | None:
     provider_classes = {
         "google": OAuthGoogle,
     }
@@ -29,10 +29,11 @@ class OAuthLoginView(GenericAPIView):
         access_token = serializer.data.get("access_token")
 
         handler = get_oauth_handler(provider, access_token)
+
         if not handler:
-            ...
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
         token = handler.generate("jwt")
-        print(token)
+
         if not token:
-            ...
+            return Response({"detail": "An unknown error occurred. The access token might be invalid."}, status=status.HTTP_400_BAD_REQUEST)
         return Response(token, status=status.HTTP_200_OK)
