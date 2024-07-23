@@ -277,7 +277,7 @@ pillow==10.3.0
     #   octo-framework
 pip-tools==7.4.1
     # via -r requirements.in
-pipdeptree==2.22.0
+pipdeptree==2.23.1
     # via -r requirements.in
 platformdirs==4.2.1
     # via
