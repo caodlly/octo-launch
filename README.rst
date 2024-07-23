@@ -26,6 +26,12 @@ These features make it easier to kickstart your development process, allowing yo
 Get Started
 -----------
 
+.. code-block:: bash
+
+    pip install octo-framework
+    octo startproject "your_project_name"
+
+
 - You can Just run dev-docker to start development mode
 
 .. code-block:: bash
