@@ -12,6 +12,8 @@ anyio==4.4.0
     # via
     #   starlette
     #   watchfiles
+appdirs==1.4.4
+    # via octo-framework
 asgiref==3.8.1
     # via
     #   django
@@ -71,9 +73,13 @@ click-repl==0.3.0
 collectfast==2.2.0
     # via -r requirements.in
 colorama==0.4.6
-    # via sphinx-autobuild
+    # via
+    #   octo-framework
+    #   sphinx-autobuild
 colorlog==6.8.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   octo-framework
 coreapi==2.3.3
     # via
     #   django-rest-swagger
@@ -107,6 +113,7 @@ django==5.0.7
     #   djangorestframework-simplejwt
     #   drf-spectacular
     #   drf-spectacular-sidecar
+    #   octo-framework
 django-cors-headers==4.3.1
     # via -r requirements.in
 django-debug-toolbar==4.4.2
@@ -133,8 +140,11 @@ djangorestframework==3.15.2
     #   django-rest-swagger
     #   djangorestframework-simplejwt
     #   drf-spectacular
+    #   octo-framework
 djangorestframework-simplejwt==5.3.1
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   octo-framework
 docopt==0.6.2
     # via -r requirements.in
 docutils==0.20.1
@@ -155,6 +165,7 @@ faker==26.0.0
     # via
     #   -r requirements.in
     #   factory-boy
+    #   octo-framework
 fastjsonschema==2.19.1
     # via nbformat
 filelock==3.14.0
@@ -163,6 +174,10 @@ flower==2.0.1
     # via -r requirements.in
 gevent==24.2.1
     # via -r requirements.in
+gitdb==4.0.11
+    # via gitpython
+gitpython==3.1.43
+    # via octo-framework
 greenlet==3.0.3
     # via gevent
 gunicorn==22.0.0
@@ -237,6 +252,8 @@ nbformat==5.10.4
     #   nbconvert
 nodeenv==1.8.0
     # via pre-commit
+octo-framework==1.0.0
+    # via -r requirements.in
 openapi-codec==1.3.2
     # via django-rest-swagger
 packaging==24.0
@@ -255,7 +272,9 @@ parso==0.8.4
 pexpect==4.9.0
     # via ipython
 pillow==10.3.0
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   octo-framework
 pip-tools==7.4.1
     # via -r requirements.in
 pipdeptree==2.22.0
@@ -339,6 +358,7 @@ referencing==0.35.1
 requests==2.32.2
     # via
     #   coreapi
+    #   octo-framework
     #   sphinx
     #   yarg
 rpds-py==0.18.1
@@ -358,6 +378,8 @@ six==1.16.0
     #   asttokens
     #   bleach
     #   python-dateutil
+smmap==5.0.1
+    # via gitdb
 sniffio==1.3.1
     # via anyio
 snowballstemmer==2.2.0
@@ -470,9 +492,6 @@ zope-event==5.0
     # via gevent
 zope-interface==6.3
     # via gevent
-
-# add octo from github Temporarily :
-git+https://github.com/oc-to/octo-framework.git
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
