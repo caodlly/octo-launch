@@ -200,8 +200,10 @@ inflection==0.5.1
     #   pytest-factoryboy
 iniconfig==2.0.0
     # via pytest
-ipython==8.31.0
+ipython==9.1.0
     # via -r requirements.in
+ipython-pygments-lexers==1.1.1
+    # via ipython
 itypes==1.2.0
     # via coreapi
 jedi==0.19.2
@@ -304,6 +306,7 @@ pycparser==2.22
 pygments==2.19.1
     # via
     #   ipython
+    #   ipython-pygments-lexers
     #   nbconvert
     #   sphinx
 pyjwt==2.10.1
