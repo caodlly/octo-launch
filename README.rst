@@ -61,6 +61,13 @@ Admin User Creation
     email='admin@email.com'
     password='your-password'
 
+**Important Note** : When the ``.admin`` file is generated automatically, you **will not** have the necessary permissions to view its contents from your personal device.
+
+You can view the file's contents by either:
+
+1. Accessing the Docker container and using the ``cat`` command.
+2. Or by granting the appropriate permissions on your personal device.
+
 Dependency on Just
 ==================
 
