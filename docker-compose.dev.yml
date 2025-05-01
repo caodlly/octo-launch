@@ -35,7 +35,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: django_db
+      POSTGRES_DB: $NAME$_db
     networks:
       $NAME$_network:
     volumes:
