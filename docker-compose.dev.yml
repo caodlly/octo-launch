@@ -1,23 +1,23 @@
 networks:
-  django_network:
+  $NAME$_network:
     driver: bridge
     ipam:
       config:
         - subnet: 173.14.0.0/24
   # =====================================
 volumes:
-  postgres_data:
-  redis_data:
+  postgres_$NAME$_data:
+  redis_$NAME$_data:
   # =====================================
 services:
-  django: &django
+  $NAME$: &$NAME$
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
-    image: django_app
-    container_name: django_dev
+    image: $NAME$_app
+    container_name: $NAME$_dev
     networks:
-      django_network:
+      $NAME$_network:
     depends_on:
       - redis
       - postgres
@@ -31,80 +31,80 @@ services:
   # =====================================
   postgres:
     image: postgres:latest
-    container_name: postgres_dev
+    container_name: postgres_$NAME$_dev
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: django_db
     networks:
-      django_network:
+      $NAME$_network:
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_$NAME$_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
   # =====================================
   mailpit:
     image: docker.io/axllent/mailpit:latest
-    container_name: mailpit_dev
+    container_name: mailpit_$NAME$_dev
     networks:
-      django_network:
+      $NAME$_network:
     ports:
       - 8025:8025
       - 1025:1025
   # =====================================
   redis:
     image: redis:latest
-    container_name: redis_dev
+    container_name: redis_$NAME$_dev
     networks:
-      django_network:
+      $NAME$_network:
     volumes:
-      - redis_data:/data
+      - redis_$NAME$_data:/data
     ports:
       - 6379:6379
   # =====================================
   redisinsight:
     image: redis/redisinsight:latest
-    container_name: redisinsight_dev
+    container_name: redisinsight_$NAME$_dev
     networks:
-      django_network:
+      $NAME$_network:
     depends_on:
       - redis
     ports:
       - 5540:5540
   # =====================================
   celeryworker:
-    <<: *django
-    image: celeryworker_dev
-    container_name: celeryworker_dev
+    <<: *$NAME$
+    image: celeryworker_$NAME$_dev
+    container_name: celeryworker_$NAME$_dev
     depends_on:
       - redis
       - postgres
       - mailpit
-      - django
+      - $NAME$
     ports: []
     command: just celery-worker
   # =====================================
   celerybeat:
-    <<: *django
-    image: celerybeat_dev
-    container_name: celerybeat_dev
+    <<: *$NAME$
+    image: celerybeat_$NAME$_dev
+    container_name: celerybeat_$NAME$_dev
     depends_on:
       - redis
       - postgres
       - mailpit
-      - django
+      - $NAME$
     ports: []
     command: just celery-beat
   # =====================================
   flower:
-    <<: *django
+    <<: *$NAME$
     image: flower_dev
     container_name: flower_dev
     depends_on:
       - redis
       - postgres
       - mailpit
-      - django
+      - $NAME$
     ports:
       - 5555:5555
     command: just celery-flower
@@ -113,10 +113,10 @@ services:
     build:
       context: .
       dockerfile: ./compose/node/Dockerfile
-    image: frontend_app
-    container_name: frontend_dev
+    image: frontend_$NAME$_app
+    container_name: frontend_$NAME$_dev
     networks:
-      django_network:
+      $NAME$_network:
     volumes:
       - ./frontend:/app
       - /app/node_modules

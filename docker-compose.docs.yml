@@ -1,7 +1,7 @@
 services:
   docs:
-    image: django_app_docs
-    container_name: django_app_docs
+    image: $NAME$_app_docs
+    container_name: $NAME$_app_docs
     build:
       context: .
       dockerfile: ./compose/docs/Dockerfile

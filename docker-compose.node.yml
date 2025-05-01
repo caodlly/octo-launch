@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/node/Dockerfile
-    image: frontend_app
-    container_name: frontend_app
+    image: frontend_$NAME$_app
+    container_name: frontend_$NAME$_app
     volumes:
       - ./frontend:/app
       - /app/node_modules
