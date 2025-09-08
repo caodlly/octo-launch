@@ -172,13 +172,13 @@ filelock==3.18.0
     # via virtualenv
 flower==2.0.1
     # via -r requirements.in
-gevent==25.4.2
+gevent==25.8.2
     # via -r requirements.in
 gitdb==4.0.12
     # via gitpython
 gitpython==3.1.44
     # via octo-framework
-greenlet==3.2.1
+greenlet==3.2.4
     # via gevent
 gunicorn==23.0.0
     # via -r requirements.in
