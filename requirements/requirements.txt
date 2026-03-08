@@ -451,7 +451,7 @@ uritemplate==4.1.1
     # via
     #   coreapi
     #   drf-spectacular
-urllib3==2.4.0
+urllib3==2.6.3
     # via
     #   botocore
     #   requests
