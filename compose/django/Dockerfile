@@ -1,5 +1,5 @@
 # Base image
-FROM python:3.12 as build
+FROM python:3.12-slim-bookworm as build
 
 RUN apt-get update && apt-get install -y build-essential curl libpq-dev
 ENV VIRTUAL_ENV=/opt/venv \
