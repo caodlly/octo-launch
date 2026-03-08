@@ -50,7 +50,7 @@ certifi==2025.4.26
     # via
     #   requests
     #   sentry-sdk
-cffi==1.17.1
+cffi==2.0.0
     # via cryptography
 cfgv==3.4.0
     # via pre-commit
@@ -90,7 +90,7 @@ coverage==7.8.0
     # via -r requirements.in
 cron-descriptor==1.4.5
     # via -r requirements.in
-cryptography==44.0.2
+cryptography==46.0.3
     # via -r requirements.in
 decorator==5.2.1
     # via ipython
