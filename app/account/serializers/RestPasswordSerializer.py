@@ -1,7 +1,7 @@
 from rest_framework import serializers
+
 from app.account.models import VerificationCode
-from app.account.serializers import VerificationKeyError
-from app.account.serializers import UpdateUserSerializer
+from app.account.serializers import UpdateUserSerializer, VerificationKeyError
 
 
 class ResetPasswordSerializer(serializers.ModelSerializer):

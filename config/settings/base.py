@@ -1,9 +1,11 @@
-from environ import Env
 import os
-from pathlib import Path
-from django.utils.translation import gettext_lazy as _
-from config import app
 from datetime import timedelta
+from pathlib import Path
+
+from django.utils.translation import gettext_lazy as _
+from environ import Env
+
+from config import app
 
 # === BASE_DIR ===================================================
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

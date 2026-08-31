@@ -20,14 +20,16 @@ class CreateSuperUser(Command):
     def handle(self):
         """Processing and creating a super user."""
         # === import =====================================
-        from django.core.exceptions import ValidationError
-        from octo.utils.generate import generate_password
-        from django.contrib.auth.hashers import make_password
-        from app.user.models import User
-        from django.conf import settings
-        from environ import Env
         import os
         import stat
+
+        from django.conf import settings
+        from django.contrib.auth.hashers import make_password
+        from django.core.exceptions import ValidationError
+        from environ import Env
+        from octo.utils.generate import generate_password
+
+        from app.user.models import User
 
         # === Get User =====================================
         admin_path_env = os.path.join(settings.BASE_DIR, ".envs/.admin")
