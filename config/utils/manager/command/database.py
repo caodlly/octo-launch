@@ -6,10 +6,11 @@ class DBConnect(Command):
 
     def handle(self):
         # === import =====================================
+        import time
+
+        from colorama import Fore, Style, init
         from django.db import connections
         from django.db.utils import OperationalError
-        from colorama import Fore, Style, init
-        import time
 
         init()
         # === Logic ======================================

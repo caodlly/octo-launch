@@ -1,7 +1,7 @@
-from .base import *  # noqa: F403
-from .base import INSTALLED_APPS, MIDDLEWARE
-from config.utils.storages import *  # noqa: F403
+from config.utils.storages import *
 
+from .base import *
+from .base import INSTALLED_APPS, MIDDLEWARE
 
 # === GENERAL ================================================
 ADMIN_URL = "admin"

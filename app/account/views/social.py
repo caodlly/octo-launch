@@ -1,9 +1,10 @@
+from octo.handler.oauth import OAuthHandler
+from octo.handler.social import OAuthGoogle
+from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from rest_framework import status
+
 from app.account.serializers.SocialSerializer import SocialSerializer
-from octo.handler.social import OAuthGoogle
-from octo.handler.oauth import OAuthHandler
 
 
 def get_oauth_handler(provider, access_token) -> OAuthHandler | None:

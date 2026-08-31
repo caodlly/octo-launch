@@ -1,5 +1,4 @@
-from .development import *  # noqa: F403
-
+from .development import *
 
 # === CELERY ======================================================
 CELERY_TASK_ALWAYS_EAGER = True
