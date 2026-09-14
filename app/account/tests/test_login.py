@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 from rest_framework import status
+
 from app.user.factories import password as get_password
 
 

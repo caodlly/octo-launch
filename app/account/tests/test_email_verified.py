@@ -1,10 +1,11 @@
 import pytest
 from django.urls import reverse
-from app.user.models import User
-from app.user.factories import password
 from rest_framework import status
+
 from app.account.models import VerificationCode
 from app.account.tasks import remove_verification_code
+from app.user.factories import password
+from app.user.models import User
 
 
 # === fixture ======================================
