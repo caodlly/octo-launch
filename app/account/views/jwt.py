@@ -1,14 +1,15 @@
-from rest_framework.request import Request
-from rest_framework.response import Response
-from rest_framework_simplejwt.views import (
-    TokenRefreshView,
-    TokenVerifyView,
-    TokenObtainPairView,
-)
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from app.account.throttling import AnonThrottlingLogin
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
+from app.account.throttling import AnonThrottlingLogin
 
 
 class LoginJwtSerializer(TokenObtainPairSerializer):

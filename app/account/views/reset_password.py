@@ -1,16 +1,17 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from app.account.serializers import (
     EmailSerializer,
     GetKeySerializer,
     ResetPasswordSerializer,
 )
 from app.account.tasks import send_code_reset_password
-from drf_spectacular.utils import extend_schema
 from app.account.throttling import AnonThrottlingResetPassword
-from app.utils.permissions import NotAuthenticatedPermission
 from app.user.models import User
+from app.utils.permissions import NotAuthenticatedPermission
 
 
 class SendCodeRestPassword(APIView):
