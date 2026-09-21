@@ -1,8 +1,7 @@
-from django.urls import path, include
-from drf_spectacular.views import SpectacularRedocView, SpectacularSwaggerView
-from drf_spectacular.views import SpectacularAPIView as SpectacularView
+from django.urls import include, path
 from drf_spectacular.utils import extend_schema
-
+from drf_spectacular.views import SpectacularAPIView as SpectacularView
+from drf_spectacular.views import SpectacularRedocView, SpectacularSwaggerView
 
 urlpatterns = [
     path("", include("app.account.urls")),
