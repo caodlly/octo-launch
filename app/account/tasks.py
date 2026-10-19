@@ -1,10 +1,13 @@
+from datetime import timedelta
+
 from celery import shared_task
 from django.template.loader import render_to_string
-from config import app
-from app.utils.email import send_email
+
 from app.user.models import User
+from app.utils.email import send_email
+from config import app
+
 from .models import VerificationCode
-from datetime import timedelta
 
 
 @shared_task

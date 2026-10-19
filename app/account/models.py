@@ -1,7 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from octo.utils.generate import generate_key, generate_code
-from django.contrib.auth import get_user_model
+from octo.utils.generate import generate_code, generate_key
 
 User = get_user_model()
 

@@ -1,12 +1,13 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import permissions, status
-from rest_framework.views import APIView
-from app.account.serializers import CodeSerializer
 from rest_framework.response import Response
-from app.utils.permissions import EmailNotVerified
+from rest_framework.views import APIView
+
 from app.account.models import VerificationCode
+from app.account.serializers import CodeSerializer
 from app.account.tasks import send_verification_email
 from app.user.models import User
-from drf_spectacular.utils import extend_schema
+from app.utils.permissions import EmailNotVerified
 
 
 class SendEmailCodeVerify(APIView):

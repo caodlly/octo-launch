@@ -1,15 +1,15 @@
 import logging
 
 import sentry_sdk
+from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
-from sentry_sdk.integrations.celery import CeleryIntegration
 
-from .base import *  # noqa: F403
-from .base import env, REST_FRAMEWORK, DATABASES
-from config.utils.storages import *  # noqa: F403
+from config.utils.storages import *
 
+from .base import *
+from .base import DATABASES, REST_FRAMEWORK, env
 
 # ===STMP Email=================================================
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
