@@ -1,10 +1,11 @@
 import pytest
-from django.urls import reverse
-from octo.utils.generate import generate_register, generate_image
-from app.user.factories import password
-from rest_framework import status
-from app.user.models import User
 from django.contrib.auth.hashers import check_password
+from django.urls import reverse
+from octo.utils.generate import generate_image, generate_register
+from rest_framework import status
+
+from app.user.factories import password
+from app.user.models import User
 
 
 @pytest.mark.django_db

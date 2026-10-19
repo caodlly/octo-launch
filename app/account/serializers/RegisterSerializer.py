@@ -1,8 +1,11 @@
-from rest_framework import serializers
+import re
+
 from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
-import re
+from rest_framework import serializers
+
 from app.user.models import User
+
 from .UserSerializer import UserSerializer
 
 password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"

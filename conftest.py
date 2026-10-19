@@ -1,7 +1,8 @@
 import pytest
-from rest_framework.test import APIClient, APIRequestFactory
-from app.user.factories import UserFactory, AdminFactory
 from pytest_factoryboy import register
+from rest_framework.test import APIClient, APIRequestFactory
+
+from app.user.factories import AdminFactory, UserFactory
 from app.user.models import User
 
 # === register =====================================

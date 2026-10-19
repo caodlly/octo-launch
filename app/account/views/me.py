@@ -1,9 +1,10 @@
 from drf_spectacular.utils import extend_schema
-from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
+from rest_framework.response import Response
+
+from app.account.serializers import StatusSerializer, UserSerializer
 from app.utils.permissions import MePermission
-from app.account.serializers import UserSerializer, StatusSerializer
 
 
 class Me(GenericAPIView):

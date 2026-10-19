@@ -1,7 +1,7 @@
-from rest_framework import serializers, status
-from rest_framework.exceptions import ValidationError, APIException
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
+from rest_framework import serializers, status
+from rest_framework.exceptions import APIException, ValidationError
 
 
 class AuthenticationFailed(APIException):
