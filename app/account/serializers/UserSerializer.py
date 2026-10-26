@@ -1,6 +1,7 @@
-from rest_framework import serializers
-from app.user.models import User
 from drf_spectacular.utils import extend_schema_field
+from rest_framework import serializers
+
+from app.user.models import User
 
 
 class EmailDetails(serializers.Serializer):

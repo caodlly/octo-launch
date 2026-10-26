@@ -1,10 +1,12 @@
+from django.db import transaction
 from django.db.models import signals
 from django.dispatch import receiver
-from octo.utils.image import resize_image
-from .models import User
 from octo.utils.generate import generate_code
+from octo.utils.image import resize_image
+
 from app.account.tasks import send_verification_email
-from django.db import transaction
+
+from .models import User
 
 
 @receiver(signals.pre_save, sender=User)
