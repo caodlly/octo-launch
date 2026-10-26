@@ -1,7 +1,8 @@
 import factory
-from .models import User
-from faker import Faker
 from django.contrib.auth.hashers import make_password
+from faker import Faker
+
+from .models import User
 
 password = Faker().password()
 

@@ -1,8 +1,9 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework.generics import CreateAPIView
-from app.utils.permissions import NotAuthenticatedPermission
+
 from app.account.serializers import RegisterSerializer, UserSerializer
 from app.user.models import User
+from app.utils.permissions import NotAuthenticatedPermission
 
 
 class Register(CreateAPIView):
