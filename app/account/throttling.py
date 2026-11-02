@@ -1,5 +1,5 @@
-from rest_framework.throttling import AnonRateThrottle
 from django.conf import settings
+from rest_framework.throttling import AnonRateThrottle
 
 
 class AnonThrottlingLogin(AnonRateThrottle):
