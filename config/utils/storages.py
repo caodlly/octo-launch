@@ -1,5 +1,6 @@
-from config.settings.base import env, INSTALLED_APPS, BASE_DIR
 import os
+
+from config.settings.base import BASE_DIR, INSTALLED_APPS, env
 
 INSTALLED_APPS += ["collectfast", "storages"]
 
