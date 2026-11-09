@@ -2,6 +2,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import permissions
 from rest_framework.generics import UpdateAPIView
 from rest_framework.response import Response
+
 from app.account.serializers import UpdateUserSerializer, UserSerializer
 from app.user.models import User
 
