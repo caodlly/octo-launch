@@ -3,8 +3,10 @@
 
 import os
 import sys
-from config.utils.manager.decorator import manager
+
 from octo.base import get_settings_module
+
+from config.utils.manager.decorator import manager
 
 
 @manager
