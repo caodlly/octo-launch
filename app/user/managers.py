@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING
-from django.core.exceptions import ValidationError
+
 from django.contrib.auth.models import UserManager as DjangoUserManager
+from django.core.exceptions import ValidationError
 
 if TYPE_CHECKING:
     from .models import User  # noqa: F401

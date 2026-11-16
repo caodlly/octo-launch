@@ -1,6 +1,6 @@
 from octo.handler.manager import Manager
-from .command import CreateSuperUser, DBConnect
 
+from .command import CreateSuperUser, DBConnect
 
 _manager = Manager()
 _manager.set_schema(
