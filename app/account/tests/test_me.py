@@ -1,8 +1,9 @@
 import pytest
 from django.urls import reverse
-from app.user.factories import password
 from rest_framework import status
+
 from app.account.serializers import UserSerializer
+from app.user.factories import password
 
 
 @pytest.mark.django_db
