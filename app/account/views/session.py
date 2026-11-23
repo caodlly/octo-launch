@@ -3,9 +3,10 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from app.utils.permissions import LoginPermission
+
 from app.account.serializers import LoginSerializer, UserSerializer
 from app.account.throttling import AnonThrottlingLogin
+from app.utils.permissions import LoginPermission
 
 
 class LoginSession(APIView):
